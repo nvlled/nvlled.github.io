@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{with .title}}{{.}} - {{end}}{{.sitename}}</title>
+<link rel="stylesheet" href='{{url "/styles/site.css"}}' />
+</head>
+<body>
+<div id="wrapper">
+    <h2>
+        <a href='{{urlfor "home"}}'>Home</a>
+        « <a href='{{urlfor "blog"}}'>Blog</a> « {{.title}}
+    </h2>
+    <hr>
+    {{.contents}}
+    <hr>
+    <p>on {{.date}}</p>
+</div>
+</body>
+</html>

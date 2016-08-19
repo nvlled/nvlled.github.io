@@ -1,0 +1,13 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{with .title}}{{.}} - {{end}}{{.sitename}}</title>
+<link rel="stylesheet" href='{{url "/styles/site.css"}}' />
+</head>
+<body>
+<div id="wrapper">
+    {{.contents}}
+</div>
+</body>
+</html>

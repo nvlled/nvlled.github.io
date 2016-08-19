@@ -1,0 +1,39 @@
+
+- This file is the base-env
+
+sitename: project
+
+- Takes the filename of the layout in the
+- layouts-dir. Since this is in the base-env,
+- all html files will this default layout unless
+- overriden.
+layout: default.html
+
+- verbatim files are copied as is
+verbatim-files: sample-files/
+
+- exclude files are not include in the build output
+exclude-files: trash/
+
+- Contains snippets of html files
+- that can be included in other files.
+- (See docs for text/template)
+- Each snippet must be explicitly defined using
+- {{define "name"}}
+includes-dir: gostfiles/includes
+
+- Contains whole file layouts for
+- html files. The filename (including the file extension)
+- will be used as the value for the env entry 'template'. No
+- need to put {{define "name"}} for each layout file.
+layouts-dir: gostfiles/layouts
+
+- Contains prototypes used when newfile action is used
+- to create new project files. As in the layouts-dir,
+- no need to explicitly define a name for the template.
+protos-dir: gostfiles/protos
+
+- If set, urls created with calls to url and urlfor
+- will be relative urls as opposed to be absolute urls
+relative-url: true
+

@@ -1,0 +1,7 @@
+
+- A template for creating new files in this directory.
+- example: gost newfile articles/weebosites.html
+- The value of proto must be a filename in protos-dir.
+proto: blog.html
+
+category: blog
