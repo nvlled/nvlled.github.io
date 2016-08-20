@@ -3,13 +3,17 @@
 <meta charset="UTF-8">
 <title>{{with .title}}{{.}} - {{end}}{{.sitename}}</title>
 <link rel="stylesheet" href='{{url "/styles/site.css"}}' />
+<script src='{{url "/scripts/site.js"}}'></script>
 </head>
 <body>
 <div id="wrapper">
+    <header id="blog">
     <h2>
         <a href='{{urlfor "home"}}'>Home</a>
         « <a href='{{urlfor "blog"}}'>Blog</a> « {{.title}}
     </h2>
+    </header>
+
     <hr>
     {{.contents}}
     <hr>

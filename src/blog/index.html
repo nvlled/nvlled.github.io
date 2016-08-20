@@ -1,9 +1,18 @@
 ----------------------
 id: blog
 title: Index
-date: Thu, 18 Aug 2016 PHT
+date: 18 Aug 16
 layout: blog.html
 ----------------------
+<h3>Entries</h3>
+<ul>
+    {{range (with_env "category" "blog" "date" "desc") }}
+    {{if (ne .id "blog")}}
+        <li><a href='{{url .path}}'>{{.title}}</a></li>
+    {{end}}
+    {{end}}
+</ul>
+<h3>On Blogging</h3>
 <p>
     I don't think myself of a blogger,
     nor do I think I am qualified to be one.

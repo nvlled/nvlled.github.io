@@ -1,5 +1,54 @@
+body {
+    background-color: #343;
+    color: #010;
+    font-size: 18px;
+}
+
+a {
+    color: #151;
+}
+a:visited {
+    color: #020;
+}
+
+a[href^=http]:after {
+    content: "[→]";
+}
+
+p {
+    text-indent: 15px;
+    line-height: 1.5;
+}
 
 #wrapper {
-	width: 800px;
+	width: 700px;
 	margin: auto;
+    background-color: #f9f8f7;
+    padding: 10px;
+    min-height: 400px;
+}
+
+#home {
+    font-size: 20px;
+}
+#home img {
+    width: 70%;
+    padding: 5px;
+    display: block;
+    margin: 0px auto;
+}
+
+header h2 {
+    padding-top: 15px;
+    text-align: center;
+    color: white;
+}
+header h2 a, header h2 a:visited {
+    color: white;
+}
+header#blog {
+    background-size: 100%;
+    background-image: url({{url "/images/spiral-green-sky.jpg"}});
+    background-repeat: no-repeat;
+    height: 70px;
 }
