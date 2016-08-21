@@ -20,6 +20,7 @@ a[href^=http]:after {
 p {
     text-indent: 15px;
     line-height: 1.5;
+    text-align: justify;
 }
 
 #wrapper {
@@ -28,6 +29,9 @@ p {
     background-color: #f9f8f7;
     padding: 10px;
     min-height: 400px;
+    border-bottom: 20px solid black;
+    border-top: 12px solid black;
+    border-left: 10px solid white;
 }
 
 #home {

@@ -1,9 +1,13 @@
 {{define "mainnav"}}
 <nav id="main">
     <ul>
+        {{if (not (equals .id "home"))}}
         <li><a href='{{urlfor "home"}}'>home</a></li>
-        <li><a href='{{urlfor "mysides"}}'>project</a></li>
+        {{end}}
+        <li><a href='{{urlfor "mysides"}}'>code</a></li>
+        <li><a href='{{urlfor "fiction"}}'>fiction</a></li>
         <li><a href='{{urlfor "blog"}}'>blog</a></li>
+        <li><a href='{{urlfor "about"}}'>about</a></li>
     </ul>
 </nav>
 {{end}}
