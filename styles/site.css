@@ -1,5 +1,5 @@
 body {
-    background-color: #343;
+    background-color: #122;
     color: #010;
     font-size: 18px;
 }
@@ -12,7 +12,9 @@ a:visited {
 }
 
 a[href^=http]:after {
-    content: "[→]";
+    font-size: 11px;
+    content: "→";
+    text-decoration: none;
 }
 
 p {
@@ -51,4 +53,24 @@ header#blog {
     background-image: url(../images/spiral-green-sky.jpg);
     background-repeat: no-repeat;
     height: 70px;
+}
+nav#main {
+    background-image: url(../images/spiral-green-sky2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 3px;
+}
+
+nav#main ul {
+    list-style-type: none;
+    padding-left: 5px;
+    text-align: right;
+}
+nav#main li {
+    display: inline-block;
+    padding: 5px;
+    padding-right: 10px;
+}
+nav#main a, nav#main a:visited {
+    color: white;
 }

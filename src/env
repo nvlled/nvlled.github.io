@@ -1,7 +1,7 @@
 
 - This file is the base-env
 
-sitename: project
+sitename: dumpsite
 
 - Takes the filename of the layout in the
 - layouts-dir. Since this is in the base-env,
@@ -36,4 +36,3 @@ protos-dir: gostfiles/protos
 - If set, urls created with calls to url and urlfor
 - will be relative urls as opposed to be absolute urls
 relative-url: true
-
