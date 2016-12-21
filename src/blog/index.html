@@ -6,7 +6,7 @@ layout: blog.html
 ----------------------
 <h3>Entries</h3>
 <ul>
-    {{range (with_env "category" "blog" "date" "desc") }}
+    {{range (with_env "category" "blog") }}
     {{if (ne .id "blog")}}
         <li><a href='{{url .path}}'>{{.title}}</a></li>
     {{end}}
