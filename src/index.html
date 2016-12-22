@@ -6,14 +6,13 @@ layout: home.html
 -------------------------
 <div id="home">
 
-{{template "mainnav" .}}
 <p>
-    <img id='thingy' src='{{url "/images/spiral-green-sky.jpg"}}'>
     Greetings. This is an eternally work-in-progress
     personal site. I'm not sure what I should
     put here, but I guess a <a href='{{urlfor "blog"}}'>blog</a> would do,
     as well as some <a href='{{urlfor "mysides"}}'>javascript games and utilities.</a>
 </p>
+{{template "mainnav" .}}
 <style>
 img#thingy {
     display: inline-block;
