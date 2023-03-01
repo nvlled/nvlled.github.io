@@ -1,0 +1,10 @@
+{
+	 "twind className": {
+	 	"scope": "javascript,typescript,typescriptreact",
+	 	"prefix": "cstw",
+	 	"body": [
+			 "className={tw`$1`}",
+	 	],
+	 	"description": "twind class attribute"
+	 }
+}

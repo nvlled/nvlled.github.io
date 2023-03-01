@@ -1,0 +1,186 @@
+
+TODO:
+- cleanup
+
+====================================
+
+- find out why build time takes a second
+  https://deno.land/api@v1.31.0?s=Performance
+  
+  - so there are two problems here:
+    1. loading https://deno.land/x/imagescript@1.2.15/mod.ts
+       takes about a half-second
+    2. dynamic import roughly takes about 20ms
+    
+    For (1), I could just move thumbnail generation to tools/.
+    For (2), I could avoid dynamic imports by generating
+             an imports file, like how fresh deno does it.
+
+    buildHTML takes about 271ms
+    Also, cliffy library takes about 100ms (either load time or run time) which is pretty darn slow.
+    or not, doesn't make much difference when I remove it
+
+    isSubDirectory takes about ~11ms
+
+- to avoid rebuilding other files:
+  - on dev HTTP server, keeep track of the last html file request
+
+=====================================================
+simplified cli interface
+
+./cita build --watch --gen-pagelist=false --gen-sitemap=true --auto-reload-on-focus
+./cita new
+./cita init
+./cita clean
+./cita timestamp
+
+
+=====================================================
+  
+
+- cleanup
+- add notes
+- temp project page
+- use css grid on image rows
+
+
+cita TODO:
+- merge changes/fixes
+- deno.json
+- external config and commands
+-import_map.json
+  "imports": {
+      "$fresh/": "https://deno.land/x/fresh@1.1.3/"
+
+--------------------
+
+# goals
+- minimal design, but not (too) sore to look at
+- some content, it doesn't what
+  - I guess a blog?
+  - selected screenshots
+
+# purpose:
+Well, I can't be really a web developer
+if I don't have a personal website.
+Then again, I'm not looking exclusively for 
+web developer jobs. But it's serves as a 
+portfolio anyway. But it's something I
+would judge on if I were to apply for jobs, maybe.
+
+# references
+Lots of ideas to take from the webrings
+starting from
+https://basementcommunity.com/
+https://weirdinternet.neocities.org/
+
+# design:
+- HN-like site design
+
+|X| site-name    home | notes | screenshots                    about | source
+
+(pages/posts, sorted by created desc)
+
+1. some title
+   10 hours ago | 123 words
+2. some title
+   10 hours ago | 123 words
+3. some title
+   10 hours ago | 123 words
+   
+More
+
+------------------------------------------
+|X| site-name    home | notes | screenshots | links                    about | source
+
+some title
+10 hours ago | 123 words
+
+some text here and there
+some text here and there
+some text here and there
+some text here and there
+some text here and there
+
+------------------------------------------
+/screenshots.html
+
+Screenshots
+
+Watch
+
+thumbnail1 thumbnail2
+
+view all
+
+Gaming
+
+thumbnail1 thumbnail2
+
+Projects
+
+thumbnail1 thumbnail2
+
+/screenshots/watch.html
+/screenshots/gaming.html
+/screenshots/projects.html
+
+------------------------------------------
+Actually, I can't just dump every image,
+that's too much for the (free) static host site.
+I'll just select a few then, probably the ones
+that look interesting or informative.
+
+
+
+
+-------------
+  pageList(pages: LoadedPage[]): string {
+    pages = pages.filter((p) => p.valid);
+    function generateSiteMap(pages: LoadedPage[]): Record<string, unknown> {
+      const result: Record<string, unknown> = {};
+
+      let i = 0;
+      for (const page of pages) {
+        const paths = path.dirname(page.path).split(path.sep);
+        const key = path.parse(page.path).name.replace(/[- \.]/g, "_");
+
+        if (paths[0] === ".") {
+          paths.shift();
+        }
+
+        let base = result;
+        for (let p of paths) {
+          p = p + "Dir";
+          if (!base[p]) {
+            base[p] = {};
+          }
+          base = base[p] as Record<string, unknown>;
+        }
+        base[key] = `{...\$${i}.data, path: '${page.path}'}`;
+        i++;
+      }
+
+      //const sitemap = await internal.loadCurrentSiteMap();
+      return { ...result };
+    }
+
+    const imports = pages.map(
+      (p, i) => `import * as \$${i} from "./${p.path}"`
+    );
+    const list = pages.map(
+      (p, i) => `  {...$${i}, valid: true, path: "${p.path}"},`
+    );
+
+    return `
+${imports.join(";\n")}
+
+export const siteMap = ${JSON.stringify(generateSiteMap(pages), null, 2)
+      //.replace(/"(\$\d+)"/g, "$1")};
+      .replace(/"({)|(})"/g, "$1$2")};
+
+export default [
+${list.join("\n")}
+]
+    `;
+  },

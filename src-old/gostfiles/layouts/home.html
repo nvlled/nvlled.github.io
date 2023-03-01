@@ -1,14 +1,11 @@
-
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>{{with .title}}{{.}} - {{end}}{{.sitename}}</title>
-<link rel="stylesheet" href='{{url "/styles/site.css"}}' />
-<script src='{{url "/scripts/site.js"}}'></script>
-</head>
-<body>
-<div id="wrapper">
-    {{.contents}}
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{with .title}}{{.}} - {{end}}{{.sitename}}</title>
+    <link rel="stylesheet" href='{{.basePath}}/{{url "/styles/site.css"}}' />
+    <script src='{{.basePath}}/{{url "/scripts/site.js"}}'></script>
+  </head>
+  <body>
+    <div id="wrapper">{{.contents}}</div>
+  </body>
 </html>

@@ -1,0 +1,22 @@
+{
+    "imports": {
+        "cita": "./cita.tsx",
+        "screenshots/common": "./screenshots/common.tsx",
+        "components": "./components.tsx",
+        "$std/": "https://deno.land/std@0.177.0/",
+        "$datetime/": "https://deno.land/std@0.177.0/datetime/",
+        "moment": "https://deno.land/x/momentjs@2.29.1-deno/mod.ts",
+        "preact": "https://esm.sh/preact@10.12.1",
+        "sitemap": "./gen_sitemap.ts"
+    },
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "https://esm.sh/preact@10.12.1",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "dom.asynciterable",
+            "deno.ns"
+        ]
+    }
+}

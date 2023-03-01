@@ -36,3 +36,5 @@ protos-dir: gostfiles/protos
 - If set, urls created with calls to url and urlfor
 - will be relative urls as opposed to be absolute urls
 relative-url: true
+
+basePath: old
