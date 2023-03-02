@@ -1,10 +1,11 @@
-import { PageData, PageRender, SitemapEntry, tw } from "../cita.tsx";
+import { PageData, PageRender, SitemapEntry } from "../cita.tsx";
 import * as path from "$std/path/mod.ts";
 import { Dv, HR, Layout, Space } from "../components.tsx";
 import captions from "./captions.ts";
 import { Screenshot, ThumbnailLink } from "./common.tsx";
 import listing from "./listing.ts";
 import { pageDir } from "sitemap";
+import { tw } from "$twind/css";
 
 export const data: PageData = {
   title: "Screenshots",

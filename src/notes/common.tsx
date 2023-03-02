@@ -1,7 +1,8 @@
-import { formatDate, Page, parseDate, SitemapEntry, tw, util } from "cita";
+import { formatDate, Page, parseDate, SitemapEntry, util } from "cita";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
 import { Dv, icons, Layout, Space } from "../components.tsx";
 import { pageDir } from "../gen_sitemap.ts";
+import { tw } from "$twind/css";
 
 const pageSize = 15;
 

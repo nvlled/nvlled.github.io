@@ -1,6 +1,14 @@
 
 TODO:
-- cleanup
+- ./cita.tsx build --publish
+  - add draft property on Page
+  - format output html properly
+
+cita TODO:
+- merge changes/fixes
+- update readme
+  - typechecking
+  - add/remove pages
 
 ====================================
 
@@ -37,12 +45,6 @@ simplified cli interface
 
 =====================================================
   
-
-- cleanup
-- add notes
-- temp project page
-- use css grid on image rows
-
 
 cita TODO:
 - merge changes/fixes

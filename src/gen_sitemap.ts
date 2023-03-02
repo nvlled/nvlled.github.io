@@ -1,16 +1,16 @@
 /* This is a generated file, any manual changes may be overwritten.
  */
-import { SitemapEntry } from "./cita.tsx";
+import { SitemapEntry, parseDate } from "./cita.tsx";
 
 export const sitemapPages: SitemapEntry[] = [
   {
     "title": "notes 0",
-    "created": "2023-03-01 15:40:14",
+    "created": "2023-03-02 19:25:59",
     "path": "notes.tsx"
   },
   {
     "title": "Home",
-    "created": "2023-03-01 15:40:13",
+    "created": "2023-03-02 19:25:59",
     "path": "index.tsx"
   },
   {
@@ -44,6 +44,11 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "updates/refactor-and-cleanup.tsx"
   },
   {
+    "title": "Imported old site",
+    "created": "2023-03-02 19:16:52",
+    "path": "updates/imported-old-site.tsx"
+  },
+  {
     "title": "Improve build time",
     "created": "2023-02-27 00:00:00",
     "path": "updates/improve-build-time.tsx"
@@ -72,28 +77,38 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "notes 2",
-    "created": "2023-03-01 15:40:14",
+    "created": "2023-03-02 19:25:59",
     "path": "notes/feed/page2.tsx"
   },
   {
     "title": "notes 3",
-    "created": "2023-03-01 15:40:14",
+    "created": "2023-03-02 19:25:59",
     "path": "notes/feed/page3.tsx"
   },
   {
     "title": "notes 0",
-    "created": "2023-03-01 15:40:14",
+    "created": "2023-03-02 19:25:59",
     "path": "notes/feed/page0.tsx"
   },
   {
     "title": "notes 4",
-    "created": "2023-03-01 15:40:14",
+    "created": "2023-03-02 19:25:59",
     "path": "notes/feed/page4.tsx"
   },
   {
     "title": "notes 1",
-    "created": "2023-03-01 15:40:14",
+    "created": "2023-03-02 19:25:59",
     "path": "notes/feed/page1.tsx"
+  },
+  {
+    "title": "Gost static site generator",
+    "created": "2023-03-02 11:02:14",
+    "path": "notes/gost.tsx"
+  },
+  {
+    "title": "Godot's wait is over",
+    "created": "2023-03-02 11:22:55",
+    "path": "notes/godot.tsx"
   },
   {
     "title": "About",
@@ -101,38 +116,88 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "about.tsx"
   },
   {
+    "title": "Test",
+    "created": "2023-03-02 12:50:11",
+    "path": "huh/test.tsx"
+  },
+  {
     "title": "Home 21",
-    "created": "2023-03-01 15:40:13",
+    "created": "2023-03-02 19:25:59",
     "path": "homefeed/page2.tsx"
   },
   {
     "title": "Home 31",
-    "created": "2023-03-01 15:40:13",
+    "created": "2023-03-02 19:25:59",
     "path": "homefeed/page3.tsx"
   },
   {
     "title": "Home",
-    "created": "2023-03-01 15:40:13",
+    "created": "2023-03-02 19:25:59",
     "path": "homefeed/page0.tsx"
   },
   {
     "title": "Home 41",
-    "created": "2023-03-01 15:40:13",
+    "created": "2023-03-02 19:25:59",
     "path": "homefeed/page4.tsx"
   },
   {
     "title": "Home 11",
-    "created": "2023-03-01 15:40:13",
+    "created": "2023-03-02 19:25:59",
     "path": "homefeed/page1.tsx"
   },
   {
     "title": "Projects",
     "created": "2023-02-24 00:00:00",
     "path": "projects.tsx"
+  },
+  {
+    "title": "Home",
+    "created": "2016-08-16 00:00:00",
+    "path": "old-site/index.tsx"
+  },
+  {
+    "title": "Blog",
+    "created": "2016-06-18 00:00:00",
+    "path": "old-site/blog/index.tsx"
+  },
+  {
+    "title": "Just write",
+    "created": "2016-06-25 00:00:00",
+    "path": "old-site/blog/justwrite.tsx"
+  },
+  {
+    "title": "Gost",
+    "created": "2023-08-16 00:00:00",
+    "path": "old-site/blog/gost.tsx"
+  },
+  {
+    "title": "My side projects",
+    "created": "2016-12-16 00:00:00",
+    "path": "old-site/mysides.tsx"
+  },
+  {
+    "title": "Skul",
+    "created": "2017-03-17 00:00:00",
+    "path": "old-site/fiction/skul.tsx"
+  },
+  {
+    "title": "Bulbasaur is dumb",
+    "created": "2017-03-21 00:00:00",
+    "path": "old-site/fiction/bulbasaur.tsx"
+  },
+  {
+    "title": "Fiction",
+    "created": "2016-08-21 00:00:00",
+    "path": "old-site/fiction/index.tsx"
+  },
+  {
+    "title": "Tails of cabbit",
+    "created": "2016-08-29 00:00:00",
+    "path": "old-site/fiction/cabbit.tsx"
   }
 ];
 
-export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"updates/":[7,8],"notes/":[9,10,11,12],"notes/feed/":[13,14,15,16,17],"homefeed/":[19,20,21,22,23]} as const;
+export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"updates/":[7,8,9],"notes/":[10,11,12,13,19,20],"notes/feed/":[14,15,16,17,18],"huh/":[22],"homefeed/":[23,24,25,26,27],"old-site/":[29,33],"old-site/blog/":[30,31,32],"old-site/fiction/":[34,35,36,37]} as const;
 
 export type PagePath = 
   | "notes"
@@ -143,6 +208,7 @@ export type PagePath =
   | "screenshots/random"
   | "screenshots/watch"
   | "updates/refactor-and-cleanup"
+  | "updates/imported-old-site"
   | "updates/improve-build-time"
   | "notes/site"
   | "notes/ready-for-action"
@@ -153,13 +219,25 @@ export type PagePath =
   | "notes/feed/page0"
   | "notes/feed/page4"
   | "notes/feed/page1"
+  | "notes/gost"
+  | "notes/godot"
   | "about"
+  | "huh/test"
   | "homefeed/page2"
   | "homefeed/page3"
   | "homefeed/page0"
   | "homefeed/page4"
   | "homefeed/page1"
-  | "projects";
+  | "projects"
+  | "old-site/index"
+  | "old-site/blog/index"
+  | "old-site/blog/justwrite"
+  | "old-site/blog/gost"
+  | "old-site/mysides"
+  | "old-site/fiction/skul"
+  | "old-site/fiction/bulbasaur"
+  | "old-site/fiction/index"
+  | "old-site/fiction/cabbit";
 
 export type PageDir = keyof (typeof sitemapDirs);
 
@@ -192,5 +270,9 @@ export function pageDir(dir: PageDir): SitemapEntry[] {
   const entries = sitemapDirs[dir];
   if (!entries) return [];
 
-  return entries.map((i) => sitemapPages[i]);
+  const result = entries.map((i) => sitemapPages[i]);
+  result.sort(
+    (a, b) => parseDate(b.created).getTime() - parseDate(a.created).getTime()
+  );
+  return result;
 }

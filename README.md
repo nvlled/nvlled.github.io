@@ -1,7 +1,7 @@
 # nvlled.github.io
 
 This repository contains the source and HTML files
-for my personal website found at (nvlled.github.io)[https://nvlled.github.io].
+for my personal website found at [nvlled.github.io](https://nvlled.github.io).
 I use my own static site generator [cita.tsx](https://github.com/nvlled/cita.tsx) 
 for building the site.
     

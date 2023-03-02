@@ -128,7 +128,7 @@ export const config = {
   buildDir: "./_build",
 
   // ignore these files or directories when searching for .tsx
-  ignore: [".git", "_dump", "old-site", "neocities"],
+  ignore: [".git", "_dump", "neocities"],
 
   // These files are copied to the build output
   assets: ["favicon.ico", "./assets"],
@@ -183,6 +183,8 @@ export function parseDate(dateString: string, format?: string) {
   return _parseDate(dateString, format ?? dateFormatStr);
 }
 
+export type LinkeHTMLDocument = ReturnType<typeof domParser.parseFromString>;
+
 // --------------------------------------------------------------------------------
 // ██▓ ███▄ ▄███▓ ██▓███   ▒█████   ██▀███  ▄▄▄█████▓  ██████
 // ▓██▒▓██▒▀█▀ ██▒▓██░  ██▒▒██▒  ██▒▓██ ▒ ██▒▓  ██▒ ▓▒▒██    ▒
@@ -197,7 +199,6 @@ import { Marked } from "https://deno.land/x/markdown@v2.0.0/mod.ts";
 import { createElement, h, Fragment } from "preact";
 import type { JSX, ComponentChildren } from "preact";
 import { render as renderToString } from "https://esm.sh/preact-render-to-string@5.2.6";
-import { DOMParser } from "https://esm.sh/linkedom@0.14.22";
 import * as path from "$std/path/mod.ts";
 import { copy, ensureFile, ensureDir, walk } from "$std/fs/mod.ts";
 import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/command.ts";
@@ -206,7 +207,10 @@ import { serve } from "$std/http/server.ts";
 import { serveDir } from "$std/http/file_server.ts";
 import { format as _formatDate } from "$datetime/format.ts";
 import { parse as _parseDate } from "$datetime/parse.ts";
-import moment from "moment";
+
+import { DOMParser } from "linkedom";
+
+const domParser = new DOMParser();
 
 // --------------------------------------------------------------------------------
 // ▄▄▄█████▓▓█████  ███▄ ▄███▓ ██▓███   ██▓    ▄▄▄     ▄▄▄█████▓▓█████   ██████
@@ -302,7 +306,7 @@ export function Layout({ title, children }: LayoutProps) {
     return `
 /* This is a generated file, any manual changes may be overwritten.
  */
-import { SitemapEntry } from "./cita.tsx";
+import { SitemapEntry, parseDate } from "./cita.tsx";
 
 export const sitemapPages: SitemapEntry[] = ${JSON.stringify(entries, null, 2)};
 
@@ -345,7 +349,11 @@ export function pageDir(dir: PageDir): SitemapEntry[] {
   const entries = sitemapDirs[dir];
   if (!entries) return [];
 
-  return entries.map((i) => sitemapPages[i]);
+  const result = entries.map((i) => sitemapPages[i]);
+  result.sort(
+    (a, b) => parseDate(b.created).getTime() - parseDate(a.created).getTime()
+  );
+  return result;
 }
 
 
@@ -410,45 +418,6 @@ export default pageList;
 }
     `,
 };
-
-// --------------------------------------------------------------------------------
-// ▄▄▄█████▓ █     █░ ██▓ ███▄    █ ▓█████▄
-// ▓  ██▒ ▓▒▓█░ █ ░█░▓██▒ ██ ▀█   █ ▒██▀ ██▌
-// ▒ ▓██░ ▒░▒█░ █ ░█ ▒██▒▓██  ▀█ ██▒░██   █▌
-// ░ ▓██▓ ░ ░█░ █ ░█ ░██░▓██▒  ▐▌██▒░▓█▄   ▌
-//   ▒██▒ ░ ░░██▒██▓ ░██░▒██░   ▓██░░▒████▓
-//   ▒ ░░   ░ ▓░▒ ▒  ░▓  ░ ▒░   ▒ ▒  ▒▒▓  ▒
-//     ░      ▒ ░ ░   ▒ ░░ ░░   ░ ▒░ ░ ▒  ▒
-//   ░        ░   ░   ▒ ░   ░   ░ ░  ░ ░  ░
-//              ░     ░           ░    ░
-//
-//
-import { getStyleTag, virtualSheet } from "https://esm.sh/twind@0.16.16/sheets";
-const styleSheet = virtualSheet();
-
-// Uncomment the following code block if you want to use twind:
-// https://twind.dev/handbook/styling-with-twind.html
-export { tw, apply, css };
-import { setup as setupTwind } from "https://cdn.skypack.dev/twind";
-import { tw, apply, css } from "https://cdn.skypack.dev/twind/css";
-import * as twColors from "https://cdn.skypack.dev/twind/colors";
-
-setupTwind({
-  theme: {
-    fontFamily: {
-      sans: ["Helvetica", "sans-serif"],
-      serif: ["Times", "serif"],
-    },
-    extend: {
-      colors: {
-        ...twColors,
-
-        gray: twColors.trueGray,
-      },
-    },
-  },
-  sheet: styleSheet,
-});
 
 // --------------------------------------------------------------------------------
 //  █    ██ ▄▄▄█████▓ ██▓ ██▓
@@ -603,12 +572,13 @@ export type LoadedPage = Page & {
 //  ░           ░             ░  ░   ░              ░       ░  ░    ░  ░
 //
 export const internal = {
+  onRenderPage(page: LoadedPage, dom: LinkeHTMLDocument) {
+    // override this on cita_ext.tsx
+  },
   renderPage(page: LoadedPage): string {
-    styleSheet.reset();
-
-    const domParser = new DOMParser();
     const html = renderToString(page.render());
     const dom = domParser.parseFromString(html, "text/html");
+    type X = typeof dom;
 
     // rewrite local hrefs to relative path
     for (const a of dom.querySelectorAll("a, link, area, base")) {
@@ -624,10 +594,24 @@ export const internal = {
       node.src = util.mapRelativePath(page.path, node.src);
     }
 
-    const styleTag = getStyleTag(styleSheet);
-    const styleNode = dom.createElement("style");
-    styleNode.innerHTML = styleTag;
-    dom.appendChild(styleNode);
+    const scriptNode = dom.createElement("script");
+    scriptNode.innerHTML = `
+      if (!location.pathname.match(/\.html$/)) {
+        // This makes sure that urls end with index.html
+        // since the pages have relative paths in them.
+        // For example: http://localhost:8000 -> http://localhost:8000/index.html
+        // Omitting index.html breaks some links.
+        // The generate HTML uses relative paths for easier deployment,
+        // that they can be placed in any subdir and the links still work.
+      
+        var pathname = location.pathname;
+        if (pathname[pathname.length-1] != "/") pathname += "/"
+        location.pathname =  pathname + "index.html";
+      }
+    `;
+    dom.appendChild(scriptNode);
+
+    internal.onRenderPage(page, dom);
 
     return dom.toString();
   },

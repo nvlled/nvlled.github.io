@@ -3,9 +3,9 @@ import {
   formatDate,
   PageData,
   parseDate,
-  tw,
   util,
 } from "../cita.tsx";
+import { tw } from "$twind/css";
 
 import moment from "moment";
 import * as path from "$std/path/mod.ts";

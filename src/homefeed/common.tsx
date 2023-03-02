@@ -1,7 +1,9 @@
 import { sortBy } from "$std/collections/sort_by.ts";
 import { Page, PageData, SitemapEntry, util } from "cita";
 import { Layout, Dv } from "components";
+import { pageDir } from "../gen_sitemap.ts";
 import { getAllNotes, NoteFeed } from "../notes/common.tsx";
+import { UpdateFeed } from "../old-site/layout.tsx";
 import {
   groupListingByMonth,
   Screenshot,
@@ -13,13 +15,26 @@ const pageSize = 15;
 
 type HomeFeed =
   | { type: "notes"; data: PageData }
+  | { type: "updates"; data: PageData }
   | { type: "screenshots"; data: { date: string; images: Screenshot[] } };
 
+function getUpdates() {
+  const allNotes = pageDir("notes/");
+}
+
 function createAllFeed(): HomeFeed[] {
-  const allNotes: SitemapEntry[] = getAllNotes();
   let result: HomeFeed[] = [];
   result.push(
-    ...allNotes.map((note: PageData) => {
+    ...pageDir("updates/").map((note: PageData) => {
+      const entry: HomeFeed = {
+        type: "updates",
+        data: note,
+      };
+      return entry;
+    })
+  );
+  result.push(
+    ...pageDir("notes/").map((note: PageData) => {
       const entry: HomeFeed = {
         type: "notes",
         data: note,
@@ -40,7 +55,7 @@ function createAllFeed(): HomeFeed[] {
   }
 
   result = sortBy(result, (entry: HomeFeed) =>
-    entry.type === "notes" ? entry.data.created : entry.data.date
+    entry.type !== "screenshots" ? entry.data.created : entry.data.date
   ).reverse();
 
   return result;
@@ -81,6 +96,8 @@ export function FeedPage({
         {feed.map((entry, i) =>
           entry.type === "notes" ? (
             <NoteFeed num={i + 1} page={entry.data} />
+          ) : entry.type === "updates" ? (
+            <UpdateFeed num={i + 1} page={entry.data} />
           ) : (
             <ScreenShotFeed
               num={i + 1}

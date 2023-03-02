@@ -1,5 +1,6 @@
-import { PageData, PageRender, tw } from "cita";
+import { PageData, PageRender } from "cita";
 import { Dv, Layout, Post } from "components";
+import { tw } from "$twind/css";
 
 export const data: PageData = {
   title: "Personal site update",

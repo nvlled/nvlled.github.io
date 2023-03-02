@@ -1,6 +1,7 @@
-import { md, PageData, PageRender, tw } from "./cita.tsx";
+import { md, PageData, PageRender } from "./cita.tsx";
 import { HR, icons, Layout, Post } from "./components.tsx";
 import { pageDir, sitemap } from "sitemap";
+import { tw } from "$twind/css";
 
 export const data: PageData = {
   title: "About",

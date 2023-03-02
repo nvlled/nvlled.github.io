@@ -9,7 +9,7 @@ export const data: PageData = {
 export const render: PageRender = () => {
   return (
     <Layout>
-      <Post data={data}>
+      <Post data={data} icon="about">
         I made the build time for cita.tsx faster. What I did was move heavier
         dependencies to the tools directory. I use imagescript to generate
         thumbnails, and just by including it, the build time increases to about

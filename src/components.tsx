@@ -1,15 +1,13 @@
 import {
   ComponentChildren,
   config,
-  tw,
-  css,
   SitemapEntry,
-  apply,
   parseDate,
   md,
 } from "./cita.tsx";
 import { sitemap } from "sitemap";
 import moment from "moment";
+import { tw, apply, css } from "$twind/css";
 
 export const icons = {
   notes: "⛾",
@@ -107,7 +105,7 @@ const postTextStyle = css`
   a {
     ${apply`text-underline text-blue-900`};
     &:visited {
-      ${apply`text-blue-500`}
+      ${apply`text-blue-800`}
     }
   }
 `;
@@ -117,7 +115,7 @@ export function Post({
   children,
   icon,
 }: {
-  icon?: string;
+  icon?: keyof typeof icons;
   num?: number;
   data: Partial<SitemapEntry>;
   children?: ComponentChildren;
@@ -127,7 +125,7 @@ export function Post({
     <Dv tw="text-xl flex items-start">
       <Dv tw={"flex"}>
         {num !== undefined && <Dv tw={"text-gray-500"}>{num}.</Dv>}
-        <Dv>{icon ?? "⛾"}</Dv>
+        <Dv>{icon ? icons[icon] : "⛾"}</Dv>
       </Dv>
       <Space />
       <Dv>
@@ -144,7 +142,9 @@ export function Post({
           <Dv tw="px-2">{data.desc}</Dv>
         </Dv>
         {(data.created || data.desc) && <Dv tw="mb-4" />}
-        <Dv className={tw`text-base max-w-4xl mr-5`}>{children}</Dv>
+        <Dv className={tw`text-base max-w-4xl mr-5 ${postTextStyle}`}>
+          {children}
+        </Dv>
       </Dv>
     </Dv>
   );
@@ -164,7 +164,7 @@ Post.Header = function ({ children }: { children: ComponentChildren }) {
 };
 
 Post.Text = function ({ children }: { children: ComponentChildren }) {
-  return <p className={tw`${postTextStyle}`}>{children}</p>;
+  return <p className={tw``}>{children}</p>;
 };
 
 export function HR() {

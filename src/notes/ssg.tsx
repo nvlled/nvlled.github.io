@@ -1,5 +1,6 @@
-import { PageData, PageRender, tw } from "../cita.tsx";
+import { PageData, PageRender } from "../cita.tsx";
 import { Post, Layout, HR, Space } from "../components.tsx";
+import { tw } from "$twind/css";
 
 export const data: PageData = {
   title: "Static site generator",
