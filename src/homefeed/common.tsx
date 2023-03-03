@@ -5,7 +5,7 @@ import { pageDir } from "../gen_sitemap.ts";
 import { getAllNotes, NoteFeed } from "../notes/common.tsx";
 import { UpdateFeed } from "../old-site/layout.tsx";
 import {
-  groupListingByMonth,
+  groupListingByWeek,
   Screenshot,
   ScreenShotFeed,
 } from "../screenshots/common.tsx";
@@ -42,13 +42,11 @@ function createAllFeed(): HomeFeed[] {
       return entry;
     })
   );
-  for (const [yearDate, images] of Object.entries(
-    groupListingByMonth(listing)
-  )) {
+  for (const [date, images] of Object.entries(groupListingByWeek(listing))) {
     result.push({
       type: "screenshots",
       data: {
-        date: yearDate + "-01",
+        date,
         images,
       },
     } as HomeFeed);

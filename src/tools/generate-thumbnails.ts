@@ -2,11 +2,13 @@ import { ensureDir } from "https://deno.land/std@0.177.0/fs/ensure_dir.ts";
 import * as imageScript from "https://deno.land/x/imagescript@1.2.15/mod.ts";
 import * as path from "$std/path/mod.ts";
 import {
+  enumerateScreenshots,
   Screenshot,
   screenshotsImageDir,
+  screenshotsListingFile,
   screenshotsThumbnailDir,
 } from "../screenshots/common.tsx";
-import listing from "../screenshots/listing.ts";
+import { listingTemplate } from "./generate-screenshot-pages.ts";
 
 async function createThumbnails(filenames: string[]) {
   const ps: Promise<void>[] = [];
@@ -28,6 +30,9 @@ async function createThumbnails(filenames: string[]) {
 }
 
 async function main() {
+  const listing = await enumerateScreenshots();
+  await Deno.writeTextFile(screenshotsListingFile, listingTemplate(listing));
+
   const files: string[] = [];
   for (const entries of Object.values(listing) as Screenshot[][]) {
     for (const entry of entries) {

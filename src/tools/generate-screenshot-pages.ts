@@ -1,4 +1,3 @@
-/** @jsx h */
 import { util } from "../cita.tsx";
 import * as path from "$std/path/mod.ts";
 
@@ -9,7 +8,7 @@ import {
   enumerateScreenshots,
 } from "../screenshots/common.tsx";
 
-const pageTemplate = (name: string) =>
+export const pageTemplate = (name: string) =>
   `
 /* This is a generated file, any manual changes may be overwritten. */
 /** @jsx h */
@@ -27,7 +26,7 @@ export const render: PageRender = () => {
   return <ScreenShotPage data={data} images={listing["${name}"] ?? []} />
 };`.trim();
 
-const listingTemplate = (listing: ScreenshotListing) => `
+export const listingTemplate = (listing: ScreenshotListing) => `
 /* This is a generated file, any manual changes may be overwritten. */
 export default ${JSON.stringify(listing, null, 4)}
 `;

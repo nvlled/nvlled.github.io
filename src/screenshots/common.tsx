@@ -1,8 +1,10 @@
 import {
-  dateFormatStr,
+  dateTimeFormatStr,
   formatDate,
+  formatDateTime,
   PageData,
   parseDate,
+  parseDateTime,
   util,
 } from "../cita.tsx";
 import { tw } from "$twind/css";
@@ -37,7 +39,7 @@ export function ThumbnailLink({
 }) {
   return (
     <Dv
-      tw="relative bg-gray-800 text-white w-28 sm:h-32 flex items-center overflow-hidden"
+      tw="relative bg-gray-800 text-white w-28 sm:h-28 flex items-center overflow-hidden"
       className={className}
     >
       <a
@@ -51,8 +53,6 @@ export function ThumbnailLink({
         />
       </a>
       <Dv tw="w-full text-xs absolute top-0 bg-opacity-50 bg-gray-900 text-white p-1">
-        {image.path}
-        <br />
         {moment(parseDate(image.date)).fromNow()}
       </Dv>
       {caption && (
@@ -77,6 +77,7 @@ export function ScreenShotFeed({
   images: Screenshot[];
 }) {
   const numImages = 30;
+  const weekNum = Math.floor(parseDate(date).getDate() / 8);
   return (
     <Dv tw={"text-xl flex items-start"}>
       <Dv tw={"flex items-center"}>
@@ -89,7 +90,9 @@ export function ScreenShotFeed({
       </Dv>
       <Space />
       <Dv>
-        <Dv tw="text-lg">screenshots on {date.replace(/-01$/, "")}</Dv>
+        <Dv tw="text-lg">
+          screenshots on {moment(date).format("MMMM YYYY")} Week {weekNum + 1}
+        </Dv>
         <Dv tw="flex flex-wrap w-full 2xl:w-3/4">
           {images.slice(0, numImages).map((image) => {
             const caption = screenshotCaptions[image.path];
@@ -145,14 +148,16 @@ export function ScreenShotPage({
   );
 }
 
-export function groupListingByMonth(
+export function groupListingByWeek(
   listing: ScreenshotListing
 ): Record<string, Screenshot[]> {
   const result: Record<string, Screenshot[]> = {};
   for (const images of Object.values(listing)) {
     for (const image of images) {
       const date = parseDate(image.date);
-      const k = formatDate(date, "yyyy-MM");
+      const week = Math.floor(date.getDate() / 8) * 7 + 1;
+      const k =
+        formatDate(date, "yyyy-MM") + "-" + (week < 10 ? "0" + week : week);
       if (!result[k]) result[k] = [];
       result[k].push(image);
     }
@@ -182,12 +187,16 @@ export async function enumerateScreenshots() {
     )) {
       const re = file.name.match(/\d\d\d\d-\d\d-\d\d/);
       const date = re?.[0] ?? util.today();
+      if (!date) throw `huh ${file.name}, ${date}`;
+      console.log({ date });
       images.push({
         path: path.join(dir, file.name),
         date,
       });
     }
-    images = sortBy(images, (img) => parseDate(img.date).getTime());
+    images = sortBy(images, (img) => {
+      return parseDateTime(img.date, "yyyy-MM-dd").getTime();
+    });
     result[dir] = images.reverse();
   }
 
