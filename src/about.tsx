@@ -12,7 +12,7 @@ export const render: PageRender = () => {
   const { Text, Header, BR } = Post;
   return (
     <Layout>
-      <Post icon={icons.about} data={{ title: "About" }}>
+      <Post icon={"about"} data={{ title: "About" }}>
         <Text>
           This is just a personal website that is still in construction, nothing
           much too see here.

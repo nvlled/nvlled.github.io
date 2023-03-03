@@ -1,5 +1,7 @@
 
+
 TODO:
+- fix dead links
 - ./cita.tsx build --publish
   - add draft property on Page
   - format output html properly

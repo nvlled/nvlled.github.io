@@ -1,4 +1,4 @@
-import { formatDate, Page, parseDate, SitemapEntry, util } from "cita";
+import { formatDateTime, Page, parseDateTime, SitemapEntry, util } from "cita";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
 import { Dv, icons, Layout, Space } from "../components.tsx";
 import { pageDir } from "../gen_sitemap.ts";
@@ -11,8 +11,8 @@ export function getAllNotes() {
 
   allNotes.sort((a, b) => {
     if (a.created !== b.created) {
-      const t1 = parseDate(a.created).getTime();
-      const t2 = parseDate(b.created).getTime();
+      const t1 = parseDateTime(a.created).getTime();
+      const t2 = parseDateTime(b.created).getTime();
       return t1 - t2;
     }
     return a.title.localeCompare(b.title);
@@ -68,7 +68,7 @@ export function FeedPage({
 }
 
 export function NoteFeed({ num, page }: { num?: number; page: SitemapEntry }) {
-  const date = parseDate(page.created);
+  const date = parseDateTime(page.created);
   const fromNow = moment(date).fromNow();
   return (
     <Dv tw={"text-xl flex items-start"}>
@@ -81,7 +81,7 @@ export function NoteFeed({ num, page }: { num?: number; page: SitemapEntry }) {
       <Space />
       <Dv>
         <Dv tw={"flex items-center "}>
-          <a href={page.path} className={tw`text-gray-500 `}>
+          <a href={page.path} className={tw`text-gray-900 `}>
             {page.title}
           </a>
         </Dv>
@@ -93,7 +93,9 @@ export function NoteFeed({ num, page }: { num?: number; page: SitemapEntry }) {
           break-words
           `}
         >
-          <Dv tw="hidden sm:(pr-2 block)">{formatDate(date, "yyyy-MM-dd")}</Dv>
+          <Dv tw="hidden sm:(pr-2 block)">
+            {formatDateTime(date, "yyyy-MM-dd")}
+          </Dv>
           <Dv tw="sm:px-2">{fromNow}</Dv>
           <Dv tw="sm:px-2">{page.desc}</Dv>
         </Dv>

@@ -61,8 +61,10 @@ export const render: PageRender = () => {
       <p>
         The reason why I decided to use it now is because I need a static site
         generator. And I need a static site generator because I have some
-        content that I <a href='{{urlfor "justwrite"}}'>wrote</a>
-        at <a href='{{urlfor "fiction"}}'>whim</a>, and several other projects.
+        content that I{" "}
+        <a href={sitemap("old-site/blog/justwrite").path}>wrote</a>
+        at <a href={sitemap("old-site/blog/gost").path}>whim</a>, and several
+        other projects.
       </p>
     </BlogLayout>
   );

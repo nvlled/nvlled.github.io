@@ -1,5 +1,11 @@
 import { ComponentChild } from "preact";
-import { config, formatDate, PageData, parseDate, SitemapEntry } from "cita";
+import {
+  config,
+  formatDateTime,
+  PageData,
+  parseDateTime,
+  SitemapEntry,
+} from "cita";
 import { sitemap } from "../gen_sitemap.ts";
 import { tw } from "https://cdn.skypack.dev/twind";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
@@ -104,7 +110,7 @@ export function UpdateFeed({
   num?: number;
   page: SitemapEntry;
 }) {
-  const date = parseDate(page.created);
+  const date = parseDateTime(page.created);
   const fromNow = moment(date).fromNow();
   return (
     <Dv tw={"text-xl flex items-start"}>
@@ -117,7 +123,7 @@ export function UpdateFeed({
       <Space />
       <Dv>
         <Dv tw={"flex items-center "}>
-          <a href={page.path} className={tw`text-gray-500 `}>
+          <a href={page.path} className={tw`text-gray-900 `}>
             {page.title}
           </a>
         </Dv>
@@ -129,7 +135,9 @@ export function UpdateFeed({
           break-words
           `}
         >
-          <Dv tw="hidden sm:(pr-2 block)">{formatDate(date, "yyyy-MM-dd")}</Dv>
+          <Dv tw="hidden sm:(pr-2 block)">
+            {formatDateTime(date, "yyyy-MM-dd")}
+          </Dv>
           <Dv tw="sm:px-2">{fromNow}</Dv>
           <Dv tw="sm:px-2">{page.desc}</Dv>
         </Dv>

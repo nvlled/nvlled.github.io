@@ -14,8 +14,11 @@ export const render: PageRender = () => {
         <p>
           Greetings. This is an eternally work-in-progress personal site. I'm
           not sure what I should put here, but I guess a{" "}
-          <a href='{{urlfor "blog"}}'>blog</a> would do, as well as some{" "}
-          <a href='{{urlfor "mysides"}}'>javascript games and utilities.</a>
+          <a href={sitemap("old-site/blog/index").path}>blog</a> would do, as
+          well as some{" "}
+          <a href={sitemap("old-site/mysides").path}>
+            javascript games and utilities.
+          </a>
         </p>
         <br />
 

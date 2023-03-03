@@ -171,7 +171,8 @@ export function md(markdown: string) {
 
 export { h, JSX, ComponentChildren, Fragment };
 
-export const dateFormatStr = "yyyy-MM-dd HH:mm:ss";
+export const dateTimeFormatStr = "yyyy-MM-dd HH:mm:ss";
+export const dateFormatStr = "yyyy-MM-dd";
 
 export { util };
 
@@ -181,6 +182,14 @@ export function formatDate(date: Date, format?: string) {
 
 export function parseDate(dateString: string, format?: string) {
   return _parseDate(dateString, format ?? dateFormatStr);
+}
+
+export function formatDateTime(date: Date, format?: string) {
+  return _formatDate(date, format ?? dateTimeFormatStr);
+}
+
+export function parseDateTime(dateString: string, format?: string) {
+  return _parseDate(dateString, format ?? dateTimeFormatStr);
 }
 
 export type LinkeHTMLDocument = ReturnType<typeof domParser.parseFromString>;
@@ -520,7 +529,7 @@ const util = {
   },
 
   today() {
-    return formatDate(new Date());
+    return formatDateTime(new Date());
   },
 
   isAsset(filename: string) {
@@ -739,6 +748,7 @@ export const internal = {
       }
 
       const promise = buildPage(page);
+      await promise;
       ps.push(promise);
     }
 

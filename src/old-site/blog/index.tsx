@@ -87,8 +87,8 @@ export const render: PageRender = () => {
       </p>
       <p>
         Oh yeah, I am using my own
-        <a href='{{urlfor "gost"}}'>static site generator</a>. It's still
-        lacking in features, but it works for me for the mean time.
+        <a href={sitemap("old-site/blog/gost").path}>static site generator</a>.
+        It's still lacking in features, but it works for me for the mean time.
       </p>
     </BlogLayout>
   );

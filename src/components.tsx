@@ -2,7 +2,7 @@ import {
   ComponentChildren,
   config,
   SitemapEntry,
-  parseDate,
+  parseDateTime,
   md,
 } from "./cita.tsx";
 import { sitemap } from "sitemap";
@@ -120,7 +120,7 @@ export function Post({
   data: Partial<SitemapEntry>;
   children?: ComponentChildren;
 }) {
-  const date = moment(data.created && parseDate(data.created ?? ""));
+  const date = moment(data.created && parseDateTime(data.created ?? ""));
   return (
     <Dv tw="text-xl flex items-start">
       <Dv tw={"flex"}>

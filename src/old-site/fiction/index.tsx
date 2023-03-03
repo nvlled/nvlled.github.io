@@ -1,5 +1,5 @@
 import { PageData, PageRender } from "cita";
-import { pageDir } from "../../gen_sitemap.ts";
+import { pageDir, sitemap } from "../../gen_sitemap.ts";
 import { Layout, MainNav } from "../layout.tsx";
 
 export const data: PageData = {
@@ -75,8 +75,9 @@ export const render: PageRender = () => {
 
       <p>
         I'll write out of interest, gratification or
-        <a href='{{urlfor "justwrite"}}'>frustration</a>, and put them here
-        to... to backup some of my files in case my disk goes poof.
+        <a href={sitemap("old-site/blog/justwrite").path}>frustration</a>, and
+        put them here to... to backup some of my files in case my disk goes
+        poof.
       </p>
     </Layout>
   );
