@@ -41,6 +41,7 @@ export const render: PageRender = () => {
         <ul className={tw`ml-5 list-disc`}>
           <li>project page</li>
           <li>image tagging</li>
+          <li>parameters on page filenames, like: image-[name].tsx</li>
         </ul>
       </Post>
     </Layout>

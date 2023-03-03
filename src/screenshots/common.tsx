@@ -79,7 +79,7 @@ export function ScreenShotFeed({
   const numImages = 30;
   const weekNum = Math.floor(parseDate(date).getDate() / 8);
   return (
-    <Dv tw={"text-xl flex items-start"}>
+    <Dv tw={"text-xl flex items-start  w-full 2xl:w-1/2"}>
       <Dv tw={"flex items-center"}>
         {num !== undefined && (
           <Dv tw={"text-gray-500 text-sm text-right w-7"}>
@@ -93,7 +93,7 @@ export function ScreenShotFeed({
         <Dv tw="text-lg">
           screenshots on {moment(date).format("MMMM YYYY")} Week {weekNum + 1}
         </Dv>
-        <Dv tw="flex flex-wrap w-full 2xl:w-3/4">
+        <Dv tw="flex flex-wrap">
           {images.slice(0, numImages).map((image) => {
             const caption = screenshotCaptions[image.path];
             return (

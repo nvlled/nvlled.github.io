@@ -48,7 +48,7 @@ async function main() {
     console.log("modified", paths);
 
     try {
-      reload();
+      await reload();
     } catch (e) {
       console.log(e);
     }

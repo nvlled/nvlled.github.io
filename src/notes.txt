@@ -1,9 +1,16 @@
 
 
 TODO:
-- fix dead links
+- don't add HTML build files on git
+  the diff is too messy
+  - deploy on a seperate branch instead
+  - maybe create a tool to automate deployment too
+  - move src back to project root
+
 - ./cita.tsx build --publish
   - add draft property on Page
+    okay, maybe I don't need draft property
+    since I can just put them on the drafts directory
   - format output html properly
 
 cita TODO:
