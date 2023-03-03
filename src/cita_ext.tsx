@@ -59,6 +59,6 @@ internal.onRenderPage = (page: LoadedPage, dom: LinkeHTMLDocument) => {
   const styleTag = getStyleTag(styleSheet);
   const styleNode = dom.createElement("style");
   styleNode.innerHTML = styleTag;
-  dom.appendChild(styleNode);
+  (dom.querySelector("head") ?? dom.body).appendChild(styleNode as any);
   styleSheet.reset();
 };

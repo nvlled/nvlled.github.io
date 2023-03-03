@@ -35,6 +35,13 @@ export const render: PageRender = () => {
             </li>
           ))}
         </ul>
+        <HR />
+        <Header>Planned changes</Header>I wouldn't probably bother implementing
+        these for now, but I'll just list them just in case.
+        <ul className={tw`ml-5 list-disc`}>
+          <li>project page</li>
+          <li>image tagging</li>
+        </ul>
       </Post>
     </Layout>
   );

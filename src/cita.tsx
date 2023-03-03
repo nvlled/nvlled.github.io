@@ -192,7 +192,9 @@ export function parseDateTime(dateString: string, format?: string) {
   return _parseDate(dateString, format ?? dateTimeFormatStr);
 }
 
-export type LinkeHTMLDocument = ReturnType<typeof domParser.parseFromString>;
+export type LinkeHTMLDocument = ReturnType<
+  typeof domParser.parseFromString<"text/html">
+>;
 
 // --------------------------------------------------------------------------------
 // ██▓ ███▄ ▄███▓ ██▓███   ▒█████   ██▀███  ▄▄▄█████▓  ██████
@@ -587,7 +589,6 @@ export const internal = {
   renderPage(page: LoadedPage): string {
     const html = renderToString(page.render());
     const dom = domParser.parseFromString(html, "text/html");
-    type X = typeof dom;
 
     // rewrite local hrefs to relative path
     for (const a of dom.querySelectorAll("a, link, area, base")) {
@@ -618,7 +619,7 @@ export const internal = {
         location.pathname =  pathname + "index.html";
       }
     `;
-    dom.appendChild(scriptNode);
+    (dom.querySelector("head") ?? dom.body).appendChild(scriptNode as any);
 
     internal.onRenderPage(page, dom);
 
