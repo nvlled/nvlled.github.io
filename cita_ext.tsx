@@ -8,8 +8,8 @@ import {
 } from "cita";
 import { getStyleTag, virtualSheet } from "https://esm.sh/twind@0.16.16/sheets";
 
-config.buildDir = "../";
-config.assets = [];
+config.buildDir = "docs";
+config.assets = ["assets"];
 
 templates.newPage = (filename: string) =>
   `
