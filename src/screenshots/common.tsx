@@ -14,7 +14,7 @@ import * as path from "$std/path/mod.ts";
 import { sortBy } from "$std/collections/sort_by.ts";
 import { Dv, Layout, Space, icons } from "../components.tsx";
 import screenshotCaptions from "./captions.ts";
-import { expandGlob } from "https://deno.land/std@0.177.0/fs/expand_glob.ts";
+import { expandGlob, expandGlobSync } from "$std/fs/expand_glob.ts";
 
 export const screenshotsThumbnailDir = "./assets/thumbnails";
 export const screenshotsImageDir = "./assets/screenshots";
@@ -172,9 +172,19 @@ export function groupListingByWeek(
   return result;
 }
 
-export async function enumerateScreenshots() {
+function cache<T>(fn: () => T): () => T {
+  let result: T | undefined;
+  return function () {
+    if (!result) {
+      result = fn();
+    }
+    return result;
+  };
+}
+
+export const enumerateScreenshots = cache(() => {
   const dirs: string[] = [];
-  for await (const file of Deno.readDir(screenshotsImageDir)) {
+  for (const file of Deno.readDirSync(screenshotsImageDir)) {
     if (file.isDirectory) {
       dirs.push(file.name);
     }
@@ -182,7 +192,7 @@ export async function enumerateScreenshots() {
   const result: ScreenshotListing = {};
   for (const dir of dirs) {
     let images: Screenshot[] = [];
-    for await (const file of expandGlob(
+    for (const file of expandGlobSync(
       path.join(screenshotsImageDir, dir, "*.png")
     )) {
       const re = file.name.match(/\d\d\d\d-\d\d-\d\d/);
@@ -201,4 +211,4 @@ export async function enumerateScreenshots() {
   }
 
   return result;
-}
+});

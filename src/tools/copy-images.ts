@@ -1,3 +1,4 @@
+#!/usr/bin/env -S deno run -A --unstable
 import { walk } from "https://deno.land/std@0.177.0/fs/walk.ts";
 import * as path from "https://deno.land/std@0.177.0/path/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.93.0/fs/mod.ts";

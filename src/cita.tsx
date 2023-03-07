@@ -153,17 +153,30 @@ export interface PageData {
   image?: string;
   created: string;
   hidden?: boolean;
+  pathKey?: string;
 }
+export type PageEntry = Partial<PageData> & { pathKey: string };
+
 export type SitemapEntry = PageData & {
   path?: string;
 };
 
-export type PageRender = () => JSX.Element;
+export type PageRender = ({
+  data,
+}: {
+  data: PageData;
+}) => JSX.Element | Promise<JSX.Element>;
 
 export interface Page {
   data: PageData;
   render: PageRender;
+  getPageEntries?: () => PageEntry[] | Promise<PageEntry[]>;
 }
+
+export type LoadedPage = Page & {
+  path: string;
+  valid: boolean;
+};
 
 export function md(markdown: string) {
   return Marked.parse(markdown).content;
@@ -291,11 +304,11 @@ export function Layout({ title, children }: LayoutProps) {
     let i = 0;
     for (const p of pages) {
       if (!p.valid) continue;
+
       entries.push({
         ...p.data,
         path: p.path,
       });
-
       pagePaths.push(p.path.replace(/\.tsx$/, ""));
 
       const dir = path.dirname(p.path) + "/";
@@ -317,7 +330,7 @@ export function Layout({ title, children }: LayoutProps) {
     return `
 /* This is a generated file, any manual changes may be overwritten.
  */
-import { SitemapEntry, parseDate } from "./cita.tsx";
+import { SitemapEntry, parseDateTime } from "./cita.tsx";
 
 export const sitemapPages: SitemapEntry[] = ${JSON.stringify(entries, null, 2)};
 
@@ -362,7 +375,7 @@ export function pageDir(dir: PageDir): SitemapEntry[] {
 
   const result = entries.map((i) => sitemapPages[i]);
   result.sort(
-    (a, b) => parseDate(b.created).getTime() - parseDate(a.created).getTime()
+    (a, b) => parseDateTime(b.created).getTime() - parseDateTime(a.created).getTime()
   );
   return result;
 }
@@ -549,6 +562,14 @@ const util = {
   getSiteMapEntries(obj: Record<string, unknown>): SitemapEntry[] {
     return Object.values(obj).filter(util.isSiteMapEntry);
   },
+
+  setPathKey(filename: string, key: string) {
+    if (filename.indexOf("[page]") < 0) {
+      filename = filename.replace(/\.tsx$/, "");
+      return filename + "-" + key + ".tsx";
+    }
+    return filename.replace(/\[page\]/, key);
+  },
 };
 
 Deno.test("test sub directory check", async () => {
@@ -566,11 +587,6 @@ Deno.test("test sub directory check", async () => {
   assertEquals(util.isSubDirectory("abcd", "efg/../abcd/file.txt"), true);
 });
 
-export type LoadedPage = Page & {
-  path: string;
-  valid: boolean;
-};
-
 // --------------------------------------------------------------------------------
 //  ██▓ ███▄    █ ▄▄▄█████▓▓█████  ██▀███   ███▄    █  ▄▄▄       ██▓
 // ▓██▒ ██ ▀█   █ ▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒ ██ ▀█   █ ▒████▄    ▓██▒
@@ -586,8 +602,11 @@ export const internal = {
   onRenderPage(page: LoadedPage, dom: LinkeHTMLDocument) {
     // override this on cita_ext.tsx
   },
-  renderPage(page: LoadedPage): string {
-    const html = renderToString(page.render());
+  async renderPage(page: LoadedPage): Promise<string> {
+    let output = page.render({ data: page.data });
+    if (output instanceof Promise) output = await output;
+
+    const html = renderToString(output);
     const dom = domParser.parseFromString(html, "text/html");
 
     // rewrite local hrefs to relative path
@@ -655,7 +674,7 @@ export const internal = {
 
   async getPageFiles(): Promise<LoadedPage[]> {
     const pages = await import("./gen_pages.ts");
-    return pages.pageList;
+    return pages.pageList as LoadedPage[];
   },
 
   async enumeratePageFiles(ignoreError = false): Promise<LoadedPage[]> {
@@ -729,7 +748,7 @@ export const internal = {
     await ensureDir(config.buildDir);
 
     const buildPage = async (page: LoadedPage) => {
-      const output = internal.renderPage(page);
+      const output = await internal.renderPage(page);
       const dest = path.join(
         config.buildDir,
         page.path.replace(".tsx", ".html")
@@ -782,6 +801,8 @@ export const internal = {
   },
 
   async generateSiteMapFile(pages: LoadedPage[]) {
+    pages = await internal.expandMorePages(pages);
+
     const content = templates.sitemap(pages);
     await Deno.writeTextFile("gen_sitemap.ts", content, {
       create: true,
@@ -892,6 +913,33 @@ export const internal = {
     const setupFile = "./cita_ext.tsx";
     await import(setupFile);
   },
+
+  async expandMorePages(pages: LoadedPage[]) {
+    const result: LoadedPage[] = [];
+    for (const page of pages) {
+      if (!page.getPageEntries) {
+        result.push(page);
+      } else {
+        let entries = page.getPageEntries();
+        if (entries instanceof Promise) entries = await entries;
+
+        for (const data of entries) {
+          const entry: LoadedPage = {
+            ...page,
+            data: {
+              ...page.data,
+              ...data,
+            },
+            path: util.setPathKey(page.path, data.pathKey),
+          };
+
+          //delete entry.getPageEntries;
+          result.push(entry);
+        }
+      }
+    }
+    return result;
+  },
 };
 
 // --------------------------------------------------------------------------------
@@ -932,6 +980,8 @@ const commands = {
       }
       pages = allPages;
     }
+
+    pages = await internal.expandMorePages(pages);
 
     await internal.buildHTML(pages);
   },

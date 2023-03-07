@@ -2,8 +2,7 @@ import { PageData, PageRender, SitemapEntry } from "../cita.tsx";
 import * as path from "$std/path/mod.ts";
 import { Dv, HR, Layout, Space } from "../components.tsx";
 import captions from "./captions.ts";
-import { Screenshot, ThumbnailLink } from "./common.tsx";
-import listing from "./listing.ts";
+import { enumerateScreenshots, Screenshot, ThumbnailLink } from "./common.tsx";
 import { pageDir } from "sitemap";
 import { tw } from "$twind/css";
 
@@ -13,7 +12,9 @@ export const data: PageData = {
 };
 
 export const render: PageRender = () => {
-  const sm = pageDir("screenshots/");
+  const screenshots = enumerateScreenshots() as Record<string, Screenshot[]>;
+  const sm = pageDir("screenshots/").filter((p) => p.path?.match(/scr-/));
+
   return (
     <Layout title={data.title}>
       <h1 className={tw`text-2xl font-bold`}>Screenshots</h1>
@@ -32,9 +33,8 @@ export const render: PageRender = () => {
       </p>
       <br />
       {sm.map((p) => {
-        const name = path.basename(p.path ?? "", ".tsx");
-        const entries = (listing as Record<string, Screenshot[]>)[name];
-        if (name === "index") return null;
+        const name = path.basename(p.path ?? "", ".tsx").replace(/^scr-/, "");
+        const entries = screenshots[name];
         return (
           <Dv tw="mb-10">
             <Dv tw="flex items-end">

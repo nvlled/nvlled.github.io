@@ -108,6 +108,25 @@ const postTextStyle = css`
       ${apply`text-blue-800`}
     }
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    ${apply`font-bold`};
+  }
+  h1 {
+    ${apply`text-xl`}
+  }
+  h2 {
+    ${apply`text-lg`}
+  }
+  h3 {
+    ${apply`text-md`}
+  }
+  h3 {
+    ${apply`text-base`}
+  }
 `;
 export function Post({
   num,
@@ -215,5 +234,9 @@ export function Link({
 }
 
 export function Markdown({ text }: { text: string }) {
+  text = text
+    .split("\n")
+    .map((line) => line.trim())
+    .join("\n");
   return <div dangerouslySetInnerHTML={{ __html: md(text) }} />;
 }

@@ -42,6 +42,7 @@ export const render: PageRender = () => {
           <li>project page</li>
           <li>image tagging</li>
           <li>parameters on page filenames, like: image-[name].tsx</li>
+          <li>RSS feed</li>
         </ul>
       </Post>
     </Layout>

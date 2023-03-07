@@ -5,11 +5,11 @@ import { pageDir } from "../gen_sitemap.ts";
 import { getAllNotes, NoteFeed } from "../notes/common.tsx";
 import { UpdateFeed } from "../old-site/layout.tsx";
 import {
+  enumerateScreenshots,
   groupListingByWeek,
   Screenshot,
   ScreenShotFeed,
 } from "../screenshots/common.tsx";
-import listing from "../screenshots/listing.ts";
 
 const pageSize = 15;
 
@@ -42,6 +42,8 @@ function createAllFeed(): HomeFeed[] {
       return entry;
     })
   );
+
+  const listing = enumerateScreenshots();
   for (const [date, images] of Object.entries(groupListingByWeek(listing))) {
     result.push({
       type: "screenshots",
