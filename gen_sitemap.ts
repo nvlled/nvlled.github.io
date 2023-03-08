@@ -5,24 +5,18 @@ import { SitemapEntry, parseDateTime } from "./cita.tsx";
 export const sitemapPages: SitemapEntry[] = [
   {
     "title": "Notes",
-    "created": "2023-03-08 11:51:15",
+    "created": "2023-03-08 14:12:28",
     "path": "notes.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-08 11:51:15",
+    "created": "2023-03-08 14:12:28",
     "path": "index.tsx"
   },
   {
     "title": "Screenshots",
     "created": "2023-02-21 00:00:00",
     "path": "screenshots/index.tsx"
-  },
-  {
-    "title": "temp screenshots",
-    "created": "2023-02-23 00:00:00",
-    "pathKey": "temp",
-    "path": "screenshots/scr-temp.tsx"
   },
   {
     "title": "random screenshots",
@@ -92,7 +86,7 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "Notes",
-    "created": "2023-03-08 11:51:15",
+    "created": "2023-03-08 14:12:28",
     "pathKey": "0",
     "path": "notes/feed/page0.tsx"
   },
@@ -123,13 +117,13 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "screenshots",
-    "created": "2023-03-08 11:51:15",
+    "created": "2023-03-08 14:12:28",
     "pathKey": "0",
     "path": "homefeed/page0.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-08 11:51:15",
+    "created": "2023-03-08 14:12:28",
     "pathKey": "1",
     "path": "homefeed/page1.tsx"
   },
@@ -185,13 +179,12 @@ export const sitemapPages: SitemapEntry[] = [
   }
 ];
 
-export const sitemapDirs = {"screenshots/":[2,3,4,5,6,7],"updates/":[8,9,10,11],"notes/":[12,13,14,15,17,18,19],"notes/feed/":[16],"huh/":[21],"homefeed/":[22,23],"old-site/":[25,29],"old-site/blog/":[26,27,28],"old-site/fiction/":[30,31,32,33]} as const;
+export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"updates/":[7,8,9,10],"notes/":[11,12,13,14,16,17,18],"notes/feed/":[15],"huh/":[20],"homefeed/":[21,22],"old-site/":[24,28],"old-site/blog/":[25,26,27],"old-site/fiction/":[29,30,31,32]} as const;
 
 export type PagePath = 
   | "notes"
   | "index"
   | "screenshots/index"
-  | "screenshots/scr-temp"
   | "screenshots/scr-random"
   | "screenshots/scr-gaming"
   | "screenshots/scr-code"
