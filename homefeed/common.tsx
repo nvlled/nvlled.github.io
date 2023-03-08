@@ -1,6 +1,6 @@
 import { sortBy } from "$std/collections/sort_by.ts";
 import { Page, PageData, SitemapEntry, util } from "cita";
-import { Layout, Dv } from "components";
+import { Layout, Dv, cache } from "components";
 import { pageDir } from "../gen_sitemap.ts";
 import { getAllNotes, NoteFeed } from "../notes/common.tsx";
 import { UpdateFeed } from "../old-site/layout.tsx";
@@ -11,7 +11,7 @@ import {
   ScreenShotFeed,
 } from "../screenshots/common.tsx";
 
-const pageSize = 15;
+export const pageSize = 15;
 
 type HomeFeed =
   | { type: "notes"; data: PageData }
@@ -22,7 +22,7 @@ function getUpdates() {
   const allNotes = pageDir("notes/");
 }
 
-function createAllFeed(): HomeFeed[] {
+export const createAllFeed = cache((): HomeFeed[] => {
   let result: HomeFeed[] = [];
   result.push(
     ...pageDir("updates/").map((note: PageData) => {
@@ -59,7 +59,7 @@ function createAllFeed(): HomeFeed[] {
   ).reverse();
 
   return result;
-}
+});
 
 export function createHomeFeedPage(
   pageNum: number,
@@ -100,7 +100,7 @@ export function FeedPage({
             <UpdateFeed num={i + 1} page={entry.data} />
           ) : (
             <ScreenShotFeed
-              num={i + 1}
+              num={pageNum * pageSize + i + 1}
               date={entry.data.date}
               images={entry.data.images}
             />

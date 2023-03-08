@@ -28,9 +28,6 @@ export const render: PageRender = () => {
 
 const styleSheet = virtualSheet();
 
-// Uncomment the following code block if you want to use twind:
-// https://twind.dev/handbook/styling-with-twind.html
-//export { tw, apply, css } from "$twind/css";
 import { setup as setupTwind } from "twind";
 import * as twColors from "$twind/colors";
 

@@ -4,26 +4,25 @@ import { SitemapEntry, parseDateTime } from "./cita.tsx";
 
 export const sitemapPages: SitemapEntry[] = [
   {
-    "title": "notes 0",
-    "created": "2023-03-07 19:30:23",
+    "title": "Notes",
+    "created": "2023-03-08 11:51:15",
     "path": "notes.tsx"
   },
   {
-    "title": "Home",
-    "created": "2023-03-07 19:30:23",
+    "title": "screenshots",
+    "created": "2023-03-08 11:51:15",
     "path": "index.tsx"
   },
   {
-    "title": "code screenshots",
-    "created": "2023-02-23 00:00:00",
-    "pathKey": "code",
-    "path": "screenshots/scr-code.tsx"
+    "title": "Screenshots",
+    "created": "2023-02-21 00:00:00",
+    "path": "screenshots/index.tsx"
   },
   {
-    "title": "gaming screenshots",
+    "title": "temp screenshots",
     "created": "2023-02-23 00:00:00",
-    "pathKey": "gaming",
-    "path": "screenshots/scr-gaming.tsx"
+    "pathKey": "temp",
+    "path": "screenshots/scr-temp.tsx"
   },
   {
     "title": "random screenshots",
@@ -32,15 +31,22 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "screenshots/scr-random.tsx"
   },
   {
+    "title": "gaming screenshots",
+    "created": "2023-02-23 00:00:00",
+    "pathKey": "gaming",
+    "path": "screenshots/scr-gaming.tsx"
+  },
+  {
+    "title": "code screenshots",
+    "created": "2023-02-23 00:00:00",
+    "pathKey": "code",
+    "path": "screenshots/scr-code.tsx"
+  },
+  {
     "title": "watch screenshots",
     "created": "2023-02-23 00:00:00",
     "pathKey": "watch",
     "path": "screenshots/scr-watch.tsx"
-  },
-  {
-    "title": "Screenshots",
-    "created": "2023-02-21 00:00:00",
-    "path": "screenshots/index.tsx"
   },
   {
     "title": "Refactor and cleanup",
@@ -56,6 +62,11 @@ export const sitemapPages: SitemapEntry[] = [
     "title": "Improve build time",
     "created": "2023-02-27 00:00:00",
     "path": "updates/improve-build-time.tsx"
+  },
+  {
+    "title": "Filename params",
+    "created": "2023-03-07 19:58:40",
+    "path": "updates/filename-params.tsx"
   },
   {
     "title": "Personal site update",
@@ -80,29 +91,10 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/ssg.tsx"
   },
   {
-    "title": "notes 2",
-    "created": "2023-03-07 19:30:23",
-    "path": "notes/feed/page2.tsx"
-  },
-  {
-    "title": "notes 3",
-    "created": "2023-03-07 19:30:23",
-    "path": "notes/feed/page3.tsx"
-  },
-  {
-    "title": "notes 0",
-    "created": "2023-03-07 19:30:23",
+    "title": "Notes",
+    "created": "2023-03-08 11:51:15",
+    "pathKey": "0",
     "path": "notes/feed/page0.tsx"
-  },
-  {
-    "title": "notes 4",
-    "created": "2023-03-07 19:30:23",
-    "path": "notes/feed/page4.tsx"
-  },
-  {
-    "title": "notes 1",
-    "created": "2023-03-07 19:30:23",
-    "path": "notes/feed/page1.tsx"
   },
   {
     "title": "Gost static site generator",
@@ -130,28 +122,15 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "huh/test.tsx"
   },
   {
-    "title": "Home 21",
-    "created": "2023-03-07 19:30:23",
-    "path": "homefeed/page2.tsx"
-  },
-  {
-    "title": "Home 31",
-    "created": "2023-03-07 19:30:23",
-    "path": "homefeed/page3.tsx"
-  },
-  {
-    "title": "Home",
-    "created": "2023-03-07 19:30:23",
+    "title": "screenshots",
+    "created": "2023-03-08 11:51:15",
+    "pathKey": "0",
     "path": "homefeed/page0.tsx"
   },
   {
-    "title": "Home 41",
-    "created": "2023-03-07 19:30:23",
-    "path": "homefeed/page4.tsx"
-  },
-  {
-    "title": "Home 11",
-    "created": "2023-03-07 19:30:23",
+    "title": "screenshots",
+    "created": "2023-03-08 11:51:15",
+    "pathKey": "1",
     "path": "homefeed/page1.tsx"
   },
   {
@@ -206,37 +185,32 @@ export const sitemapPages: SitemapEntry[] = [
   }
 ];
 
-export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"updates/":[7,8,9],"notes/":[10,11,12,13,19,20,21],"notes/feed/":[14,15,16,17,18],"huh/":[23],"homefeed/":[24,25,26,27,28],"old-site/":[30,34],"old-site/blog/":[31,32,33],"old-site/fiction/":[35,36,37,38]} as const;
+export const sitemapDirs = {"screenshots/":[2,3,4,5,6,7],"updates/":[8,9,10,11],"notes/":[12,13,14,15,17,18,19],"notes/feed/":[16],"huh/":[21],"homefeed/":[22,23],"old-site/":[25,29],"old-site/blog/":[26,27,28],"old-site/fiction/":[30,31,32,33]} as const;
 
 export type PagePath = 
   | "notes"
   | "index"
-  | "screenshots/scr-code"
-  | "screenshots/scr-gaming"
-  | "screenshots/scr-random"
-  | "screenshots/scr-watch"
   | "screenshots/index"
+  | "screenshots/scr-temp"
+  | "screenshots/scr-random"
+  | "screenshots/scr-gaming"
+  | "screenshots/scr-code"
+  | "screenshots/scr-watch"
   | "updates/refactor-and-cleanup"
   | "updates/imported-old-site"
   | "updates/improve-build-time"
+  | "updates/filename-params"
   | "notes/site"
   | "notes/ready-for-action"
   | "notes/previous-writings"
   | "notes/ssg"
-  | "notes/feed/page2"
-  | "notes/feed/page3"
   | "notes/feed/page0"
-  | "notes/feed/page4"
-  | "notes/feed/page1"
   | "notes/gost"
   | "notes/godot"
   | "notes/simple-godot-2d"
   | "about"
   | "huh/test"
-  | "homefeed/page2"
-  | "homefeed/page3"
   | "homefeed/page0"
-  | "homefeed/page4"
   | "homefeed/page1"
   | "projects"
   | "old-site/index"

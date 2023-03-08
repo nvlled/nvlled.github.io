@@ -35,6 +35,9 @@ export const render: PageRender = () => {
       {sm.map((p) => {
         const name = path.basename(p.path ?? "", ".tsx").replace(/^scr-/, "");
         const entries = screenshots[name];
+
+        if (entries.length === 0) return null;
+
         return (
           <Dv tw="mb-10">
             <Dv tw="flex items-end">

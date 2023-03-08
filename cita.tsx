@@ -202,7 +202,12 @@ export function formatDateTime(date: Date, format?: string) {
 }
 
 export function parseDateTime(dateString: string, format?: string) {
-  return _parseDate(dateString, format ?? dateTimeFormatStr);
+  try {
+    return _parseDate(dateString, format ?? dateTimeFormatStr);
+  } catch (e) {
+    console.log(e);
+    return new Date();
+  }
 }
 
 export type LinkeHTMLDocument = ReturnType<
@@ -563,12 +568,15 @@ const util = {
     return Object.values(obj).filter(util.isSiteMapEntry);
   },
 
+  hasPathKey: (filename: string) => {
+    return filename.indexOf("[x]") >= 0;
+  },
   setPathKey(filename: string, key: string) {
-    if (filename.indexOf("[page]") < 0) {
+    if (filename.indexOf("[x]") < 0) {
       filename = filename.replace(/\.tsx$/, "");
       return filename + "-" + key + ".tsx";
     }
-    return filename.replace(/\[page\]/, key);
+    return filename.replace(/\[x\]/, key);
   },
 };
 
@@ -768,7 +776,7 @@ export const internal = {
       }
 
       const promise = buildPage(page);
-      await promise;
+      //await promise;
       ps.push(promise);
     }
 
@@ -917,7 +925,7 @@ export const internal = {
   async expandMorePages(pages: LoadedPage[]) {
     const result: LoadedPage[] = [];
     for (const page of pages) {
-      if (!page.getPageEntries) {
+      if (!page.getPageEntries || !util.hasPathKey(page.path ?? "")) {
         result.push(page);
       } else {
         let entries = page.getPageEntries();

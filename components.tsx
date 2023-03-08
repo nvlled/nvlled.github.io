@@ -122,7 +122,7 @@ const postTextStyle = css`
     ${apply`text-lg`}
   }
   h3 {
-    ${apply`text-md`}
+    ${apply`text-base`}
   }
   h3 {
     ${apply`text-base`}
@@ -239,4 +239,14 @@ export function Markdown({ text }: { text: string }) {
     .map((line) => line.trim())
     .join("\n");
   return <div dangerouslySetInnerHTML={{ __html: md(text) }} />;
+}
+
+export function cache<T>(fn: () => T): () => T {
+  let result: T | undefined;
+  return function () {
+    if (!result) {
+      result = fn();
+    }
+    return result;
+  };
 }

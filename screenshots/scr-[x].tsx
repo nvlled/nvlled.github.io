@@ -10,21 +10,15 @@ export const data: PageData = {
 
 export function getPageEntries() {
   const screenshots = Object.keys(enumerateScreenshots());
-  const screenshotDirs = new Set(screenshots);
 
   const result: PageEntry[] = [];
-  for (const page of pageDir("screenshots/")) {
-    if (!page.path) continue;
-
-    const name = path.basename(page.path, ".tsx");
-    if (screenshotDirs.has(name)) {
-      console.log({ name });
-      result.push({
-        title: `${name} screenshots`,
-        pathKey: name,
-      });
-    }
+  for (const name of screenshots) {
+    result.push({
+      title: `${name} screenshots`,
+      pathKey: name,
+    });
   }
+
   return result;
 }
 

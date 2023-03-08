@@ -12,7 +12,7 @@ import { tw } from "$twind/css";
 import moment from "moment";
 import * as path from "$std/path/mod.ts";
 import { sortBy } from "$std/collections/sort_by.ts";
-import { Dv, Layout, Space, icons } from "../components.tsx";
+import { Dv, Layout, Space, icons, cache } from "../components.tsx";
 import screenshotCaptions from "./captions.ts";
 import { expandGlob, expandGlobSync } from "$std/fs/expand_glob.ts";
 
@@ -172,16 +172,6 @@ export function groupListingByWeek(
   return result;
 }
 
-function cache<T>(fn: () => T): () => T {
-  let result: T | undefined;
-  return function () {
-    if (!result) {
-      result = fn();
-    }
-    return result;
-  };
-}
-
 export const enumerateScreenshots = cache(() => {
   const dirs: string[] = [];
   for (const file of Deno.readDirSync(screenshotsImageDir)) {
@@ -198,7 +188,6 @@ export const enumerateScreenshots = cache(() => {
       const re = file.name.match(/\d\d\d\d-\d\d-\d\d/);
       const date = re?.[0] ?? util.today();
       if (!date) throw `huh ${file.name}, ${date}`;
-      console.log({ date });
       images.push({
         path: path.join(dir, file.name),
         date,

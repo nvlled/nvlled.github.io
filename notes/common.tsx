@@ -1,12 +1,12 @@
 import { formatDateTime, Page, parseDateTime, SitemapEntry, util } from "cita";
 import moment from "https://deno.land/x/momentjs@2.29.1-deno/mod.ts";
-import { Dv, icons, Layout, Space } from "../components.tsx";
+import { cache, Dv, icons, Layout, Space } from "../components.tsx";
 import { pageDir } from "../gen_sitemap.ts";
 import { tw } from "$twind/css";
 
-const pageSize = 15;
+export const pageSize = 15;
 
-export function getAllNotes() {
+export const getAllNotes = cache(() => {
   const allNotes = pageDir("notes/");
 
   allNotes.sort((a, b) => {
@@ -19,7 +19,7 @@ export function getAllNotes() {
   });
 
   return allNotes.reverse();
-}
+});
 
 export function createNoteFeedPage(
   pageNum: number,
