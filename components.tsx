@@ -127,6 +127,17 @@ const postTextStyle = css`
   h3 {
     ${apply`text-base`}
   }
+
+  ul {
+    ${apply`ml-5`};
+    li {
+      ${apply`list-disc`}
+    }
+  }
+
+  p {
+    ${apply`my-2`}
+  }
 `;
 export function Post({
   num,

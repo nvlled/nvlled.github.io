@@ -27,7 +27,7 @@ export const render: PageRender = () => {
         The downside is that it's badly documented, and it's a pain in the ass
         to use. There's documentation to be clear, just that it's bad. The
         documentation is written like it's there for appearance sake, but fell
-        short of documenting how essential details. I wonder who was the idiot
+        short of documenting the essential details. I wonder who was the idiot
         who wrote that.
         <Post.BR />
         Documentation aside, the actual code is not too terrible, but still
