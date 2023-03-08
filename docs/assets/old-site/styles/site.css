@@ -1,0 +1,100 @@
+body {
+    background-color: #222;
+    color: #fff;
+    font-size: 18px;
+}
+
+a {
+    padding: 0 5px;
+    color: #5f5;
+}
+
+a:visited {
+    color: #5a5;
+}
+
+a[href^=http]:after {
+    font-size: 11px;
+    content: "→";
+    text-decoration: none;
+}
+
+p {
+    line-height: 1.5;
+    text-align: justify;
+}
+
+#wrapper {
+	width: 700px;
+	margin: auto;
+    background-color: rgb(2, 65, 43);
+    border-left: 20px solid rgb(2, 65, 43);
+    padding: 10px;
+    min-height: 400px;
+    border-bottom: 25px solid #222;
+}
+
+#home {
+    font-size: 20px;
+}
+#home img {
+    width: 70%;
+    display: block;
+    margin: 0px auto;
+}
+
+header h2 {
+    padding-top: 15px;
+    text-align: center;
+    color: white;
+}
+header h2 a, header h2 a:visited {
+    color: white;
+}
+header#blog {
+    background-size: 100%;
+    background-image: url(/assets/old-site/images/spiral-green-sky.jpg);
+    background-repeat: no-repeat;
+    height: 70px;
+}
+
+nav#main.index {
+    background-image: url(/assets/old-site/images/spiral-green-sky.jpg);
+    background-position: center;
+    background-size: contain;
+    height: 250px;
+}
+nav#main.index ul {
+    padding-top: 50px;
+    margin: 0px;
+    list-style-type: none;
+    padding-left: 5px;
+    text-align: center;
+}
+nav#main.index li {
+    display: block;
+    padding: 5px;
+    padding-right: 10px;
+}
+
+nav#main {
+    background-image: url(/assets/old-site/images/spiral-green-sky.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+nav#main ul {
+    margin: 0px;
+    list-style-type: none;
+    padding-left: 5px;
+    text-align: right;
+}
+nav#main li {
+    display: inline-block;
+    padding: 5px;
+    padding-right: 10px;
+}
+nav#main a, nav#main a:visited {
+    color: white;
+}
+
