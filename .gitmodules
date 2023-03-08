@@ -1,0 +1,3 @@
+[submodule "chisel"]
+	path = chisel
+	url = /home/ron/code/chisel/
