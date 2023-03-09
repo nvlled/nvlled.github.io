@@ -25,7 +25,7 @@ function getUpdates() {
 export const createAllFeed = cache((): HomeFeed[] => {
   let result: HomeFeed[] = [];
   result.push(
-    ...pageDir("updates/").map((note: PageData) => {
+    ...pageDir("about/").map((note: PageData) => {
       const entry: HomeFeed = {
         type: "updates",
         data: note,

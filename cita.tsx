@@ -580,6 +580,10 @@ const util = {
     }
     return filename.replace(/\[x\]/, key);
   },
+
+  rootDir(pathName: string) {
+    return pathName.split(path.SEP)[0] ?? "";
+  },
 };
 
 Deno.test("test sub directory check", async () => {

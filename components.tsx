@@ -4,6 +4,7 @@ import {
   SitemapEntry,
   parseDateTime,
   md,
+  util,
 } from "./cita.tsx";
 import { sitemap } from "sitemap";
 import moment from "moment";
@@ -84,6 +85,7 @@ export type LayoutProps = {
 };
 
 const bodyStyle = css`
+  max-width: 1200px;
   blockquote {
     ${apply`italic pl-3 border-l-8 border-gray-500 `}
   }
@@ -105,6 +107,24 @@ export function Layout({ title, children }: LayoutProps) {
         <br />
       </body>
     </html>
+  );
+}
+
+export function PostLayout({
+  data,
+  children,
+  icon,
+}: {
+  icon?: keyof typeof icons;
+  data: Partial<SitemapEntry>;
+  children?: ComponentChildren;
+}) {
+  return (
+    <Layout title={data.title}>
+      <Post data={data} icon={icon}>
+        {children}
+      </Post>
+    </Layout>
   );
 }
 
@@ -208,7 +228,8 @@ Post.Text = function ({ children }: { children: ComponentChildren }) {
 export function HR() {
   return (
     <hr
-      className={tw`w-full h-0.5  my-3 bg-gray-500 border-0 rounded dark:bg-gray-700`}
+      style={{ height: "1px" }}
+      className={tw`w-full  my-3 bg-gray-500 border-0 rounded bg-gray-300`}
     />
   );
 }
@@ -272,9 +293,12 @@ export function cache<T>(fn: () => T): () => T {
 
 export function createFootnoter() {
   const fn = (text: string) => {
+    return renderToString(fn.C(text));
+  };
+  fn.C = (text: string) => {
     fn.data.push(text);
     const i = fn.data.length;
-    const link = (
+    return (
       <a
         className={tw`text-xs mx-0 px-0 -top-1 relative` + " footnote-link"}
         id={`footnote-link-${i}`}
@@ -283,7 +307,6 @@ export function createFootnoter() {
         [{i}]
       </a>
     );
-    return renderToString(link);
   };
   fn.data = [] as string[];
 

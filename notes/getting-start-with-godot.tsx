@@ -2,7 +2,7 @@ import { PageData, PageRender } from "cita";
 import { Layout, Markdown, Post } from "components";
 
 export const data: PageData = {
-  title: "Simple Godot 2D game",
+  title: "Getting started with Godot",
   created: "2023-03-06 19:53:57",
 };
 

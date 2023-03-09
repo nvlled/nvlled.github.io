@@ -5,12 +5,12 @@ import { SitemapEntry, parseDateTime } from "./cita.tsx";
 export const sitemapPages: SitemapEntry[] = [
   {
     "title": "Notes",
-    "created": "2023-03-09 14:23:11",
+    "created": "2023-03-09 16:09:27",
     "path": "notes.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 14:23:11",
+    "created": "2023-03-09 16:09:27",
     "path": "index.tsx"
   },
   {
@@ -45,27 +45,27 @@ export const sitemapPages: SitemapEntry[] = [
   {
     "title": "Syntax highlight",
     "created": "2023-03-08 19:53:15",
-    "path": "updates/syntax-highlight.tsx"
+    "path": "about/syntax-highlight.tsx"
   },
   {
     "title": "Refactor and cleanup",
     "created": "2023-02-28 19:00:07",
-    "path": "updates/refactor-and-cleanup.tsx"
+    "path": "about/refactor-and-cleanup.tsx"
   },
   {
     "title": "Imported old site",
     "created": "2023-03-02 19:16:52",
-    "path": "updates/imported-old-site.tsx"
+    "path": "about/imported-old-site.tsx"
   },
   {
     "title": "Improve build time",
     "created": "2023-02-27 00:00:00",
-    "path": "updates/improve-build-time.tsx"
+    "path": "about/improve-build-time.tsx"
   },
   {
     "title": "Filename params",
     "created": "2023-03-07 19:58:40",
-    "path": "updates/filename-params.tsx"
+    "path": "about/filename-params.tsx"
   },
   {
     "title": "Personal site update",
@@ -95,8 +95,13 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/ssg.tsx"
   },
   {
+    "title": "2d game design",
+    "created": "2023-03-09 15:48:46",
+    "path": "notes/2d-game-design.tsx"
+  },
+  {
     "title": "Notes",
-    "created": "2023-03-09 14:23:11",
+    "created": "2023-03-09 16:09:27",
     "pathKey": "0",
     "path": "notes/feed/page0.tsx"
   },
@@ -111,9 +116,9 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/godot.tsx"
   },
   {
-    "title": "Simple Godot 2D game",
+    "title": "Getting started with Godot",
     "created": "2023-03-06 19:53:57",
-    "path": "notes/simple-godot-2d.tsx"
+    "path": "notes/getting-start-with-godot.tsx"
   },
   {
     "title": "About",
@@ -122,15 +127,9 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 14:23:11",
+    "created": "2023-03-09 16:09:27",
     "pathKey": "0",
     "path": "homefeed/page0.tsx"
-  },
-  {
-    "title": "screenshots",
-    "created": "2023-03-09 14:23:11",
-    "pathKey": "1",
-    "path": "homefeed/page1.tsx"
   },
   {
     "title": "Projects",
@@ -184,7 +183,7 @@ export const sitemapPages: SitemapEntry[] = [
   }
 ];
 
-export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"updates/":[7,8,9,10,11],"notes/":[12,13,14,15,16,18,19,20],"notes/feed/":[17],"homefeed/":[22,23],"old-site/":[25,29],"old-site/blog/":[26,27,28],"old-site/fiction/":[30,31,32,33]} as const;
+export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"about/":[7,8,9,10,11],"notes/":[12,13,14,15,16,17,19,20,21],"notes/feed/":[18],"homefeed/":[23],"old-site/":[25,29],"old-site/blog/":[26,27,28],"old-site/fiction/":[30,31,32,33]} as const;
 
 export type PagePath = 
   | "notes"
@@ -194,23 +193,23 @@ export type PagePath =
   | "screenshots/scr-gaming"
   | "screenshots/scr-code"
   | "screenshots/scr-watch"
-  | "updates/syntax-highlight"
-  | "updates/refactor-and-cleanup"
-  | "updates/imported-old-site"
-  | "updates/improve-build-time"
-  | "updates/filename-params"
+  | "about/syntax-highlight"
+  | "about/refactor-and-cleanup"
+  | "about/imported-old-site"
+  | "about/improve-build-time"
+  | "about/filename-params"
   | "notes/site"
   | "notes/ready-for-action"
   | "notes/previous-writings"
   | "notes/abstraction"
   | "notes/ssg"
+  | "notes/2d-game-design"
   | "notes/feed/page0"
   | "notes/gost"
   | "notes/godot"
-  | "notes/simple-godot-2d"
+  | "notes/getting-start-with-godot"
   | "about"
   | "homefeed/page0"
-  | "homefeed/page1"
   | "projects"
   | "old-site/index"
   | "old-site/blog/index"

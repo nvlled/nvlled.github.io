@@ -1,5 +1,5 @@
 import { PageData, PageRender } from "cita";
-import { Layout, Post } from "components";
+import { Layout, Post, PostLayout } from "components";
 import { tw } from "$twind/css";
 
 export const data: PageData = {
@@ -9,8 +9,7 @@ export const data: PageData = {
 
 export const render: PageRender = () => {
   return (
-    <Layout>
-      <Post data={data} icon="about">
+      <PostLayout data={data} icon="about">
         I did lots of refactoring and cleanup today. I lost track of what I did,
         but some of the things I remember:
         <ul className={tw`list-disc ml-5 space-y-3`}>
@@ -53,7 +52,6 @@ export const render: PageRender = () => {
           with a tricky bug. It definitely pays to do some cleaning every now
           and then.
         </Post.Text>
-      </Post>
-    </Layout>
+      </PostLayout>
   );
 };

@@ -1,5 +1,5 @@
 import { PageData, PageRender } from "cita";
-import { Layout, Markdown, Post } from "components";
+import { icons, Layout, Markdown, Post, PostLayout } from "components";
 
 export const data: PageData = {
   title: "Filename params",
@@ -8,10 +8,9 @@ export const data: PageData = {
 
 export const render: PageRender = () => {
   return (
-    <Layout>
-      <Post data={data}>
-        <Markdown
-          text={`
+    <PostLayout data={data} icon={"about"}>
+      <Markdown
+        text={`
           Changed so that filenames now have a parameter that generates
           to multiple pages. Before, I had a list of files like:
           - page0.tsx
@@ -41,8 +40,7 @@ export const render: PageRender = () => {
           ripe tasty mangos, pondering what would my life be like when I grow up.
           Sorry kiddo, I don't think I have any exciting answers for you.
           `}
-        />
-      </Post>
-    </Layout>
+      />
+    </PostLayout>
   );
 };
