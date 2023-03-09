@@ -11,6 +11,8 @@
         "preact": "https://esm.sh/preact@10.12.1",
         "sitemap": "./gen_sitemap.ts",
         "linkedom": "https://esm.sh/linkedom@0.14.22",
+        "markdown": "https://deno.land/x/markdown@v2.0.0/mod.ts",
+        "$speed_highlight/": "https://deno.land/x/speed_highlight_js@1.1.11/"
     },
     "compilerOptions": {
         "jsx": "react-jsx",

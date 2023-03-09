@@ -8,6 +8,7 @@ import {
 import { sitemap } from "sitemap";
 import moment from "moment";
 import { tw, apply, css } from "$twind/css";
+import { highlightThemeCss } from "./syntax_highlighter.tsx";
 
 export const icons = {
   notes: "⛾",
@@ -87,6 +88,7 @@ export function Layout({ title, children }: LayoutProps) {
       <head>
         <title>{getSiteTitle(title)}</title>
         <link rel="stylesheet" href="assets/style.css" />
+        <link rel="stylesheet" href={highlightThemeCss} />
       </head>
       <body className={tw`lg:w-4/5 m-auto bg-gray-50`}>
         <Header />
