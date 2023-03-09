@@ -35,6 +35,3 @@ export const render: PageRender = ({ data }: { data: PageData }) => {
     />
   );
 };
-
-// TODO: use on feed too
-// TODO: do not generate listing, just use enumerateScreenshots (but cache it once)

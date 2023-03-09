@@ -35,8 +35,9 @@ async function main() {
   }, 50);
 
   const watchDir = path.resolve(
-    path.join(path.fromFileUrl(import.meta.url), "..", "..", "docs")
+    path.join(path.fromFileUrl(import.meta.url), "..", "..", config.buildDir)
   );
+
   console.log({ watchDir });
   const watcher = Deno.watchFs(watchDir);
   for await (const event of watcher) {

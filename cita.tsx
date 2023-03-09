@@ -229,7 +229,7 @@ import { Marked } from "markdown";
 
 import { createElement, h, Fragment } from "preact";
 import type { JSX, ComponentChildren } from "preact";
-import { render as renderToString } from "https://esm.sh/preact-render-to-string@5.2.6";
+import { render as renderToString } from "preact-render-to-string";
 import * as path from "$std/path/mod.ts";
 import { copy, ensureFile, ensureDir, walk } from "$std/fs/mod.ts";
 import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/command.ts";

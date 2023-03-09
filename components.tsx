@@ -9,6 +9,7 @@ import { sitemap } from "sitemap";
 import moment from "moment";
 import { tw, apply, css } from "$twind/css";
 import { highlightThemeCss } from "./syntax_highlighter.tsx";
+import { renderToString } from "preact-render-to-string";
 
 export const icons = {
   notes: "⛾",

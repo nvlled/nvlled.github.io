@@ -79,7 +79,7 @@ export function ScreenShotFeed({
   const numImages = 30;
   const weekNum = Math.floor(parseDate(date).getDate() / 8);
   return (
-    <Dv tw={"text-xl flex items-start  w-full 2xl:w-1/2"}>
+    <Dv tw={"text-xl flex items-start  w-full 2xl:w-3/4"}>
       <Dv tw={"flex items-center"}>
         {num !== undefined && (
           <Dv tw={"text-gray-500 text-sm text-right w-7"}>

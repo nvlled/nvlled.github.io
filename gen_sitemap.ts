@@ -5,12 +5,12 @@ import { SitemapEntry, parseDateTime } from "./cita.tsx";
 export const sitemapPages: SitemapEntry[] = [
   {
     "title": "Notes",
-    "created": "2023-03-09 14:20:28",
+    "created": "2023-03-09 14:23:11",
     "path": "notes.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 14:20:27",
+    "created": "2023-03-09 14:23:11",
     "path": "index.tsx"
   },
   {
@@ -96,7 +96,7 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "Notes",
-    "created": "2023-03-09 14:20:28",
+    "created": "2023-03-09 14:23:11",
     "pathKey": "0",
     "path": "notes/feed/page0.tsx"
   },
@@ -122,13 +122,13 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 14:20:27",
+    "created": "2023-03-09 14:23:11",
     "pathKey": "0",
     "path": "homefeed/page0.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 14:20:27",
+    "created": "2023-03-09 14:23:11",
     "pathKey": "1",
     "path": "homefeed/page1.tsx"
   },
