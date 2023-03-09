@@ -82,6 +82,11 @@ export type LayoutProps = {
   children: ComponentChildren;
 };
 
+const bodyStyle = css`
+  blockquote {
+    ${apply`italic pl-3 border-l-8 border-gray-500 `}
+  }
+`;
 export function Layout({ title, children }: LayoutProps) {
   return (
     <html>
@@ -90,7 +95,7 @@ export function Layout({ title, children }: LayoutProps) {
         <link rel="stylesheet" href="assets/style.css" />
         <link rel="stylesheet" href={highlightThemeCss} />
       </head>
-      <body className={tw`lg:w-4/5 m-auto bg-gray-50`}>
+      <body className={tw`lg:w-4/5 m-auto bg-gray-50 ${bodyStyle}`}>
         <Header />
         <div className={tw`bg-gray-200 p-2 shadow-xl drop-shadow-xl`}>
           {children}
@@ -160,7 +165,7 @@ export function Post({
         <Dv>{icon ? icons[icon] : "⛾"}</Dv>
       </Dv>
       <Space />
-      <Dv>
+      <Dv tw="w-full">
         <Dv tw={"flex items-center"}>
           <a href={data.path} className={tw`text-gray-900 `}>
             {data.title}
@@ -262,4 +267,43 @@ export function cache<T>(fn: () => T): () => T {
     }
     return result;
   };
+}
+
+export function createFootnoter() {
+  const fn = (text: string) => {
+    fn.data.push(text);
+    const i = fn.data.length;
+    const link = (
+      <a
+        className={tw`text-xs mx-0 px-0 -top-1 relative` + " footnote-link"}
+        id={`footnote-link-${i}`}
+        href={`#footnote-${i}`}
+      >
+        [{i}]
+      </a>
+    );
+    return renderToString(link);
+  };
+  fn.data = [] as string[];
+
+  fn.render = () => {
+    return (
+      <ol className={tw``}>
+        {fn.data.map((note, i) => (
+          <li className={tw`mb-2 ml-2`}>
+            <a
+              id={"footnote-" + (i + 1)}
+              className={tw`text-xs relative -top-1`}
+              href={`#footnote-link-${i + 1}`}
+            >
+              [{i + 1}]
+            </a>
+            : {note}
+          </li>
+        ))}
+      </ol>
+    );
+  };
+
+  return fn;
 }

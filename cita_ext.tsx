@@ -46,6 +46,7 @@ setupTwind({
     },
   },
   sheet: styleSheet,
+  mode: "strict",
 });
 
 internal.onRenderPage = (page: LoadedPage, dom: LinkeHTMLDocument) => {

@@ -170,6 +170,7 @@ export type PageRender = ({
 export interface Page {
   data: PageData;
   render: PageRender;
+  initRender?: () => void | Promise<void>;
   getPageEntries?: () => PageEntry[] | Promise<PageEntry[]>;
 }
 
@@ -224,7 +225,8 @@ export type LinkeHTMLDocument = ReturnType<
 //  ▒ ░░  ░      ░░▒ ░       ░ ▒ ▒░   ░▒ ░ ▒░    ░    ░ ░▒  ░ ░
 //  ▒ ░░      ░   ░░       ░ ░ ░ ▒    ░░   ░   ░      ░  ░  ░
 //  ░         ░                ░ ░     ░                    ░
-import { Marked } from "https://deno.land/x/markdown@v2.0.0/mod.ts";
+import { Marked } from "markdown";
+
 import { createElement, h, Fragment } from "preact";
 import type { JSX, ComponentChildren } from "preact";
 import { render as renderToString } from "https://esm.sh/preact-render-to-string@5.2.6";
@@ -611,6 +613,11 @@ export const internal = {
     // override this on cita_ext.tsx
   },
   async renderPage(page: LoadedPage): Promise<string> {
+    if (page.initRender) {
+      const ps = page.initRender();
+      if (ps instanceof Promise) await ps;
+    }
+
     let output = page.render({ data: page.data });
     if (output instanceof Promise) output = await output;
 
