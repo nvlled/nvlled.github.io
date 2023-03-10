@@ -1,0 +1,14 @@
+<html lang="en"><head><meta charSet="UTF-8"><title>Home - logs and notes</title><link rel="stylesheet" href="./../../../../../assets/old-site/styles/site.css"><script src="./../../../../../assets/old-site/scripts/site.js"></script><script>
+      if (!location.pathname.match(/.html$/)) {
+        // This makes sure that urls end with index.html
+        // since the pages have relative paths in them.
+        // For example: http://localhost:8000 -> http://localhost:8000/index.html
+        // Omitting index.html breaks some links.
+        // The generate HTML uses relative paths for easier deployment,
+        // that they can be placed in any subdir and the links still work.
+      
+        var pathname = location.pathname;
+        if (pathname[pathname.length-1] != "/") pathname += "/"
+        location.pathname =  pathname + "index.html";
+      }
+    </script></head><body><div id="wrapper"><div id="home"><p>Greetings. This is an eternally work-in-progress personal site. I'm not sure what I should put here, but I guess a <a href="./blog/index.html">blog</a> would do, as well as some <a href="./mysides.html">javascript games and utilities.</a></p><br><nav id="main" class="index"><ul><li><a href="./index.html">home</a></li><li><a href="./mysides.html">code</a></li><li><a href="./fiction/index.html">fiction</a></li><li><a href="./blog/index.html">blog</a></li></ul></nav><br><div style="text-align: center; font-style: italic;">What's this place? This is my old site. To view the updated one, <a href="./../index.html">go here</a>.</div><br></div></div></body></html>
