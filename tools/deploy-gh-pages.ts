@@ -5,4 +5,5 @@ await $`./cita.tsx build`;
 await $`git checkout build`;
 await $`rm -rf docs`;
 await $`mv _build docs`;
+await $`git push --all`;
 await $`git checkout master`;
