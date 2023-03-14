@@ -3,7 +3,7 @@ import { createFootnoter, HR, Layout, Post, PostLayout } from "components";
 import { pagePath } from "../gen_sitemap.ts";
 
 export const data: PageData = {
-  title: "2d game design",
+  title: "2D game design",
   created: "2023-03-09 15:48:46",
 };
 
@@ -57,7 +57,7 @@ export const render: PageRender = () => {
       In short, waifus.
       <Post.BR />
       God is dead, people no longer read bibles. Religion is nothing but an
-      antiquated practice of dating back medieval times. Waifuism are the
+      antiquated practice of dating back medieval times. Waifuism is the
       neo-religion. To have a waifu is to overcome material suffering, and
       transcend higher state of being by means of religious fixation on waifus.
       To love and be loved by a waifu amounts to experiencing happiness that is
@@ -86,20 +86,28 @@ export const render: PageRender = () => {
       that aren't owned by anyone, but at the same time are possessed by every
       heart of living human being.
       <Post.BR />
-      The d-gens rejects this idea of non-ownership waifu. The d-gens states
-      that treasures are meant to be claimed and owned. They want to claim the
-      waifus for themselves and deprive everyone else of their blessings. They
-      started small, but progressively became organized and larger. As the
-      police became obsolete, d-gen were relentless.
+      The d-gens rejects this idea of omnipresent love. The d-gens states that
+      treasures are meant to be claimed and owned by rightful owners. They want
+      to claim the waifus for themselves and deprive everyone else of their
+      blessings. D-gen were relentless as there were no police or military to
+      stop them.
       <Post.BR />
-      D-gens kidnap the people behind the embodiment of waifus, and place them
-      on their own sacred altar for eternal worship.
+      D-gens' primary operation is to kidnap waifus, and lock up in their own
+      altar basement, where they will worship and adore their beloved waifu all
+      for themselves.
       <Post.BR />
-      This is where you, the player, steps in. As the part of the secret force
-      that vows to stabilize the society once again, your goal is to defeat the
+      This is where the player, steps in. As the part of the secret force that
+      vows to re-stabilize the society once again, your goal is to defeat the
       d-gens and save the waifus entrapped from the weird altars, and bring them
       back safely to their homes.
+      <HR />
+      Uh... that backstory came out weird. Oh well, who cares, at least it
+      establishes the premises clearly, and I have a good idea what shitty game
+      to make.
       <Post.BR />
+      <HR />
+      <Post.Header>Other notes</Post.Header>
+      None yet.
       <HR />
       {footnote.render()}
     </PostLayout>

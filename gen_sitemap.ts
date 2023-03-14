@@ -5,18 +5,24 @@ import { SitemapEntry, parseDateTime } from "./cita.tsx";
 export const sitemapPages: SitemapEntry[] = [
   {
     "title": "Notes",
-    "created": "2023-03-09 16:09:27",
+    "created": "2023-03-14 20:12:21",
     "path": "notes.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 16:09:27",
+    "created": "2023-03-14 20:12:20",
     "path": "index.tsx"
   },
   {
     "title": "Screenshots",
     "created": "2023-02-21 00:00:00",
     "path": "screenshots/index.tsx"
+  },
+  {
+    "title": "temp screenshots",
+    "created": "2023-02-23 00:00:00",
+    "pathKey": "temp",
+    "path": "screenshots/scr-temp.tsx"
   },
   {
     "title": "random screenshots",
@@ -79,6 +85,11 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/ready-for-action.tsx"
   },
   {
+    "title": "2D game progress",
+    "created": "2023-03-14 12:06:19",
+    "path": "notes/2d-game-progress.tsx"
+  },
+  {
     "title": "Previous writings",
     "created": "2023-03-01 13:31:54",
     "path": "notes/previous-writings.tsx"
@@ -95,13 +106,13 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/ssg.tsx"
   },
   {
-    "title": "2d game design",
+    "title": "2D game design",
     "created": "2023-03-09 15:48:46",
     "path": "notes/2d-game-design.tsx"
   },
   {
     "title": "Notes",
-    "created": "2023-03-09 16:09:27",
+    "created": "2023-03-14 20:12:21",
     "pathKey": "0",
     "path": "notes/feed/page0.tsx"
   },
@@ -116,6 +127,11 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/godot.tsx"
   },
   {
+    "title": "2D game implementation",
+    "created": "2023-03-10 19:00:00",
+    "path": "notes/2d-game-implementation.tsx"
+  },
+  {
     "title": "Getting started with Godot",
     "created": "2023-03-06 19:53:57",
     "path": "notes/getting-start-with-godot.tsx"
@@ -127,9 +143,15 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "screenshots",
-    "created": "2023-03-09 16:09:27",
+    "created": "2023-03-14 20:12:20",
     "pathKey": "0",
     "path": "homefeed/page0.tsx"
+  },
+  {
+    "title": "screenshots",
+    "created": "2023-03-14 20:12:20",
+    "pathKey": "1",
+    "path": "homefeed/page1.tsx"
   },
   {
     "title": "Projects",
@@ -183,12 +205,13 @@ export const sitemapPages: SitemapEntry[] = [
   }
 ];
 
-export const sitemapDirs = {"screenshots/":[2,3,4,5,6],"about/":[7,8,9,10,11],"notes/":[12,13,14,15,16,17,19,20,21],"notes/feed/":[18],"homefeed/":[23],"old-site/":[25,29],"old-site/blog/":[26,27,28],"old-site/fiction/":[30,31,32,33]} as const;
+export const sitemapDirs = {"screenshots/":[2,3,4,5,6,7],"about/":[8,9,10,11,12],"notes/":[13,14,15,16,17,18,19,21,22,23,24],"notes/feed/":[20],"homefeed/":[26,27],"old-site/":[29,33],"old-site/blog/":[30,31,32],"old-site/fiction/":[34,35,36,37]} as const;
 
 export type PagePath = 
   | "notes"
   | "index"
   | "screenshots/index"
+  | "screenshots/scr-temp"
   | "screenshots/scr-random"
   | "screenshots/scr-gaming"
   | "screenshots/scr-code"
@@ -200,6 +223,7 @@ export type PagePath =
   | "about/filename-params"
   | "notes/site"
   | "notes/ready-for-action"
+  | "notes/2d-game-progress"
   | "notes/previous-writings"
   | "notes/abstraction"
   | "notes/ssg"
@@ -207,9 +231,11 @@ export type PagePath =
   | "notes/feed/page0"
   | "notes/gost"
   | "notes/godot"
+  | "notes/2d-game-implementation"
   | "notes/getting-start-with-godot"
   | "about"
   | "homefeed/page0"
+  | "homefeed/page1"
   | "projects"
   | "old-site/index"
   | "old-site/blog/index"
