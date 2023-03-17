@@ -5,12 +5,12 @@ import { SitemapEntry, parseDateTime } from "./cita.tsx";
 export const sitemapPages: SitemapEntry[] = [
   {
     "title": "Notes",
-    "created": "2023-03-14 20:12:21",
+    "created": "2023-03-17 11:50:22",
     "path": "notes.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-14 20:12:20",
+    "created": "2023-03-17 11:50:22",
     "path": "index.tsx"
   },
   {
@@ -112,7 +112,7 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "Notes",
-    "created": "2023-03-14 20:12:21",
+    "created": "2023-03-17 11:50:22",
     "pathKey": "0",
     "path": "notes/feed/page0.tsx"
   },
@@ -132,6 +132,11 @@ export const sitemapPages: SitemapEntry[] = [
     "path": "notes/2d-game-implementation.tsx"
   },
   {
+    "title": "2D game progress #2",
+    "created": "2023-03-16 19:44:38",
+    "path": "notes/2D-game-progress2.tsx"
+  },
+  {
     "title": "Getting started with Godot",
     "created": "2023-03-06 19:53:57",
     "path": "notes/getting-start-with-godot.tsx"
@@ -143,13 +148,13 @@ export const sitemapPages: SitemapEntry[] = [
   },
   {
     "title": "screenshots",
-    "created": "2023-03-14 20:12:20",
+    "created": "2023-03-17 11:50:22",
     "pathKey": "0",
     "path": "homefeed/page0.tsx"
   },
   {
     "title": "screenshots",
-    "created": "2023-03-14 20:12:20",
+    "created": "2023-03-17 11:50:22",
     "pathKey": "1",
     "path": "homefeed/page1.tsx"
   },
@@ -205,7 +210,7 @@ export const sitemapPages: SitemapEntry[] = [
   }
 ];
 
-export const sitemapDirs = {"screenshots/":[2,3,4,5,6,7],"about/":[8,9,10,11,12],"notes/":[13,14,15,16,17,18,19,21,22,23,24],"notes/feed/":[20],"homefeed/":[26,27],"old-site/":[29,33],"old-site/blog/":[30,31,32],"old-site/fiction/":[34,35,36,37]} as const;
+export const sitemapDirs = {"screenshots/":[2,3,4,5,6,7],"about/":[8,9,10,11,12],"notes/":[13,14,15,16,17,18,19,21,22,23,24,25],"notes/feed/":[20],"homefeed/":[27,28],"old-site/":[30,34],"old-site/blog/":[31,32,33],"old-site/fiction/":[35,36,37,38]} as const;
 
 export type PagePath = 
   | "notes"
@@ -232,6 +237,7 @@ export type PagePath =
   | "notes/gost"
   | "notes/godot"
   | "notes/2d-game-implementation"
+  | "notes/2D-game-progress2"
   | "notes/getting-start-with-godot"
   | "about"
   | "homefeed/page0"

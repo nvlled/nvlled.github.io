@@ -19,19 +19,20 @@ import * as $16 from "./notes/feed/page[x].tsx";
 import * as $17 from "./notes/gost.tsx";
 import * as $18 from "./notes/godot.tsx";
 import * as $19 from "./notes/2d-game-implementation.tsx";
-import * as $20 from "./notes/getting-start-with-godot.tsx";
-import * as $21 from "./about.tsx";
-import * as $22 from "./homefeed/page[x].tsx";
-import * as $23 from "./projects.tsx";
-import * as $24 from "./old-site/index.tsx";
-import * as $25 from "./old-site/blog/index.tsx";
-import * as $26 from "./old-site/blog/justwrite.tsx";
-import * as $27 from "./old-site/blog/gost.tsx";
-import * as $28 from "./old-site/mysides.tsx";
-import * as $29 from "./old-site/fiction/skul.tsx";
-import * as $30 from "./old-site/fiction/bulbasaur.tsx";
-import * as $31 from "./old-site/fiction/index.tsx";
-import * as $32 from "./old-site/fiction/cabbit.tsx"
+import * as $20 from "./notes/2D-game-progress2.tsx";
+import * as $21 from "./notes/getting-start-with-godot.tsx";
+import * as $22 from "./about.tsx";
+import * as $23 from "./homefeed/page[x].tsx";
+import * as $24 from "./projects.tsx";
+import * as $25 from "./old-site/index.tsx";
+import * as $26 from "./old-site/blog/index.tsx";
+import * as $27 from "./old-site/blog/justwrite.tsx";
+import * as $28 from "./old-site/blog/gost.tsx";
+import * as $29 from "./old-site/mysides.tsx";
+import * as $30 from "./old-site/fiction/skul.tsx";
+import * as $31 from "./old-site/fiction/bulbasaur.tsx";
+import * as $32 from "./old-site/fiction/index.tsx";
+import * as $33 from "./old-site/fiction/cabbit.tsx"
 
 export const pageList = [
   {...$0, valid: true, path: "notes.tsx"},
@@ -54,19 +55,20 @@ export const pageList = [
   {...$17, valid: true, path: "notes/gost.tsx"},
   {...$18, valid: true, path: "notes/godot.tsx"},
   {...$19, valid: true, path: "notes/2d-game-implementation.tsx"},
-  {...$20, valid: true, path: "notes/getting-start-with-godot.tsx"},
-  {...$21, valid: true, path: "about.tsx"},
-  {...$22, valid: true, path: "homefeed/page[x].tsx"},
-  {...$23, valid: true, path: "projects.tsx"},
-  {...$24, valid: true, path: "old-site/index.tsx"},
-  {...$25, valid: true, path: "old-site/blog/index.tsx"},
-  {...$26, valid: true, path: "old-site/blog/justwrite.tsx"},
-  {...$27, valid: true, path: "old-site/blog/gost.tsx"},
-  {...$28, valid: true, path: "old-site/mysides.tsx"},
-  {...$29, valid: true, path: "old-site/fiction/skul.tsx"},
-  {...$30, valid: true, path: "old-site/fiction/bulbasaur.tsx"},
-  {...$31, valid: true, path: "old-site/fiction/index.tsx"},
-  {...$32, valid: true, path: "old-site/fiction/cabbit.tsx"},
+  {...$20, valid: true, path: "notes/2D-game-progress2.tsx"},
+  {...$21, valid: true, path: "notes/getting-start-with-godot.tsx"},
+  {...$22, valid: true, path: "about.tsx"},
+  {...$23, valid: true, path: "homefeed/page[x].tsx"},
+  {...$24, valid: true, path: "projects.tsx"},
+  {...$25, valid: true, path: "old-site/index.tsx"},
+  {...$26, valid: true, path: "old-site/blog/index.tsx"},
+  {...$27, valid: true, path: "old-site/blog/justwrite.tsx"},
+  {...$28, valid: true, path: "old-site/blog/gost.tsx"},
+  {...$29, valid: true, path: "old-site/mysides.tsx"},
+  {...$30, valid: true, path: "old-site/fiction/skul.tsx"},
+  {...$31, valid: true, path: "old-site/fiction/bulbasaur.tsx"},
+  {...$32, valid: true, path: "old-site/fiction/index.tsx"},
+  {...$33, valid: true, path: "old-site/fiction/cabbit.tsx"},
 ];
 
 export default pageList;

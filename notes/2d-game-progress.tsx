@@ -90,6 +90,10 @@ export const render: PageRender = () => {
         <li>Villagers attack during the day</li>
         <li>Trees and plants produces fruits</li>
         <li>The player will pick this fruits and use them as bullets</li>
+        <li>
+          Other things that can also be used as bullets: chickens, cows, wounded
+          villagers
+        </li>
         <li>Invaders drop loots: seed, food, gold</li>
         <li>The player must defend the farm from villagers</li>
         <li>The gold can be used to bribe the villagers away for a day.</li>
@@ -98,9 +102,14 @@ export const render: PageRender = () => {
           house.
         </li>
         <li>The game ends when the player dies or the house goes down.</li>
+        <li>Player has limited inventory/slots for projectiles.</li>
         <li>
           One level only for now, fixed map layout, with increasing waves of
           difficulty
+        </li>
+        <li>
+          To make things PG, the villagers don't die. They just flee in the
+          forest when they take enough damage.
         </li>
       </ul>
       <Post.BR />
@@ -127,6 +136,37 @@ export const render: PageRender = () => {
       interest midway because it became too tedious to continue or the game
       turned out to be not fun, then at least there was a tangible result in the
       end, and I can just quit anytime and move on to something else.
+      <HR />
+      TODO:
+      <ul>
+        <li>go over https://www.gdquest.com/tutorial/godot/2d</li>
+        <li>try coroutines again with scenetree.signalname.processframe</li>
+        <li>
+          trees and houses nodes
+          <ul>
+            <li>
+              read
+              https://docs.godotengine.org/en/stable/tutorials/2d/particle_systems_2d.html
+            </li>
+            <li>house cracks and fires</li>
+            <li>house debris after it's destroyed</li>
+            <li>tree fires</li>
+          </ul>
+        </li>
+        <li>inventory, show in HUD one row of items on the bottom</li>
+        <li>
+          manually create separate nodes for each bullets/items, since they will
+          have each their own collision shape, health and damage.
+        </li>
+        <li>Show current projectile to fire in the players head</li>
+        <li>loot pickup</li>
+        <li>villager nodes</li>
+        <li>
+          basic farm map, should have at least: trees, one house, some plants
+          also some animals
+        </li>
+        <li>pathfinding and simple AI for villagers and animals</li>
+      </ul>
     </PostLayout>
   );
 };
