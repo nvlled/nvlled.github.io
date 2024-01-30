@@ -1,8 +1,8 @@
--- TODO: convert remaining tsx files  
+-- TODO: convert remaining tsx files
 -- TODO: deploy
 
-PAGE_TITLE = 'Home'
-PAGE_DESC = 'blah'
+PAGE_TITLE = "Home"
+PAGE_DESC = "blah"
 
 local entries = GetPageList()
 
@@ -13,7 +13,7 @@ for _, page in ipairs(entries) do
     local base = GetBasePath(page.link)
     local dir = path.dirname(page.link)
     local filename = path.basename(page.link)
-    if base == 'fiction' and page.link ~= "/fiction/index.html" and
+    if base == "fiction" and page.link ~= "/fiction/index.html" and
         (dir == "/fiction" or filename == "index.html") then
         table.insert(fiction, page)
     elseif base == "notes" then
@@ -36,7 +36,8 @@ return LAYOUT {
                 " ",
                 SMALL / A { href = page.link, "[" .. ext.alt(page.link) .. "]" }
             }
-        end)
+        end),
+        BR,
     },
 
     BR,

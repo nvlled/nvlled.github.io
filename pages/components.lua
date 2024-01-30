@@ -19,7 +19,7 @@ LAYOUT = function(args)
                         LI / A { href = "/fiction", "fiction" },
                         LI / A { href = "/notes", "notes" }
                     },
-                    BR,
+                    BR {},
                     PAGE_TITLE and H1 { id = "page-header", PAGE_TITLE },
                     PAGE_DATE and SMALL { id = "page-date", PAGE_DATE },
                 },
