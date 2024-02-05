@@ -1,4 +1,4 @@
-return CSS {
+return CSS '' {
     CSS 'body' {
         color = "white",
         background_color = "#233",

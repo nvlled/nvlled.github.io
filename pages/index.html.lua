@@ -27,7 +27,7 @@ fiction = ext.slice(fiction, 1, 5)
 return LAYOUT {
     id = "home",
 
-    H2 / A { href = "/notes/index.html", "Recent Notes" },
+    H2 / "Recent Notes",
     UL {
         class = "navigation",
         ext.map(notes, function(page)
@@ -37,12 +37,10 @@ return LAYOUT {
                 SMALL / A { href = page.link, "[" .. ext.alt(page.link) .. "]" }
             }
         end),
-        BR,
     },
 
-    BR,
 
-    H2 / A { href = "/fiction/index.html", "Fiction" },
+    H2 / "Fiction",
     UL {
         class = "navigation",
         ext.map(fiction, function(page)

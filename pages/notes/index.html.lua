@@ -1,21 +1,5 @@
 PAGE_TITLE = "Notes"
 
--- TODO: finish converting all other tsx files
--- TODO: find all other notes I wrote and dump them all here
---[[
-
-Catchsup [/notes/catchsup.html]
-Habit builder [/notes/habit-builder.html]
-First ideas and plan [/notes/first-ideas-and-plan.html]
-Entrepreneur [/notes/entrepreneur.html]
-Myrmarachne [/notes/myrmarachne.html]
-Abstraction [/notes/abstraction.html]
-Learning Game Development [/notes/gamedev/index.html]
-  - Page 1[/notes/gamedev/page1.html]
-  - Page 2[/notes/gamedev/page12html]
-
-]]
-
 local subPages = {}
 local notes = {}
 
@@ -41,6 +25,12 @@ for _, page in ipairs(GetPageList()) do
 end
 
 return LAYOUT {
+    PP [[
+        These are my baseless, unfounded ramblings about things.
+        They are at most maybe-work-in-progress drafts that are most likely
+        not useful or interesting to anyone but me (or maybe not me).
+    ]],
+
     UL {
         class = "navigation",
         ext.map(notes, function(page)
