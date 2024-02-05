@@ -1,0 +1,182 @@
+
+
+2024-02-01 18:27 #moon-temple
+
+I was using lua to generate a new page using the redbean runtime,
+but I noticed the local time returned by
+os.time() was off by -16 hours.
+I thought this was just a quirk of lua library (lua does have a lot).
+But then, I tried it again with the official lua interpreter, and it returns 
+the correct time. This isn't documented anywhere, so I guess it's a redbean bug.
+
+More importantly, I felt like the year was also off by one, it's
+shows 2024, but it's only 2023 right?
+
+No, it's already 2024. The fuck...?
+
+
+@2024-02-01 19:06 
+Following up on my prior disbelief of flying time bananas, 
+I will now make a habit of making a log of what I'm doing.
+Right now, I'm still working on my personal site/blog.
+The logs I'm writing here will be automatically added in the site,
+which reduces the friction of writing some stupid shit.
+
+I'm also digging up my random notes and add it to my crappy site.
+
+I should also add a script to make it easier to add screenshots of
+what I'm doing.
+
+@2024-02-01 20:00 
+Okay, now I added some bash script using the scrot tool to easily
+screenshot my current questionable decisions in life.
+I just now need to modify the log.page.html page to automatically
+embed the screenshots I did for each hour.
+
+Also, I didn't realize how much bigger PNG images are compared to JPEG.
+I know JPEG is a lossy format, but to think how much disk space it saves,
+the JPEG screenshot I just took is about 1/10 the size of the same PNG image.
+
+Anyway, that's enough coding for the day. My chest is starting to ache a bit
+from the coffee+adrenaline and sitting for too long.
+
+@2024-02-02 11:38 
+I spent about a 0.5 hour browsing HN and reddit while sipping some coffee
+and munching on some bananas. I briefly went over the "Who's hiring thread"
+and scanned for jobs that I might qualify. As usual, most posts are US/EU 
+constrained by time or location. I basically have abysmal chances of getting
+even an interview, so I'm not even going to bother applying this time.
+
+@2024-02-02 11:46 
+I'm currently reading "Elementary calculus: An infinitesimal approach".
+I've been slowly reading for about an hour each day. But just a random thought,
+I should make a simple youtube web frontend, so that I could listen to longer videos
+while I sleep. I want the videos to stop playing automatically after 30 minutes,
+so it doesn't waste my phone batteries when I'm already deep slumber to listen.
+
+
+@2024-02-02 12:08 
+I got distracted and looked up how to insert ≈ and ≉ in vim.
+Vim has default digraph entry for ≈ (ctrl+k ?2), but not ≉.
+So I made a brief visit to the vim docs to figure out how to add
+digraphs. I did the following:
+
+:digraph /2 2249
+
+But this doesn't work. The 2249 is the hex UTF-16 encoding for ≉.
+Vim actually wants a decimal number, so I convert hex to decimal:
+
+:digraph /2 8777
+
+And it works. Actually, I'm using lua to configure nvim, so:
+
+vim.cmd.digraph("/2", 8777)
+
+≉≉≉≉≉≉≉≉≉≉≉≉≉≉≉
+
+Math nerds and their silly symbols.
+And oh yeah, a ≈ b means a is infinitely close to b,
+or that a -b is an infinitesimal. Otherwise a ≉ b.
+
+@2024-02-02 16:17 
+I got up from  my computer around 13:00. So in three hours,
+I did the following in order:
+
+1 walk around
+2 give husky a bath
+3 give myself a bath
+4 eat
+5 feed the doggies and cats
+6 clean
+
+@2024-02-02 18:45 
+I took a nap after my last log, and I just
+finished watching two anime episodes while drinking
+coffee.
+
+@2024-02-02 19:38 
+Uhh, I just spend almost an hour adding a vim abbreviation
+to insert the current date time. So I would type cdt in
+insert mode, and a date gets inserted.
+
+Not exactly what was I planning on doing this early evening of friday...
+
+It's not like I have better things to do though.
+
+@2024-02-02 20:26
+I've now wrote some code to automatically embed
+the screenshots on my log page. Look at the disgustingly horrible code.
+Oh well, it works for now, I'll modify it a month later once
+it starts running too slow.
+
+Also listening to some ragnarok online BGM. I never got to play the game,
+but I still remember my highschool buddies talking about it back
+in the day. I kind of want to play the offline version of the game though.
+The art style sort of looks like trails in the sky.
+
+@2024-02-03 11:30 
+I got up from bed around 9:30, I cleaned up a lot 
+of dog poop, then cooked me some omelette.
+As usual, I browsed HN, reddit and youtube while
+sipping coffee.
+
+I also modified the screenshot script a little
+so I could take screenshot of the entire app window,
+in addition to being able to select a region of the screen.
+
+@2024-02-03 13:00 
+I played oath in felghana for about an hour or two.
+Not sure if I should even write these down,
+oh well, I'll see if it becomes a habit, or 
+I'll just quickly get tired  of writing inconsequential
+things down.
+
+@2024-02-03 16:37 
+I gave the six puppies a bath, which took me around two
+hours to do.
+
+
+@2024-02-04 19:54 
+Too lazy to write anything today. I did the minimum
+physical chores, I didn't give the other
+7 adult dogs a bath today, maybe tomorrow. At least,
+I least I took some screenshots of some of the things
+I'm watching or playing. It's not like I need to accurately
+keep track of the time for each things I did, just something
+I need to give me an idea what I did, or look back on.
+
+Sometimes I do forget to screenshot though or take note
+of what I'm doing. I wrote a tool
+before that periodically takes screenshot of my screen, 
+but that it became quickly a chore to sort through
+the dozens of screenshots.
+
+A better way is just to have a notification that
+asks me what I'm doing every hour or two. 
+
+@2024-02-05 12:18 
+Okay, I finally understood now what differential calculus is.
+Or at least, I have a high-level intuitive understanding
+of what it means to differentiate a function. It's not
+actually a difficult concept, it's just a higher-order
+function that returns the slope of f at point x with
+an infinitesimal change ε, to 
+state it loosely and imprecisely.
+
+It's not like I could now compute the derivatives of any
+function I could find in the wild, but at least I know
+how it works or what it means, which was my original goal:
+not to become a mathematician, but to learn how to apply math
+with programming.
+
+@2024-02-05 19:23
+There, I modified the code for the daily logs page so the 
+screenshots and log content are grouped by day,
+and by hour for each day. Well, it's a slow day, that's
+about the only programming I did for today.
+
+I should do a test deploy on github pages and see
+how it long it loads with a bunch of images in it.
+
+@2024-02-05 20:01 
+
