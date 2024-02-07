@@ -6,6 +6,7 @@ LAYOUT = function(args)
             LINK { rel = "stylesheet", href = Rel(props.css or "/style.css") },
             TITLE(PAGE_TITLE or "*"),
             props.style and STYLE(props.style),
+            COMMAND_ARG == "serve" and SCRIPT(AUTORELOAD_SCRIPT),
         },
         BODY {
             id = props.id,

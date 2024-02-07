@@ -178,5 +178,115 @@ about the only programming I did for today.
 I should do a test deploy on github pages and see
 how it long it loads with a bunch of images in it.
 
-@2024-02-05 20:01 
+
+@2024-02-05 20:04 
+Neat, github actions is actually pretty handy. I used to
+commit the generated html files before, but with github actions,
+the site is automatically rebuilt when I push new commits,
+and I only need to commit the lua source files.
+
+Yeah, I like this setup. I like the moon-temple too, it's
+the best static site generator I've made so far. The whole
+dependency for building the site 
+is a single cross-platform 2MB executable file.
+
+I also like the DSL I've made with lua. It's really expressive,
+it's inpired by JSX, dare I say, even more so. I like writing code
+with it.
+
+@2024-02-06 19:41 
+What did I even do today...
+
+I played some YS this late morning, I still can't beat
+the dragon chicken boss though. I was supposed to continue reading
+that calculus book, but my mother was being (extra) disruptive
+today, basically telling me to get a job.
+
+This evening I watched some anime while on coffee break usual.
+Then, I worked on moon-temple to add autoreload when a file
+has changed. It doesn't look like redbean has built-in 
+filesystem monitoring, probably because there's no easy
+way of doing cross-platform filesystem monitoring.
+So I had to resort in creating my own in lua, using polling+stat.
+It looks very hacky, but surprisingly works just fine.
+
+Autoreload is not even an important, I just feel like doing it.
+
+
+@2024-02-07 11:52 
+As usual, I scrolled through HN with my mind on autopilot while
+sipping coffee. Also, I see bluesky is now open for public.
+In my own inaccurate description, bluesky is a social 
+network for the purpose of competing and luring existing
+dissatisfied twitter users.
+
+I don't really use twitter or any social network, but out
+of curiosity I signed up for bluesky anyway last night on my phone,
+in the middle of the night.
+
+This morning I scrolled over the "Video game" feeds on bluesky.
+And... I barely see anything remotely related to video games.
+For a second, I thought I mistakenly signed up for an esoteric
+dating site. Of course, the reason for that is because there's an influx of
+new users coming in, so most of posts are "re-introduction" posts that
+consists of the following name, pronouns, location, hobbies.
+
+I know when a I see a pronoun preference listed, there's bound 
+to be eggshells scattered everywhere[*]. I've heard of tales where
+blood filled the streets because a pronoun was mistaken (okay,
+I made that up). But I will refrain from making any direct remarks with 
+regards to how these people look.
+
+Still, I will note down some (probably wrong) cursory observation. 
+And that is, a lot of those
+who listed she/her as their pronoun will likely include "gay"
+in their hobbies/interest, and their strong muscular facial structure
+indicates a biological male gender. 
+In contrast, people who listed he/him actually look like a normal
+male person, and not who transcended. My question is, why is that?
+Or not, I'm too distracted to even make a objective observation.
+Trying to infer gender based on facial structure is exactly the kind
+of thing that would pour gasoline over the eggshells, so I don't know
+why I'm still writing.
+
+Anyways, I noticed some dude listed lemon as his pronoun,
+and a girl used fae/faer as the pronoun. That's cool, I didn't know
+you could use any word as a pronoun. Okay, I've decided then, if
+anyone asks for my pronouns, it would be: he/huh/potato/orc
+
+[*] https://www.collinsdictionary.com/dictionary/english/walk-on-eggshells
+
+@2024-02-07 16:23 
+Cleaned up my code yesterday. I tried using `loadfile` instead of `dofile`
+to run page script, so that I could avoid problems with messing up page state
+when there are concurrent page requests. I reverted my changes though
+since `require` behaves strangely when inside a loadfile env, the globals
+couldn't be resolved anymore. 
+
+Not a problem I guess. Oh wait, I do think this is definitely not a problem
+because redbean forks a new subprocess for each page request, so each
+page request state is isolated.
+
+@2024-02-07 19:55 
+I started creating an outline for some guides/tutorial that
+I'm planning to write. My motativation for this is that writing
+might help me get a foot in the technical writing. If that fails,
+I could also try selling the guide on gumroad or something.
+Worst case scenario is that no one gives a fuck about it,
+but that doesn't sound too bad since I learned something myself.
+
+@2024-02-07 20:06
+I'm going drive my humor a little more.
+Previously I said my pronouns would: he/huh/potato/orc,
+but that's barely sufficient if I'm aiming to optimal
+political prowess. Asking my pronouns should be akin to navigating
+a deeply intricate labrynith of recursive state machines, each
+pronoun infinitely contingent on a random, ambiguous state.
+This way, no mortal sentient being could possibly get
+my pronouns right, ever, under any circumstances.
+Asking for my pronouns is a guaranteed zero-sum, losing game:
+the only winning move is not to play (or kicking me in the nuts works too).
+
+... The "joke" isn't as funny as I thought it would be.
+
 

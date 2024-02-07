@@ -26,9 +26,8 @@ end
 
 return LAYOUT {
     PP [[
-        These are my baseless, unfounded ramblings about things.
-        They are at most maybe-work-in-progress drafts that are most likely
-        not useful or interesting to anyone but me (or maybe not me).
+        These notes are at most maybe-work-in-progress drafts that are most likely
+        not useful or interesting to anyone but me (or maybe not even me).
     ]],
 
     UL {

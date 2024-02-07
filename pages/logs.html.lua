@@ -135,7 +135,7 @@ for _, date in ipairs(allLogs.dates) do
         if #e.images > 0 then
             local li = LI {
                 class = "images",
-                EM(hour .. ":00 to " .. hour ..":59"),
+                EM(hour .. ":00 to " .. hour .. ":59"),
                 DIV {
                     ext.map(e.images, function(img)
                         return A { href = img, } / IMG { src = img }
@@ -158,6 +158,9 @@ return LAYOUT {
             line_height = "1",
             font_family = "sans"
         },
+
+        CSS "ul" { padding=0},
+
         CSS "li" {
             list_style_type = "none",
             margin_bottom = "5px",
@@ -165,7 +168,7 @@ return LAYOUT {
             padding_left = 10,
 
             CSS "img" {
-                width = 200,
+                width = 170,
                 margin = 5
             },
 
@@ -175,7 +178,7 @@ return LAYOUT {
             list_style_type = "none",
             border_left = "2px solid #444",
             padding_left = 10,
-            font_size="90%",
+            font_size = "90%",
             CSS "div" {
                 display = "flex",
                 flex_wrap = "wrap",
@@ -198,12 +201,11 @@ return LAYOUT {
         }
     },
 
-    PP [[
+     PP [[
         In here are the list of things I did for a particular hour or day.
         Also included here are the screenshots of games I played, or videos
         I watched or listened to, or just random things I stumbled upon.
-
-        I'll probably occasionally write down what I'm thinking, or things
+        I'll occasionally write down what I'm thinking, or things
         I'm planning to do.
     ]],
 
