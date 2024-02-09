@@ -290,3 +290,75 @@ the only winning move is not to play (or kicking me in the nuts works too).
 ... The "joke" isn't as funny as I thought it would be.
 
 
+@2024-02-08 12:46 
+I continued reading the calculus book. I got stuck
+while following an example problem where
+ sqrt(∆x)/∆x =  1/sqrt(∆x)
+and ∆x is a positive infinitesimal.
+
+I can only get sqrt(∆x)/∆x =  ∆x⁻²/∆x = 1/∆x∆x² = 1/∆x³
+There's no way x³ = x⁻²
+
+Oh well, maybe just a typographic error, or I'm just dumb.
+Not important anyway. Moving on.
+
+@2024-02-08 16:45 
+Worked on the neovim guide, I didn't get to do much,
+mostly read the neovim docs. I'm not even sure how
+I should organize the document, or if this is even
+worth spending my time on.
+
+
+@2024-02-08 20:17 
+Still reading the neovim docs, I'm looking for
+function that I can use. I'm thinking of creating
+a side-by-side table showing comparing lua and vimscript.
+But then again, I really don't know much vimscript.
+I guess I could just copy the code snippet from the docs.
+
+@2024-02-09 13:02 
+I've been trying to run a file watcher using neovim lua scripts
+using like nvim -l script.lua, but nothing is working so far,
+even the official examples. I'm guessing libuv doesn't work
+well with -l.
+
+Or not, I should ask reddit or other neovim support channels.
+
+@2024-02-09 16:47 
+Nah, fuck this shit, I'm undoing all the changes I made
+today to moon-temple, I just added a bunch of pasta spaghetti monstrosity
+just to save me save keystrokes when reloading my changes.
+
+On an unrelated note, I think I want to create a mini-simple
+computer algebra system, like an interactive math equation builder.
+That way, I'll have more fun manipulating equation with a keyboard.
+It'll be simple, just a symbolic modifier.
+
+Something like this:
+
+repl:
+> expr = createExpression()
+
+> expr // (nothing)
+
+> expr.add(sym.x) // x
+
+> expr.add(sym.x) // x + x
+
+> expr.mul(sym.y) // (x + x)y
+
+> expr.distribute() // xy + xy
+
+> expr.factor(sym.x) // x(y + y)
+
+> expr[1].combine() // x2y
+
+> expr.swap(1,2) // 2yx
+
+
+@2024-02-09 18:55 
+I checked out sympy, a computer algebra system in python.
+sqrt(x)/x does indeed simplify to 1/sqrt(x).
+... It took me too long to realize that
+sqrt(x) is not x^-2, but actually x^0.5
+

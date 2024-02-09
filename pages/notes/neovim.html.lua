@@ -1,6 +1,7 @@
 PAGE_TITLE = "Neovim configuration and scripting"
 PAGE_DATE = "2024-02-1 20:25"
 
+
 return LAYOUT {
     H1 ^ EM ^ "TODO",
 
@@ -8,12 +9,12 @@ return LAYOUT {
         LI "Preamble",
         LI "Configuration",
         LI "Scripting",
-        LI "Useful nvim shortcuts (see recent reddit thread)",
+        LI "Useful nvim shortcuts",
         LI "Other general remarks",
         LI "My current init.lua",
     },
 
-    H2 "Preamble",
+    H1 "Preamble",
     PP [[
         Not too long ago, my vscodium has been lagging really bad lately,
         not really sure why. Worse, sometimes the neovim extension
@@ -38,4 +39,28 @@ return LAYOUT {
         will serve as a reference in case I need to start a new setup
         from scratch again.
     ]],
+
+    H1 "Configuration",
+    PP [[
+    ]],
+
+    H1 "Useful nvim shortcuts",
+    P {
+        "Related: ",
+        A { href = "https://www.reddit.com/r/neovim/comments/1af1r03/what_was_that_one_keybinding_that_you_somehow/",
+            "reddit thread" }
+    },
+    UL {
+        class = "",
+        LI {
+            EM "q:", " − edit command-line window as a vim buffer, or alternatively,", BR,
+            EM ": then <C-f"
+        },
+        LI / EM "gv" / " − re-select last visual selection"
+    },
+    STYLE {
+        CSS "li em" {
+            color = "#ff0"
+        }
+    }
 }
