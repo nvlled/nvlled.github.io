@@ -50,3 +50,16 @@ function ReadLogs()
     end
     return logs
 end
+
+if COMMAND_ARG == "build" then
+    OnPostRender(function(contents)
+        local links = FindLocalLinksWithFilenameParams(contents)
+        local hrefs = {}
+        for _, link in ipairs(links) do
+            table.insert(hrefs, link.attrs.href .. ".lua")
+        end
+        QueueBuildFiles(hrefs)
+
+        return contents
+    end)
+end

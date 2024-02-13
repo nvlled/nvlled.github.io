@@ -3,42 +3,6 @@ PAGE_DATE = ""
 
 local logs = ReadLogs()
 
--- TODO:
--- group each log and images by day
--- and group each day by hour
--- -------------[ 2023-01-01 ]----------------------
--- 6:00 img1 img2 img3
---
--- 6:00 blah blah blah
--- 6:30 blah blah blah
---
--- 7:00 img1 img2 img3
---
--- 9:00 img1 img2 img3
--- 9:21 blah blah blah
--- -------------[ 2023-01-02 ]----------------------
-
-local logs2 = {
-    ["2023-01-01"] = {
-        ["6:00"] = {
-            images = {
-                "/image1.png",
-                "/image2.png",
-            },
-            logs = {
-                {
-                    contents = "",
-                    date = "2023-01-01 6:10",
-                },
-                {
-                    contents = "",
-                    date = "2023-01-01 6:30",
-                },
-            }
-        },
-    },
-}
-
 function groupImagesAndLogs(images, logs)
     table.sort(images)
     table.sort(logs, function(a, b) return a.date < b.date end)
@@ -107,8 +71,21 @@ end
 
 local allLogs = groupImagesAndLogs(images, logs)
 
+local fparams = GetFilenameParams()
+local page = tonumber(fparams.page) or 1
+
 local list = {}
-for _, date in ipairs(allLogs.dates) do
+local groups = {{}}
+local pageSize = 5
+
+for i, date in ipairs(allLogs.dates) do
+    if #groups[#groups] >= pageSize then
+        table.insert(groups, {})
+    end
+    table.insert(groups[#groups], date)
+end
+
+for _, date in ipairs(groups[page] or {}) do
     table.insert(list, LI {
         class = "date",
         DIV { class = "line" },
@@ -121,7 +98,6 @@ for _, date in ipairs(allLogs.dates) do
         local hour = tostring(hourNum)
         local e = day[hour]
         if not e then goto continue end
-
 
         for _, log in ipairs(e.logs) do
             local hourKey = log.date:sub(12, 16):gsub(" ", "-")
@@ -138,7 +114,7 @@ for _, date in ipairs(allLogs.dates) do
                 EM(hour .. ":00 to " .. hour .. ":59"),
                 DIV {
                     ext.map(e.images, function(img)
-                        return A { href = img, } / IMG { src = img }
+                        return A { href = img, } / IMG { src = img, loading = "lazy" }
                     end)
                 }
             }
@@ -149,7 +125,6 @@ for _, date in ipairs(allLogs.dates) do
     end
 end
 
-
 return LAYOUT {
     STYLE {
         CSS "pre" {
@@ -159,7 +134,7 @@ return LAYOUT {
             font_family = "sans"
         },
 
-        CSS "ul" { padding=0},
+        CSS "ul" { padding = 0 },
 
         CSS "li" {
             list_style_type = "none",
@@ -169,7 +144,9 @@ return LAYOUT {
 
             CSS "img" {
                 width = 170,
-                margin = 5
+                height = 100,
+                margin = 5,
+                object_fit="cover",
             },
 
         },
@@ -198,10 +175,20 @@ return LAYOUT {
                 border_bottom = "1px solid white",
                 width = "40%",
             },
-        }
+        },
+        CSS ".page-nav" {
+            display="flex",
+            position="relative",
+            justify_content="space-between",
+            CSS "a" { display="block", },
+            CSS "#top, #bottom" {
+                position="absolute",
+                left="45%"
+            },
+        },
     },
 
-     PP [[
+    PP [[
         In here are the list of things I did for a particular hour or day.
         Also included here are the screenshots of games I played, or videos
         I watched or listened to, or just random things I stumbled upon.
@@ -209,5 +196,19 @@ return LAYOUT {
         I'm planning to do.
     ]],
 
+    DIV {
+        class="page-nav",
+        page > 1 and A {href=SetFilenameParams(PAGE_PATH, {page=page-1}), "←newer"} or DIV "",
+        A {id="top", href="#bottom", "[bottom]"},
+        page < #groups and A {href=SetFilenameParams(PAGE_PATH, {page=page+1}), "older→"} or DIV "",
+    },
+
     UL(list),
+
+    #list > 5 and DIV {
+        class="page-nav",
+        page > 1 and A {href=SetFilenameParams(PAGE_PATH, {page=page-1}), "←newer"} or DIV {},
+        A {id="bottom", href="#top", "[top]"},
+        page < #groups and A {href=SetFilenameParams(PAGE_PATH, {page=page+1}), "older→"} or DIV {},
+    },
 }

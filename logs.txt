@@ -362,3 +362,108 @@ sqrt(x)/x does indeed simplify to 1/sqrt(x).
 ... It took me too long to realize that
 sqrt(x) is not x^-2, but actually x^0.5
 
+
+@2024-02-11 11:50 
+I finally defeated the dragon chicken boss
+on Ys. It was quite the rush, I barely 
+have any health left, but I managed
+to defeat the chicken. Has that boss
+part always been that hard?
+
+
+@2024-02-11 19:07 
+Didn't really do much on this weekend,
+which how it should be. Relax, and don't
+think about anything, so that when Monday
+comes in, my mind will be fresh anew.
+
+The week is almost over, but what did I 
+even do this week? Luckily, with notes
+and screenshots, I should have a fairly
+good idea of what I did. Let's see...
+Watch anime, watch vtubers, programming,
+study, and ad infinitum. Basically
+routine stuffs I do everyday on
+my computer.
+
+As to the specifics, I mostly worked
+on improving moon-temple and adding
+stuffs on my personal site. And oh yeah,
+bluesky. It hasn't become a habit to
+regularly scroll bluesky like I do
+with HN and reddit. Which is understandable,
+as I also find it hard to get into 
+twitter-type of content.
+
+I do kind of what to use bluesky more,
+since it's one way of becoming more social.
+I should get out of my comfort zone and
+make it a habit of interacting with people online,
+and not just lurking. Maybe, that's one step
+towards getting rid of my social anxiety.
+
+...
+
+I should remind myself that I'm uploading
+this text onto a public site. I don't think
+I should be writing down my personal problems here.
+But if I filter that much thought, what is there left to write?
+Not that anyone would even bother reading this shit.
+Although there's always the problem of potential employers
+sniffing through my possibly inciminating writings.
+Then again, I'm just being myself, and if being myself
+is grounds for disqualification, then so be it.
+
+
+@2024-02-11 20:05 
+So I spent about 30 minutes scrolling through
+bluesky, mostly on discover and video game feeds.
+Among the hot takes and content shilling, I didn't 
+really see anything of interest, except for some 
+nice drawings I saw. I want to see less of people
+giving hot takes or promoting their own content,
+and more people just talking about what they did or create,
+boring or uninteresting as it may be.
+
+It all comes down to curating my own feed and following
+the right people. I'm following one person who sort
+of talks about boring mundane things, and that
+person is a voice actor learning software engineering.
+What a weird combination of interest, I don't see
+that much often. I'll lurk and see what sort of things
+he create.
+
+@2024-02-12 16:08 
+Didn't do much this morning, aside from cleaning
+and walking around. I also spent some time answering
+a questionnaire for a job assessment. I got an email
+back this weekend from a job application that I sent
+months ago, either I completely forgot about or just gave up on it.
+I'm not expecting much, I don't have strong feelings
+one way or the other, rejected or not, life carries on
+as usual.
+
+@2024-02-12 19:55 
+I started implementing pagination for the logs page,
+this is too avoid loading too many images in one page.
+The ideal, alternative solution would be to generate
+thumbnails for my screenshots, but for now I want
+moon-temple to be fully cross-platform without any dependencies,
+and for that, I can't rely on external image libraries
+to resize images. It's possible to write a pure lua
+implementation of png resizing, but that's not going to
+be an easy task.
+
+@2024-02-13 12:44 
+Finished the pagination. In my previous site generator,
+I used query parameters for the page numbers, but this
+time I used a custom file parameters, such as:
+
+/page[page=1,param=2,xyz=foo].html
+
+This way, the local links will be the same on dev server,
+and on the html build files. I also discovered that I 
+can lazy load images by doing <img loading="lazy" ... />.
+This should at least reduce page load time and bandwidth usage.
+It's a nice work-around for not being able to generate thumbnails
+for the mean time.

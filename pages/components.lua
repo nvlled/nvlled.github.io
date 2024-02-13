@@ -29,6 +29,7 @@ LAYOUT = function(args)
                 }
             },
             children,
+            BR,
         }
     }
 end
