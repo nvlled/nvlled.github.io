@@ -22,14 +22,14 @@ return CSS {
     },
 
     CSS "pre" {
-        overflow_x = "scroll",
+        overflow_x = "auto",
     },
 
     CSS "pre.code" {
         padding = 10,
         background_color = "#111",
         color = "#0ff",
-        overflow_x = "scroll",
+        overflow_x = "auto",
     },
 
 

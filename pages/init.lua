@@ -3,6 +3,10 @@ PAGE_DATE = ""
 PAGE_PATH = PAGE_PATH or ""
 PAGE_TAGS = {}
 
+local utc = os.date("!*t", os.time())
+utc.hour = utc.hour + 8
+NOW = os.time(utc)
+
 Rel = function(targetPath) return ext.relativePath(targetPath, PAGE_PATH) end
 
 require "components"
@@ -56,7 +60,7 @@ if COMMAND_ARG == "build" then
         local links = FindLocalLinksWithFilenameParams(contents)
         local hrefs = {}
         for _, link in ipairs(links) do
-            table.insert(hrefs, link.attrs.href .. ".lua")
+            table.insert(hrefs, link.attrs.href)
         end
         QueueBuildFiles(hrefs)
 

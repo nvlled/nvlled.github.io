@@ -18,7 +18,7 @@ LAYOUT = function(args)
                     LI / A { href = "/", "home" },
                     LI / A { href = "/fiction", "fiction" },
                     LI / A { href = "/notes", "notes" },
-                    LI / A { href = "/logs.html", "logs" }
+                    LI / A { href = "/logs.html", "logs" },
                 },
             },
             (PAGE_PATH ~= "/index.html" and PAGE_PATH ~= "/") and {
@@ -30,6 +30,14 @@ LAYOUT = function(args)
             },
             children,
             BR,
+            P {
+                style = "text-align: center",
+                SMALL / I {
+                    function()
+                        return "site last updated on: " .. string.lower(os.date("%c", NOW))
+                    end
+                }
+            }
         }
     }
 end

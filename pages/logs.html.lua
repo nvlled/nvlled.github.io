@@ -35,7 +35,7 @@ function groupImagesAndLogs(images, logs)
         end
 
         initEntry(date, hour)
-        table.insert(entries[date][hour].images, image)
+        table.insert(entries[date][hour].images, 1, image)
 
         ::continue::
     end
@@ -73,16 +73,29 @@ local allLogs = groupImagesAndLogs(images, logs)
 
 local fparams = GetFilenameParams()
 local page = tonumber(fparams.page) or 1
+local viewWeek = fparams["view-week"]
 
 local list = {}
-local groups = {{}}
+local groups = { {} }
 local pageSize = 5
 
-for i, date in ipairs(allLogs.dates) do
-    if #groups[#groups] >= pageSize then
-        table.insert(groups, {})
+if viewWeek then
+    local tyear, tmonth, tweek = viewWeek:match("(%d+)%-(%d+)%-w(%d+)")
+    for _, date in ipairs(allLogs.dates) do
+        local year, month, day = date:match("(%d+)%-(%d+)%-(%d+)")
+        local week = tonumber(day) // 8
+
+        if tyear == year and tmonth == month and tweek == tostring(week) then
+            table.insert(groups[page], date)
+        end
     end
-    table.insert(groups[#groups], date)
+else
+    for _, date in ipairs(allLogs.dates) do
+        if #groups[#groups] >= pageSize then
+            table.insert(groups, {})
+        end
+        table.insert(groups[#groups], date)
+    end
 end
 
 for _, date in ipairs(groups[page] or {}) do
@@ -101,9 +114,20 @@ for _, date in ipairs(groups[page] or {}) do
 
         for _, log in ipairs(e.logs) do
             local hourKey = log.date:sub(12, 16):gsub(" ", "-")
+            local aID = log.date:gsub(" ", "-")
+
+            local link
+            do
+                local year, month, day = log.date:match("(%d+)%-(%d+)%-(%d+)")
+                local week = tonumber(day) // 8
+                link = "/logs[view-week=" .. year .. "-" .. month .. "-w" .. week .. "].html"
+            end
+
             local li = LI {
+                id = aID,
                 B(hourKey), " ",
-                PP(log.contents),
+                A { href = link .. "#" .. aID, "[link]" },
+                MD(log.contents),
             }
             table.insert(list, li)
         end
@@ -124,6 +148,37 @@ for _, date in ipairs(groups[page] or {}) do
         ::continue::
     end
 end
+
+local nav =
+    DIV {
+        class = "page-nav",
+        function()
+            if viewWeek then
+                return A { href = SetFilenameParams(PAGE_PATH, {}), "←newest" }
+            end
+            if page > 1 then
+                return A { href = SetFilenameParams(PAGE_PATH, { page = page - 1 }), "←newer" }
+            end
+            return DIV {}
+        end,
+        A { id = "top", href = "#bottom", "[bottom]" },
+
+        function()
+            if viewWeek then
+                local tyear, tmonth, tweek = viewWeek:match("(%d+)%-(%d+)%-w(%d+)")
+                return viewWeek and EM ^ SMALL {
+                    "viewing logs for ",
+                    tyear .. "-" .. tmonth .. " week " .. tonumber(tweek + 1)
+                }
+            end
+            if page < #groups then
+                return A { href = SetFilenameParams(PAGE_PATH, { page = page + 1 }), "older→" }
+            end
+            return DIV ""
+        end
+
+    }
+
 
 return LAYOUT {
     STYLE {
@@ -146,7 +201,7 @@ return LAYOUT {
                 width = 170,
                 height = 100,
                 margin = 5,
-                object_fit="cover",
+                object_fit = "cover",
             },
 
         },
@@ -177,13 +232,13 @@ return LAYOUT {
             },
         },
         CSS ".page-nav" {
-            display="flex",
-            position="relative",
-            justify_content="space-between",
-            CSS "a" { display="block", },
+            display = "flex",
+            position = "relative",
+            justify_content = "space-between",
+            CSS "a" { display = "block", },
             CSS "#top, #bottom" {
-                position="absolute",
-                left="45%"
+                position = "absolute",
+                left = "45%"
             },
         },
     },
@@ -196,19 +251,7 @@ return LAYOUT {
         I'm planning to do.
     ]],
 
-    DIV {
-        class="page-nav",
-        page > 1 and A {href=SetFilenameParams(PAGE_PATH, {page=page-1}), "←newer"} or DIV "",
-        A {id="top", href="#bottom", "[bottom]"},
-        page < #groups and A {href=SetFilenameParams(PAGE_PATH, {page=page+1}), "older→"} or DIV "",
-    },
-
+    nav,
     UL(list),
-
-    #list > 5 and DIV {
-        class="page-nav",
-        page > 1 and A {href=SetFilenameParams(PAGE_PATH, {page=page-1}), "←newer"} or DIV {},
-        A {id="bottom", href="#top", "[top]"},
-        page < #groups and A {href=SetFilenameParams(PAGE_PATH, {page=page+1}), "older→"} or DIV {},
-    },
+    #list > 5 and nav,
 }

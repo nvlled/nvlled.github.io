@@ -61,16 +61,16 @@ Vim has default digraph entry for ≈ (ctrl+k ?2), but not ≉.
 So I made a brief visit to the vim docs to figure out how to add
 digraphs. I did the following:
 
-:digraph /2 2249
+| :digraph /2 2249
 
 But this doesn't work. The 2249 is the hex UTF-16 encoding for ≉.
 Vim actually wants a decimal number, so I convert hex to decimal:
 
-:digraph /2 8777
+| :digraph /2 8777
 
 And it works. Actually, I'm using lua to configure nvim, so:
 
-vim.cmd.digraph("/2", 8777)
+| vim.cmd.digraph("/2", 8777)
 
 ≉≉≉≉≉≉≉≉≉≉≉≉≉≉≉
 
@@ -336,24 +336,16 @@ It'll be simple, just a symbolic modifier.
 
 Something like this:
 
-repl:
-> expr = createExpression()
-
-> expr // (nothing)
-
-> expr.add(sym.x) // x
-
-> expr.add(sym.x) // x + x
-
-> expr.mul(sym.y) // (x + x)y
-
-> expr.distribute() // xy + xy
-
-> expr.factor(sym.x) // x(y + y)
-
-> expr[1].combine() // x2y
-
-> expr.swap(1,2) // 2yx
+| repl:
+| > expr = createExpression()
+| > expr // (nothing)
+| > expr.add(sym.x) // x
+| > expr.add(sym.x) // x + x
+| > expr.mul(sym.y) // (x + x)y
+| > expr.distribute() // xy + xy
+| > expr.factor(sym.x) // x(y + y)
+| > expr[1].combine() // x2y
+| > expr.swap(1,2) // 2yx
 
 
 @2024-02-09 18:55 
@@ -463,7 +455,243 @@ time I used a custom file parameters, such as:
 
 This way, the local links will be the same on dev server,
 and on the html build files. I also discovered that I 
-can lazy load images by doing <img loading="lazy" ... />.
+can lazy load images by doing `<img loading="lazy" ... />.`
 This should at least reduce page load time and bandwidth usage.
 It's a nice work-around for not being able to generate thumbnails
 for the mean time.
+
+@2024-02-13 16:01 
+Modified the build action so that local links with filename parameters
+will be included in the build files. I also updated converted the
+.gif files to mp4, which reduced the overall size from ~100MB to 20MB.
+Even though I only worked for about an hour or two, I feel like
+I got a lot of things done. Useless stuffs to be sure, but at least
+I felt productive. Also, the owl has just finished singing.
+
+@2024-02-14 10:46 
+Now, I'm trying to follow an example of how 
+to get the derivative of 1/x. Once again, whenever I see
+I fractions, I frequently scratch my head how did the book
+go from this to that. I should probably learn the basics
+how to combine fractions together, but I am  weirdly
+fixed on notational purity, so I want to see could I 
+solve this just in terms of exponents.
+
+First, consider the equation:
+|   1/(x+y) - 1/x
+| = 1/(x+y) + -1/x
+| = (x+y)^-1 + x^-1
+
+Now, I'm stuck. How do I simplify this? Can I distribute ^-1 inside (x+y)?
+
+| (x+y)^-1 =? (x+y)1^-1
+
+Are these two equal? Nope. I do know that
+
+| x^n = (x^a)(x^b) where n = a+b
+
+So (x+y)^n = ([x+y]^a)([x+y]^b)
+
+Nope, it's even more complicated now, I've further strayed
+away from the light, the opposite of simplifying.
+
+Oh well, I think I'll read the book of abstract algebra first.
+
+@2024-02-14 11:52
+Aha, I found what I'm looking for:
+
+| (ab)^-1 = (a^-1)(b^-1) 
+
+Or not, this only applies to a group with one operation. 
+Actually, an algebraic system with two operations is
+called a ring, not a group. I'll skip ahead to chapter
+17 of the book and see if I can find the relevant
+theorem I'm looking for. It's funny how I'm just
+like skimming an API documentation and looking
+for something I can use to bring my abomination into
+fruition.
+
+@2024-02-15 11:23 
+I skimmed over the book of abstract algebra last night,
+I didn't find anything I could use.
+
+Played around more with equations, on paper, vim,
+and with python/sympy.
+
+What I just realized is that, 1/(x+y) - 1/x
+can no longer be simplified. The book actually does simplification
+with (1/(x+y) - 1/x)/y
+
+Second realization is that sympy does not automatically simplify
+when comparing equality between expressions. I seriously started
+questioning and doubting myself when it returns false 
+with (a*b)*x == a*x + b*x.
+
+I actually need to do simplify((a*b)*x) == simplify(a*x + b*x)
+
+That said, the furthest simplification I got was
+|   (1/(x+y) - 1/x)/y
+| = (x+y)^-1*(y^-1) + (-x^-1)*(y^-1)
+
+^-1 looks really messy though, for I'll use ~ as an abbreviation for ^-1
+|   (1/(x+y) - 1/x)/y
+| = (x+y)~y~ + -x~y~
+
+I also found out that a~b~ = (ab)~, this is actually I learned
+from abstract algebra as well, but it's something I won't see
+when looking up exponential laws.
+
+|   (1/(x+y) - 1/x)/y
+| = (x+y)~y~ + -x~y~
+| = [(x+y)y]~ + (-xy)~
+
+Alas, that's hardly a simplification. It's still quite far away from
+the simplification shown by the calculus book and sympy:
+
+|  (1/(x+y) - 1/x)/y
+| = -1/(x*(x + y))
+
+Just I was about to resign to my fate as a retard who can't
+even do basic algebra by using only exponential laws, I realized
+that sympy does the following (de)simplification:
+
+|   x~ + y~
+| = (x + y)/(x*y)
+| = (x + y)(x*y)~
+
+Interesting, it's not immediately clear how I would do that using
+theorems from groups, rings, fields and whatnot. Then again,
+it's probably using a basic fraction rule that I'm too dumb to see.
+Well, at least I have a lead for the next morning session.
+
+Ultimately, my goal is to show (to myself) that I can do algebraic
+manipulations without using fractions. It's a hill I'm willing
+to die on, probably. Or at least, lose a leg.
+
+@2024-02-15 20:09 
+Added some markdown library, so my logs would look
+well formatted. The markdown library is actually 
+using the older spec, so triple ``` isn't event supported.
+It's good enough for now, but ideally, I should just
+avoid markdown and just put longer notes on a separate
+lua page.
+
+I also gave myself a haircut today. By haircut, I mean
+I trimmed excess hair so the hair would stop poking my
+eyes, and I could save some soap and shampoo.
+Cutting my own hair saved me about $2, and importantly
+saves me the anxiety of having to go outside.
+Needless to say, my hair looks like shit, before
+and after.
+
+But as the saying goes, even stinkiest
+fart eventually goes away. I'm sure
+in the whole history of mankind someone said that,
+surely. I just remembered a certain shark
+saying "fart in the wind", which is
+identical in meaning.
+
+@2024-02-16 11:04 
+|   x~ + y~
+| = (x + y)/(x*y)
+
+Okay, I understand now, it really is just a
+simple fraction rule. Three things
+of note:
+
+|   x   numerator
+| -----
+|   y   denominator
+
+- two fractions can be added together if they have the same denominator
+- for any a, a/a = 1
+- for any a, a*1 = a
+
+To solve `1/x + 1/y`, I just need to make them have the same denominator:
+|   1/x + 1/y
+| = (1/x)(y/y) + (1/y)(x/x)
+| = y/xy + x/xy
+| = (x+y)/xy
+
+-----
+
+Now I just need to translate this to exponential notation:
+|   x~ + y~
+| = x~yy~ + y~xx~
+| = (yy~ + y~x)x~
+| = (x+y)x~y~
+ 
+There, I solved it without needing special rules like 
+"same-denominator fractions can be added" or
+"dividing x/y by z is the same as x/yz".
+
+----
+
+Back to the previous problem, I need to simplify `(1/(x+y) - 1/x)/y`:
+
+Simplify the numerator first
+|   1/(x+y) - 1/x               
+| = (x+y)~ + -x~                // (A)
+| = (x+y)~xx~ + -x~(x+y)(x+y)~
+| = (x+y)~xx~ + -x~(x+y)(x+y)~  // common: x~,(x+y)~
+| = [ xx~ + -x~(x+y) ](x+y)~
+| = [ x + -(x+y) ](x+y)~x~
+| = [ x + -x -y) ](x+y)~x~
+| = -y(x+y)~x~                 //  (B)
+
+|   (1/(x+y) - 1/x)/y
+| = [ (x+y)~ + -x~ ]y~         // (A) times y~
+| = [ -y(x+y)~x~   ]y~         // replaced (A) with (B)
+| = -(x+y)~x~                  // yy~ are inverses, so yy~ = 1
+| = -1/(x+y)*x
+
+Aha, now I got the same equation as shown in the book.
+
+----
+
+I'm still not sure if avoiding fractional notation is better,
+but at least so far I've managed to avoid relying on special
+rules to do algebraic simplifications. I still don't know
+how the book was able to get `-1/(x+y)*x`, it just seems
+"magic" for me. Well actually, looking closer, the book did
+use the same trick by making both terms use the same denominator.
+It only just skipped lots of steps in between.
+
+
+@2024-02-16 14:20 
+I'm wondering now, why do I need to add the two fractions
+together before I could simplify it. Isn't there another way?
+That does sounds like a math trick that I must do
+without knowing why.
+That's what I tried before, but I couldn't get any further:
+
+|   [1/(x+y) - 1/x]/y               
+| = [(x+y)~ - x~]y~
+| = (x+y)~y~ - x~y~
+| = [(x+y)y]~ - x~y~
+| = [xy+yy]~ - x~y~     // how do I go from this...
+| ...
+| = -(x+y)~x~           // to this                 
+
+Maybe, there's a theorem that I could use for this?
+
+|   x~ + y~ = (x+y)x~y~
+|   x~ + y~ = [(x+y)~x]~y~
+|   x~ + y~ = [(x+y)~x]~y~      // TODO:
+
+| xy~ = (x~y)~          // ooh, this is actually true
+| x~y = (xy~)~          // woah, this  holds as well
+| xy = (x~y~)~          // this too!?!? 
+| xyz = (x~y~z~)~       // cool, it generalizes to arbitrary number of terms
+|                       // actually ~ behaves a like  de morgan's law
+
+Ahaaha, did I just discover/invent new theorems for my own operator?
+This is actually pretty neat stuffs. My mind feels a bit blown.
+I didn't think math would be this fun. Yeah, with this new theorem,
+I think I could actually do solve the equation without relying 
+on the math trick.
+
+
+
+@2024-02-16 18:56 
+
