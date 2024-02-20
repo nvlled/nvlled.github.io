@@ -692,6 +692,259 @@ I think I could actually do solve the equation without relying
 on the math trick.
 
 
-
 @2024-02-16 18:56 
+
+
+@2024-02-18 19:20 
+Around 18:30, there's was a traffic incident just across
+the street from my house. A tricycle and a motorcyle
+crashed into each other. Me and my mother curiously
+watched from the front gate. It appears no one
+was seriously injured. There was an ambulance,
+but I didn't see any stretchers, or
+anyone gravely injured that
+needed immediate medical attention.
+It was for the most part, a nothingburger,
+for anyone not directly involved in the incident.
+Maybe. It's hard to see anything from where I stood.
+
+In my whole life, I strangely don't think I've ever seen
+a serious traffic accident in person, and I say
+this as someone who used to walk home alongside the
+highways a lot back in the old days. Or maybe there was,
+and I just can't remember. 
+
+
+@2024-02-19 11:29 
+
+I just finished breakfast, which is quite late for a reason.
+Around hour ago, my husky dog went through a hole in the wall,
+and was set free in the swampy wilderness. I didn't realize though
+until I saw two people in the swap yelling to me about our dog attacking
+their ducklings. I said, that can't be, all of our dogs are in the
+house. Then I went around and noticed I don't see the big ole furry
+dog anywhere. Oh fuck, I thought.
+
+I didn't really have any choice though, but to go out and search for
+my dog. I screencaped a google map and annotated it to make it easier
+to explain.
+
+![](images/finding-husky.jpg)
+
+- In the image, the husky dog went through a hole on (B)
+I really don't want to wade through the swamp if possible,
+so I went through the front gate first (F)
+- I walked around neighbourhood street first (1) and (2)
+and didn't see any husky dog
+- I checked out the aggrived duckling owners, went through
+their lot (3) and walked through the swampy terrain.
+I didn't see or hear anything.
+- At this point, I went back inside and put some
+long pants and boots, because the swamp likely consists
+of various nasty household gooey waste,
+not to mention the possible snakes.
+- It's hard to see anything because of the really, realy
+tall grasses, so went to the discontinued road for a better
+view of the surroundings (4)
+- Walking through the abandoned road wasn't any easier,
+but at least it was dry. It had a lot of sharp
+tall grasses (wild sugarcane I think they are called),
+so I only tried walking on the edges. (5)
+- My mother was on a tricycle yelling, searching for me
+and the dog (C)
+- While I was on the way to (6), I heard a splash in the swamp,
+followed by chickens flying. From point (C) looking at point (A),
+I finally found the the husky dog
+- I slowly trudged back to point (A), hoping the husky dog
+didn't run off to somewhere. Thankfully, the husky was still there standing,
+waiting for chickens to munch on. I put him on a leash, and made
+our way back to the dry lands. (7)
+- I saw a dead orange tabby cat (A), which suspiciously looked
+like our cat, but I'm not sure. I didn't check further though,
+because the husky might actually try eating it.
+
+And there, it was quite a terrible morning to start a day with, but
+I'm just glad I found the husky safe. Worse case scenario,
+my dog went further out, in the neighbouring streets, never
+to be found again. I admit, I did kind of enjoy walking in the swamps,
+just the like old days.
+
+
+
+@2024-02-19 12:36 
+Continuing from last friday, I found about multiplicative
+inverses conforming to de morgan's law:
+
+| xy~ = (x~y)~ 
+| x~y = (xy~)~ 
+| xy = (x~y~)~ 
+
+|   [1/(x+y) - 1/x]/y               
+| = [(x+y)~ - x~]y~
+| = (x+y)~y~ - x~y~
+| = [(x+y)y]~ - x~y~
+| = [xy+yy]~ - x~y~     // how do I go from this...
+| = ...
+| = -(x+y)~x~           // to this                 
+
+Nope, de morgan's law isn't enough. I need something like
+| (x+y)~ = ~x + ~y
+
+
+What about this?
+|   (x+y)~ + -x~
+| = -y(x+y)~x~ 
+| = -(x+y)~x~y
+
+
+|   (x+y)~ + x~
+| = (x+y)~yx~ 
+
+-------------------------
+
+| = (x+y)~ + -x~
+| = (x+y)~xx~ + -x~(x+y)(x+y)~
+| = (x+y)~xx~ + -x~(x+y)(x+y)~
+| = [ xx~ + -x~(x+y) ](x+y)~
+| = [ x + -(x+y) ](x+y)~x~
+| = [ x + -x -y) ](x+y)~x~
+| = -y(x+y)~x~               
+
+|   x + y
+| = xyy~ + yxx~
+| = xy(y~ + x~)
+
+|   x~ + y~
+| = x~yy~ + y~xx~
+| = x~(yy~ + y~x)
+| = x~y~(y + x)
+
+|   x~ + y
+| = x~yy~ + yxx~
+| = yx~(y~ + x)
+
+|   x + y~
+| = xyy~ + y~xx~
+| = y~x(y + x)
+
+
+|   x~ + 0~
+| = x~0~(0 + x)
+0h, 0~ is undefined...
+
+
+|   (x+y)~
+| = xy(x~ + y~)~
+| = [x~y~(x~ + y~)]~
+| = [(x~x~y~ + x~y~y~)]~
+| = [(x~2y~ + x~y~2)]~
+| = [(x~2 + x~2)y~]~
+| = (x~2 + x~2)~y
+| = (2x~2)~y
+So close, but this is false
+
+Let me try again:
+|   (x+y)
+| = xy(x~ + y~)
+
+|   (x+y)~
+| = x~y~(x~ + y~)~
+
+|   (x+y)~
+| = x~y~(x~ + y~)~
+
+|   (x+y)~
+| = [ xy(x~ + y~) ]~
+| = [ xyx~ + xyy~ ]~
+
+|   (x+y)~
+| = [xy(x~ + y~)]~
+| = xy(x~ + y~)]
+
+
+|   1/(x+y) - 1/x               
+| = (x+y)~ + -x~                // (A)
+| = (x+y)~xx~ + -x~(x+y)(x+y)~
+| = (x+y)~xx~ + -x~(x+y)(x+y)~  // common: x~,(x+y)~
+| = [ xx~ + -x~(x+y) ](x+y)~
+| = [ x + -(x+y) ](x+y)~x~
+| = [ x + -x -y) ](x+y)~x~
+| = -y(x+y)~x~                 
+| = -(x+y)~x~y                 //  (B)
+
+--------------
+
+Welp, this sucks, I feel like I'm going in circles.
+I should write and separate the equations that are shown to be true first.
+
+@2024-02-19 18:43 
+| = [(x+y)~ + -x~]y~
+| = [(x+y)~-x~(x+y + -x)]y~
+| = (x+y)~-x~yy~
+| = -(x+y)~x~ 
+
+Okay, I'm done here for now,  I don't think
+I could find anything further. On one hand,
+I now learned about the theorem  x + y = xy(x~ + y~),
+which is what I used to solve the equation above.
+But then, that theorem actually uses the notion
+of combining two fractions together, which I was
+trying to avoid. Oh well.
+
+Here's the list of theorems that I may find useful
+in my tedious journey of purely using exponential notations:
+
+| xy       = (x~y~)~
+| x + y    = x(1 + x~y) = y(1 + xy~)
+| x + y    = xy(x~ + y~)
+| (x + y)~ = x~y~(x~ + y~)~ 
+| a(x+y)~  = [a~x+a~y]~
+
+The last one very much looks like a function application rule
+that I've seen before.
+
+I will set aside that thought, and I will continue forth.
+Uhh, why am I writing like this? I have a bloody headache right now,
+mostly because of I ran out of coffee, and caffeine withdrawal
+gives me a really bad headache.
+
+
+@2024-02-20 10:51 
+| (x + y)~ = x~y~(x~ + y~)~ 
+| x + y    = xy(x~ + y~)
+| x00~
+
+| (x^2)~  = x~2
+| x~^2    = x~2
+
+| x^(y~)
+| sqrt(x) = x^0.5 = x^2~
+| cbrt(x) = x^0.333.. = x^3~
+
+| (x^a)x~ = (x^a)(x^-1) =  x^(a-1)
+
+| (x^a)^b    = x^(ab)
+| (x^a)(x^b) = x^(a+b)
+
+| x^(n^-1)
+| x^(n^m) =? (x^n)^m
+| x^(2^3) =? (x^2)^3
+| x^8 =? (xx)^3
+| x^8 =? xx xx xx
+
+Hmm, the operator ^ is also non-commutative,
+and non-associative, that's just as crippled
+as division.
+
+Oh well, for today's morning, I've thought
+about why 0~ is undefined. Wikipedia gives
+me a lot of answers, but for some reason
+it still doesn't sit right with me.
+I should continue on with the calculus book,
+anyway, until I find another equation
+that seems difficult to solve with exponential notation.
+
+I'll probably want to explore logarithms as well later.
+
+
 

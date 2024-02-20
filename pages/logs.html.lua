@@ -125,6 +125,7 @@ for _, date in ipairs(groups[page] or {}) do
 
             local li = LI {
                 id = aID,
+                class = "log",
                 B(hourKey), " ",
                 A { href = link .. "#" .. aID, "[link]" },
                 MD(log.contents),
@@ -149,8 +150,8 @@ for _, date in ipairs(groups[page] or {}) do
     end
 end
 
-local nav =
-    DIV {
+local nav = function(link)
+    return DIV {
         class = "page-nav",
         function()
             if viewWeek then
@@ -161,7 +162,7 @@ local nav =
             end
             return DIV {}
         end,
-        A { id = "top", href = "#bottom", "[bottom]" },
+        link,
 
         function()
             if viewWeek then
@@ -178,6 +179,7 @@ local nav =
         end
 
     }
+end
 
 
 return LAYOUT {
@@ -191,19 +193,19 @@ return LAYOUT {
 
         CSS "ul" { padding = 0 },
 
-        CSS "li" {
+        CSS "li.log" {
             list_style_type = "none",
             margin_bottom = "5px",
             border_left = "2px solid #4ff",
             padding_left = 10,
 
             CSS "img" {
-                width = 170,
-                height = 100,
-                margin = 5,
-                object_fit = "cover",
+                width = "100%",
             },
 
+            CSS "li" {
+                margin_left = 30
+            },
         },
 
         CSS "li.images" {
@@ -215,7 +217,13 @@ return LAYOUT {
                 display = "flex",
                 flex_wrap = "wrap",
                 align_items = "center",
-            }
+            },
+            CSS "img" {
+                width = 170,
+                height = 100,
+                margin = 5,
+                object_fit = "cover",
+            },
         },
 
         CSS "li.date" {
@@ -251,7 +259,7 @@ return LAYOUT {
         I'm planning to do.
     ]],
 
-    nav,
-    UL(list),
-    #list > 5 and nav,
+    nav(A { id = "top", href = "#bottom", "[bottom]" }),
+    UL { class = "main", list },
+    #list > 5 and nav(A { id = "bottom", href = "#top", "[top]" }),
 }
