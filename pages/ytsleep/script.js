@@ -8,14 +8,12 @@ const inputURL = document.querySelector('#inputURL');
 const timerRange = document.querySelector('#timerRange');
 const timerText = document.querySelector('#timerText');
 const pasteButton = document.querySelector('button#paste');
+const loadButton = document.querySelector('button#load');
+const inputForm = document.querySelector('form#input');
 const loop = document.querySelector('#loop');
 
-timerRange.min = 0
-timerRange.max = 60 * 60
-timerRange.value = 20 * 60
-
 function getElapsedText(excludeSeconds) {
-    return Math.floor(timerRange.value/60) + "min" + (excludeSeconds ? "" : timerRange.value%60 + "sec");
+    return Math.floor(timerRange.value/60) + "m" + (excludeSeconds ? "" : timerRange.value%60 + "s");
 }
 
 function start() {
@@ -28,7 +26,6 @@ function start() {
             stop();
         }
         timerRange.value--
-        console.log(timerRange.value)
     }, 1000)
 }
 
@@ -38,97 +35,25 @@ function stop() {
     timerID = null;
 }
 
-timerRange.addEventListener("touchstart", function() {
-    modifying = true;
-    console.log("touch down")
-});
-timerRange.addEventListener("touchend", function() {
-    modifying = false;
-    console.log("touch up")
-});
-timerRange.addEventListener("mousedown", function() {
-    modifying = true;
-    console.log("mouse down")
-});
-timerRange.addEventListener("mouseup", function() {
-    modifying = false;
-    console.log("mouse up")
-});
-timerRange.addEventListener("input", function() {
-    timerText.textContent = getElapsedText(true);
-    console.log("input")
-});
-
-// bummer, doesn't work on my shitty phone
-//pasteButton.addEventListener("click", function() {
-//     navigator.clipboard.readText().then(function(text) {
-//         inputURL.value = text;
-//     });
-//});
-
-timerRange.onchange = function() {
-    timerRange.value = Math.ceil(timerRange.value/60)*60
-    timerText.textContent = getElapsedText();
-}
-
-inputURL.onchange = function() {
-    const url = new URL(inputURL.value);
-    const id = url.searchParams.get("v");
-    if (id) {
-        localStorage.setItem("yturl", url);
-        player.loadVideoById(id);
-        start()
-    }
-}
-
-loop.onchange = function() {
-    console.log("loop", loop.checked);
-    player.setLoop(loop.checked);
-}
-
-if (!inputURL.value) {
-    inputURL.value = localStorage.getItem("yturl");
-}
-
-if (inputURL.value) {
-    const url = new URL(inputURL.value);
-    const id = url.searchParams.get("v");
-}
-
-timerText.textContent = getElapsedText();
-
-
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-function onYouTubeIframeAPIReady() {
-    const url = new URL(inputURL.value);
-    const id = url.searchParams.get("v");
-    player = new YT.Player('player', {
-        height: '390',
-        width: '640',
-        videoId: id ?? undefined,
-        playerVars: {
-            'playsinline': 1
-        },
-        events: {
-            //'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+function onPlayerReady(event) {
+    if (inputURL.value) {
+        const url = new URL(inputURL.value);
+        const id = url.searchParams.get("v");
+        if (id) {
+            player.loadVideoById(id);
         }
-    });
+    }
 }
 
 function onPlayerStateChange(event) {
     const pt = YT.PlayerState;
-    console.log("player state change", event.data, timerRange.value, pt.PLAYING)
     if (event.data == pt.PLAYING ) {
         if( timerRange.value <= 0) {
             timerRange.value = 15*60;
         }
         start();
     }
-    if (event.data == pt.PAUSED || event.data == pt.ENDED ) {
+    if (event.data == pt.PAUSED || event.data == pt.ENDED || event.data == -1) {
         clearInterval(timerID);
     }
     if (event.data == pt.ENDED && loop.checked) {
@@ -136,4 +61,69 @@ function onPlayerStateChange(event) {
     }
 }
 
+// This function will automatically be called by the youtube script
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        playerVars: {
+            'playsinline': 1
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+
+
+timerRange.addEventListener("touchstart", function() {
+    modifying = true;
+});
+timerRange.addEventListener("touchend", function() {
+    modifying = false;
+});
+timerRange.addEventListener("mousedown", function() {
+    modifying = true;
+});
+timerRange.addEventListener("mouseup", function() {
+    modifying = false;
+});
+timerRange.addEventListener("input", function() {
+    timerText.textContent = getElapsedText(true);
+});
+
+inputForm.onsubmit = function(e) {
+    e.preventDefault();
+    if (inputURL.value.trim()) {
+        const url = new URL(inputURL.value);
+        const id = url.searchParams.get("v");
+        if (id) {
+            localStorage.setItem("yturl", url);
+            player.loadVideoById(id);
+            start()
+        }
+    }
+}
+
+loop.onchange = function() {
+    player.setLoop(loop.checked);
+}
+
+if (!inputURL.value) {
+    inputURL.value = localStorage.getItem("yturl");
+}
+if (!inputURL.value) {
+    inputURL.value = "https://www.youtube.com/watch?v=gdssxLx7ofs"
+}
+
+timerRange.min = 0
+timerRange.max = 60 * 60
+timerRange.value = parseInt(localStorage.getItem("duration"), 10) || 20 * 60;
+timerText.textContent = getElapsedText();
+
+timerRange.onchange = function() {
+    timerRange.value = Math.floor(timerRange.value/60)*60
+    timerText.textContent = getElapsedText();
+    localStorage.setItem("duration", timerRange.value);
+}
 

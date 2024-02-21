@@ -47,11 +47,14 @@ return CSS {
     },
 
     CSS "#page-navigation" {
-        CSS "ul" { margin = 0, padding = 0 },
+        CSS "ul" { margin = 0, padding = 0,
+
+            text_align = "center",
+        },
         CSS "li" {
             display = "inline-block",
-            padding_right = 5,
-            padding_left = 5,
+            padding_right = 15,
+            padding_left = 15,
             border_right = "1px solid gray",
             border_left = "1px solid gray"
         },

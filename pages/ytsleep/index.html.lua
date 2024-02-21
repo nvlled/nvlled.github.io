@@ -1,11 +1,12 @@
 return HTML {
     HEAD {
         META { charset = "UTF-8" },
-        TITLE("-"),
-        COMMAND_ARG == "serve" and SCRIPT(AUTORELOAD_SCRIPT),
+        TITLE("ytsleep"),
         STYLE {
             CSS "body" {
-                max_width = 840,
+                padding_top = 20,
+                max_width = 800,
+                margin = "auto",
                 font_size = "150%",
                 color = "#ddd",
                 background = "#222",
@@ -14,19 +15,36 @@ return HTML {
                     background = "#333",
                 },
             },
-            CSS "div#input" {
+
+            CSS "form#input" {
                 display = "flex",
                 align_items = "center",
-                CSS "> *" {
-                    margin_right = 20,
+                column_gap = 20,
+                CSS "#inputURL" {
+                    flex_grow = "1",
                 },
             },
-            CSS "#inputURL" {
-                width = "70%",
+
+            CSS "div#settings" {
+                display = "flex",
+                column_gap = 10,
+                align_items = "center",
+                CSS "> *" {
+                },
+                CSS "#timerRange" {
+                    flex_grow = "1",
+                },
+                CSS "#timerText" {
+                    width=100,
+                },
             },
 
-            CSS "#timerRange" {
-                width = "50%",
+            CSS "#player" {
+                width="100%",
+            },
+
+            CSS "h1, h2, h3, h4, h5" {
+                font_size="100%",
             },
 
             CSS_MEDIA "(max-width: 1250px)" {
@@ -40,28 +58,36 @@ return HTML {
         }
     },
 
-    -- TODO: loop video
-    -- TODO: load video button
-    -- TODO: stop timer on error
-
     BODY {
-        DIV {
+        FORM {
+            id = "input",
             INPUT { id = "inputURL", placeholder = "enter youtube URL" },
-            BUTTON {id="load", "load video" },
+            BUTTON { id = "load", "load video" },
         },
         BR,
         DIV {
-            id = "input",
+            id = "settings",
             INPUT { id = "timerRange", type = "range", min = "1", max = "60", readonly = true },
             SPAN { id = "timerText" },
             LABEL {
-                INPUT { id="loop", type = "checkbox" },
+                INPUT { id = "loop", type = "checkbox" },
                 "loop?",
             }
         },
 
         BR,
         DIV { id = "player" },
+
+        H1 "What's this?",
+        PP [[
+            A youtube UI that with a countdown timer.
+            When the timer reaches zero, the video will stop playing.
+            The primary use is for listening to long youtube videos before
+            sleeping. 
+        ]],
+
+
+        SCRIPT { src = "https://www.youtube.com/iframe_api" },
         SCRIPT { src = "script.js" },
     }
 }

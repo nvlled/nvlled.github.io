@@ -947,4 +947,50 @@ that seems difficult to solve with exponential notation.
 I'll probably want to explore logarithms as well later.
 
 
+@2024-02-21 10:53 
+I continued reading "calculus: an infinitesimal approach".
+I'm still following so far, but I don't quite get 
+the increment theorem. For starters, why would ∆y be
+infinitesimal? If the book is referring to ∆y in the equation
 
+| ∆y = f(x+∆x) - f(x)
+
+then I don't see how ∆y would be necessarily be infinitesimal.
+I could think of really weird curves where ∆y wouldn't be infinitesimal
+based on that equation.
+
+Of course, it's actually referring to a different(?) ∆y, the book
+is saying the ∆y in the equation
+
+| ∆y = f'(x)∆x + ε∆x
+
+is an infinitesimal. Or not. There's actually a proper definition
+and explanation in the following pages.
+
+What I've learned just now:
+
+- tagential line
+defined as l(x) - b = f'(a)(x - a)
+which is a line that intersects the point(a,b) with slope f'(a)
+
+- change in y along the curve        = f(x + ∆x) - f(x)
+  change in y along the tangent line = f'(a)∆x
+
+- differential of y and differential of x
+- the change in y along the tangent line is called the differential of y,
+and is notated as dy, as opposed to ∆y, which is the changed in y along the curve
+- dx and ∆x is the same, but dx is also used for notation consistency it seems
+
+Okay, I understood that much. But I don't still see yet where 
+incremental theorem comes in. Oh well, I'll come to this later
+and let it process in the back of my mind.
+
+@2024-02-21 12:24 
+There, I finished my shitty youtube UI. Basically, it's just
+a youtube player but with a countdown timer.
+The purpose of this is so I could listen to longer youtube
+videos without draining my phone battery.
+
+I always listen to youtube before going to sleep, it 
+really helps me fall asleep faster, it keeps me from
+thinking a bunch of things that keep me awake.
