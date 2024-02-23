@@ -19,7 +19,7 @@ LAYOUT = function(args)
                     LI / A { href = "/fiction", "fiction" },
                     LI / A { href = "/notes", "notes" },
                     LI / A { href = "/logs.html", "logs" },
-                    LI / I ^ A { href = "/ytsleep/index.html", "zzz" },
+                    LI ^  A { href = "/ytsleep/index.html", "zzz" },
                 },
             },
             (PAGE_PATH ~= "/index.html" and PAGE_PATH ~= "/") and {

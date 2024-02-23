@@ -2,6 +2,9 @@
 
 cd `dirname $(readlink $0)`
 
-now=`date "+%Y-%m-%d %H:%M"`
-echo -e "\n@$now" "$@" "\n" >> ../logs.txt
+if [[ -z "$1" ]]; then
+    now=`date "+%Y-%m-%d %H:%M"`
+    echo -e "\n@$now" "$@" "\n" >> ../logs.txt
+fi
+
 nvim +"execute 'normal G'" ../logs.txt

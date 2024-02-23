@@ -48,7 +48,7 @@ function groupImagesAndLogs(images, logs)
         end
 
         initEntry(date, hour)
-        table.insert(entries[date][hour].logs, log)
+        table.insert(entries[date][hour].logs, 1, log)
 
         ::continue::
     end

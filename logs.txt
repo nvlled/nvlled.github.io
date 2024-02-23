@@ -82,12 +82,12 @@ or that a -b is an infinitesimal. Otherwise a ≉ b.
 I got up from  my computer around 13:00. So in three hours,
 I did the following in order:
 
-1 walk around
-2 give husky a bath
-3 give myself a bath
-4 eat
-5 feed the doggies and cats
-6 clean
+1. walk around
+2. give husky a bath
+3. give myself a bath
+4. eat
+5. feed the doggies and cats
+6. clean
 
 @2024-02-02 18:45 
 I took a nap after my last log, and I just
@@ -211,7 +211,6 @@ So I had to resort in creating my own in lua, using polling+stat.
 It looks very hacky, but surprisingly works just fine.
 
 Autoreload is not even an important, I just feel like doing it.
-
 
 @2024-02-07 11:52 
 As usual, I scrolled through HN with my mind on autopilot while
@@ -994,3 +993,191 @@ videos without draining my phone battery.
 I always listen to youtube before going to sleep, it 
 really helps me fall asleep faster, it keeps me from
 thinking a bunch of things that keep me awake.
+
+@2024-02-21 15:37 
+This early afternoon, I gave the six younger puppies, 
+and the 2 adult puppies, a bath. Not much else to say
+about it, except that it's quite tiring to do,
+so I really should avoid doing it all at once.
+
+
+@2024-02-21 15:46 
+Right now, I'm wondering if I should do some maintenance
+work on moon temple. Tasks like refactoring, cleaning up,
+add do some proper releases, that kind of stuffs.
+
+Or I could start a new project.
+I want to try html.lua with a golang backend,
+and webui as the frontend. Then try htmz for
+general frontend/backend interaction.
+
+Or not, I should invest more time creating stuffs
+with godot and blender.
+
+@2024-02-21 20:01 
+So I decided to try making a web application
+with go and the lua template. After all, that
+was the original reason why I made moon-temple:
+so I could have an alternative templating engine
+text/template that comes with golang.
+
+I've done some playing around with gopher-lua, and I managed
+to run html.lua. There's one problem though: I want
+the binaries self-contained as usual, so I needed to 
+use embed.FS. Naturally, gopher-lua doesn't know
+how to load files from my embedded filesystem,
+and skimming through the docs, it appears there's no
+built-in support for doing that.
+
+The first workaround I tried is to just extract the embedded
+files into the current directory if they are newer or doesn't exist.
+But strangely, running Stat() on the embedded files always return a 0 timestamp.
+
+The second workaround I'm considering is writing a custom package.loader
+for lua. I found an [example](https://mark1626.github.io/posts/2021/04/21/lua-module-loader/)
+that I could use. Crazy enough, that example shows how I could 
+even extend lua's syntax!? Imagine I could even go further with
+my DSL madness AHAHA. Or not, the editor LSP would start cussing
+at me if I did that. Pretty neat stuffs though.
+
+
+@2024-02-22 10:53 
+lol, I didn't realize my computer crashed,
+all input was unresponsive, but 
+it was still playing the same tune 3
+second tune in a loop. Oddly enough, it
+still quite catchy, so I didn't notice
+until I tried moving my mouse.
+
+Anyway, I was on my notebook wondering
+what the geometric interpretation of negative
+exponents. n^m makes sense, it just multiplication.
+But what about n^-m, it's not apparent at first,
+but it's just equal division. What about n^(m^-1)?
+n^0.5 is square root, but what does that mean?
+Isn't that division as well? Maybe unequal division?
+
+As it turns out, I don't really understand the
+basic, fundamentals of math. But why stop at multiplication
+and division. Maybe there's a weird arithmetic operator
+that has useful properties. Base-2 has `xor`, `nand` and
+other operators.
+
+What if xor and others was generalized to arbitrary base?
+So instead of bit-wise pairing, on decimal,
+it would be digit pairing. What properties woud those
+operator have?
+
+Can I define some weird operators too?
+Programmers after all do that all the time,
+well, haskell programmers do at least.
+
+I will set aside these thoughts for now,
+I have a calculus book to read.
+
+
+
+@2024-02-22 11:37 
+Oh, I see I what's going on here:
+
+| l(x) - b = f'(a)(x - a)
+| l(x)     = f'(a)(x - a) + b
+
+Is the book defining a function here?
+Or is it establishing an equation?
+This is actually quite confusing.
+In terms of programming, it would be like
+there's no separate syntax for defining
+functions from defining variables.
+You can't do that, is what I'm thinking,
+but math nerds are free to do what they want.
+But for my own clarity, I'll need to
+establish some conventions and a more rigid
+syntax when doing math.
+
+What I want:
+- scoping of variable for each functions
+- dependent variables should be clear whose
+variable it's depending on
+- still have the freedom of doing algebraic
+manipulations (or equational reasoning? as the FP guys say)
+
+
+@2024-02-22 13:11 
+Worked on getting the lua environment to work with gopher-lua.
+The custom loader solution works fine, now I just to 
+figure out a way to structure the web application.
+For demostration purposes, I'll just create a simple
+HN clone.
+
+@2024-02-22 16:09 
+I was wondering why I keep getting a nil pointer dereference,
+as it turns out, I'm closing L.close() before I could
+even use L. Now my problem is why the __tostring metamethod
+isn't being called from the go code. I'm currently looking
+for code examples how to do that, or just examples how to 
+better use the gopher-lua API.
+
+
+@2024-02-22 20:08 
+There fixed the __tostring problem by using L.CallByParam.
+I also had to create my own version of dofile since
+the one provided by gopher-lua doesn't allow
+setting the chunk name, and seeing chunk name
+is important when debugging. 
+
+I considered using htmz, but since hacker news
+doesn't have a lot of UI interactivity, it's not
+needed for this toy project.
+
+@2024-02-23 11:00 
+I wiped my most of my rocketbook pages,
+so I could have more space for weird symbols to scribble on.
+
+@2024-02-23 11:46 
+Okay, I think I am infinitely close to understanding
+what the heck increment theorem is supposed to mean.
+
+- I have a shitty curve f(x)
+- derivative of f(x) is f'(x), which just maps x to a slope
+- I can use the slope f'(x) to create a straight ass linear curve l(x)
+
+Then at point [x, f(x)] and another point [x+∆x, f(x+∆x)]
+The change in y (f(x+∆x) - f(x)) along the f(x) is called "increment of y"?,  notated as ∆y
+The change in y (l(x+∆x) - l(x)) along the l(x) is called "differential of y, notated as dy
+
+The increment theorem says that the distance between ∆y and dy is εΔx,
+not that it helps why that matters.
+
+Then somewhere in the book says that
+
+∆y/∆x ≈ f'(x) (squiggly equal lines) and
+dy/dx = f'(x)
+
+and my confusion ensues even more.
+I literally established from first principles that ∆y/∆x = f'(x),
+and now it's telling me, oh no, ∆y/∆x is infinitely close to f'(x).
+The fuck.
+
+Well technically, any number x ≈ x since x-x = 0 + ε, so it could be 
+that both ∆y/∆x ≈ f'(x) and ∆y/∆x = f'(x) is true.
+
+Oh well, I may need to consult an alternative resource for a different explanation.
+At least for the increment theorem. I understood well what derivative and differential means.
+I should probably reviews the definitions for infinitesimal as well.
+
+@2024-02-23 19:56 
+Worked on the website using the lua templating.
+On my filesystem, I tentatively named the project
+folder as goom-temple, which actually sounds
+inappropriate since goom jokingly refers something specific
+for a certain shark fanbase, but it doesn't matter,
+it's just a temporary name. For brevity, I'll refer
+to this project as SL (slacker news) for now.
+
+As expected, I haven't done much for today,
+most of which are scaffolding stuffs for the overall
+project structure. I also properly configured my
+neovim lsp this time, both for lua and go.
+
+
