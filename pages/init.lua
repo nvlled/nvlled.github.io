@@ -10,7 +10,23 @@ NOW = os.time(utc)
 Rel = function(targetPath) return ext.relativePath(targetPath, PAGE_PATH) end
 
 require "components"
+local markdown = require "markdown"
 ext = require "ext"
+
+MD = Node("", {
+    tostring = function(node)
+        local str = ext.trim(table.concat(node.children, ""))
+        local lines = {}
+        for line in ext.split(str, "\n") do
+            line = ext.trim(line)
+            if line:sub(1, 2) == "| " then
+                line = "    " .. line:sub(3)
+            end
+            table.insert(lines, line)
+        end
+        return markdown(table.concat(lines, "\n"))
+    end
+})
 
 
 function ReadLogs()

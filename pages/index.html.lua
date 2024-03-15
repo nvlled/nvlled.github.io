@@ -1,8 +1,5 @@
--- TODO: convert remaining tsx files
--- TODO: deploy
-
 PAGE_TITLE = "Home"
-PAGE_DESC = "blah"
+PAGE_DESC = ""
 
 local entries = GetPageList()
 
