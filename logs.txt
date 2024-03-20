@@ -1918,7 +1918,7 @@ Plugging in the values:
 |       = 32.5
 Oh okay, that makes sense. Alternatively,
 | 32.5 = 32 + 5*10~
-       = 32 + 1*2~
+|      = 32 + 1*2~
 
 And from that, I feel like I have a slightly deeper
 understanding of what division and decimal notation
@@ -1938,22 +1938,21 @@ And my quest to devise my own manual long division continues.
 I tried dividing and factoring several numbers numbers
 in my notebook, some small and some large-ish.
 Several observations:
-- if I can't get rid of the ~, then it's (likely) not evenly divisible
-- I can express larger numbers as a sum of exponential 10s
-  such as: 123 = 1*10^2 + 2*10^1 + 3*10^0
-- I should avoid distributing ~ over the sum, since it becomes
-  even harder to solve
-- Sometimes I have to add terms together to make them factorable
-- I can further factor these base exponentials to help
-  see some factors:
-  735 = 7*10^2 + 3*10^1 + 5
-      = 7*5*2*5*2 + 3*5*2 + 5
-      = 5(7*2*5*2 + 3*2 + 1)
-  So here, I could see at a glance that 735 is evenly 
-  divisible by 5, without doing full division or factoring.
-
-- Going further, I could try converting base10 to another baseN
-  to help see the factors at a glance (in theory, I haven't tried)
+| - if I can't get rid of the ~, then it's (likely) not evenly divisible
+| - I can express larger numbers as a sum of exponential 10s
+|   such as: 123 = 1*10^2 + 2*10^1 + 3*10^0
+| - I should avoid distributing ~ over the sum, since it becomes
+|   even harder to solve
+| - Sometimes I have to add terms together to make them factorable
+| - I can further factor these base exponentials to help
+|   see some factors:
+|   735 = 7*10^2 + 3*10^1 + 5
+|       = 7*5*2*5*2 + 3*5*2 + 5
+|       = 5(7*2*5*2 + 3*2 + 1)
+|   So here, I could see at a glance that 735 is evenly 
+|   divisible by 5, without doing full division or factoring.
+| - Going further, I could try converting base10 to another baseN
+|   to help see the factors at a glance (in theory, I haven't tried)
 
 With that, my division method would then be first to
 factor out the divisor and the dividend (prime factorization it's called it seems), 

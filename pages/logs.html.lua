@@ -249,6 +249,33 @@ return LAYOUT {
                 left = "45%"
             },
         },
+        CSS "#popup" {
+            position = "fixed",
+            top = 0,
+            left = 0,
+            width = "100vw",
+            height = "100vh",
+            background = "#222b",
+            display = "flex",
+            align_items = "center",
+            justify_content = "center",
+
+            CSS ".popup-header" {
+                position = "absolute",
+                left = 0,
+                top = 10,
+                width = "100%",
+                display = "flex",
+                justify_content = "space-around",
+                column_gap=10,
+
+            },
+            CSS "img" {
+                object_fit = "contain",
+                width="80vw",
+                height = "90vh",
+            },
+        },
     },
 
     PP [[
@@ -262,4 +289,30 @@ return LAYOUT {
     nav(A { id = "top", href = "#bottom", "[bottom]" }),
     UL { class = "main", list },
     #list > 5 and nav(A { id = "bottom", href = "#top", "[top]" }),
+
+    DIV {
+        id = "popup",
+        DIV {
+            class = "popup-header",
+            BUTTON {
+                id = "prev",
+                "previous"
+            },
+            SPAN,
+            BUTTON {
+                id = "close",
+                "close"
+            },
+            SPAN,
+            BUTTON {
+                id = "next",
+                "next"
+            },
+        },
+        DIV {
+            id = "popup-body",
+        }
+    },
+
+    SCRIPT { src = "logs.js" },
 }
