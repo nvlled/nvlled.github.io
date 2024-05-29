@@ -1,0 +1,20 @@
+- remove /notes and put everything on logs
+
+- /now and /ideas  page
+  - just show logs with #now and #ideas
+
+- add random pictures I took with my phone
+
+- add files on logs/
+  - logs/old-logs.txt
+  - logs/older-logs.txt
+
+- create lua logs
+  - logs/old-logs.lua.html
+  - logs.lua.html
+
+- use makefile when rebundling redbean files
+
+- allow markdown on logs
+  - or include pages from logs/*.lua
+

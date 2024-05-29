@@ -1,0 +1,148 @@
+
+Mon Jul 16 19:30:25 DST 2018
+I found an HN submission for a bash command
+called `did` that opens up vim for
+writing what just I did. I'm trying it out now.
+
+Mon Jul 16 19:32:36 DST 2018
+It's cool I guess, it's simple enough that
+it could be part of my muscle memory.
+Also: written from debian wsl from windows 10
+because I haven't figured out how to boot linux
+from UIFUCKI laptop.
+
+Mon Jul 16 19:34:54 DST 2018
+Oh yeah, I see a lot of plain text
+related submissions on HN, I might
+I might as well bookmark those for
+some ideas later on.
+
+Mon Jul 16 19:48:48 DST 2018
+man: command not found
+debian wsl doesn't have man pages
+installed by default, I have to install them with apt install man-db .
+There's also a noticeable latency with wsl, moreso when ran
+from powershell.
+
+Mon Jul 16 21:13:03 DST 2018
+I just emailed my resume/CV to recruiters for
+programmer positions in finland and new zealand.
+I'm not really expecting much. I wonder if my
+unemployment would be caused by my violation
+of the 11th commandment stating resumes should
+only be one-page long (mine's three, and it's full of crap).
+
+Edit: Actually, I sent out my resume to another recruiter.
+She's japanese and her name is Naomi. I don't care if
+she doesn't get me a job, I just like talking to her.
+
+Tue Jul 17 20:36:59 DST 2018
+So, Naomi's boss just contacted me on skype. I thought
+bossman left me cold after I told him/her that I have no pro experience.
+I muttered to myself out loud that he could try giving me some 
+programming project, and he asked if I could C#.net. I asked
+which version and he said 2010.
+
+After some googling, I realized microsoft took down
+all the links for the visual expres download.
+But fortunately, I found a PDF documents by CompuScholar 
+that not only links to the whole installer, but the key as well!
+
+https://www.compuscholar.com/docs/textbooks/instructions/Visual_CS_2010_Install_Instructions.pdf
+https://www.compuscholar.com/docs/textbooks/instructions/Visual_CS_2010_Registration_Instructions.pdf
+
+Thanks Compuscholar and Homeschool programming. You are a bandaid for the wound that is microsoft.
+
+Tue Jul 17 21:21:22 DST 2018
+Welp, Suzuki wanted visual studio 2010 Ultimate or professional.
+On the plus side, I was able to immediately find a link
+http://pcpapa.net/2017/05/visual-studio-2010-professional-free-download/
+It's about 2 gig in size.
+
+Tue Jul 17 21:51:52 DST 2018
+I just realized I could use google drive as a nifty release tool.
+Instead of uploading zip files, I could rsync the folder instead.
+
+Tue Jul 17 22:23:55 DST 2018
+I feel like there is too much english language barrier between
+me and Naomi-chan. Well, as I wait for vs studio to finish downloading,
+I guess I could devote some time learning japanese. Or not. I
+still haven't finish doing that trending scanpath analyzer.
+
+Tue Jul 17 22:39:47 DST 2018
+Oof, not even a week of usage of this crusty hp laptop,
+it starts lagging like an middle-aged man on a diarrhea marathon. 
+I don't know if it's windows 10 or I just installed a bunch of 
+malware from that visual studio installations.
+
+Tue Jul 17 23:40:41 DST 2018
+I added a bit more text to the python programming
+tutorial I'm writing. I actually started writing
+it on the phone when my PC broke.
+
+Wed Jul 18 11:06:40 DST 2018
+I subconsciously woke up early to resume downloading
+vs studio 2010, and let it install as I struggle
+going back to sleep. I didn't get anymore sleep,
+so I just browse lazily on hn. I got up from bed
+and search for a vs studio product key. I didn't
+even need to click any google search result:
+
+Microsoft Visual Studio 2010 Ultimate Master Product Key ...
+https://kippykip.com › Forums › Uploads and Downloads › Serial Keys
+Apr 12, 2014 - 8 posts - 2 authors
+This saved my life... YCFHQ9DWCYDKV88T2TMHG7BHP.
+
+I messaged Suzuki of my trivial accomplishment. I am still
+unsure how will this work out, heck I'm not even sure
+if they are taking my application seriously.
+
+Wed Jul 18 12:08:19 DST 2018
+Okay, I just realized what the problem is with
+the trending scanpath analyzer that I've been
+working on for a while now. My client said
+something about wrong sorting order, but I 
+thought it was just caused by the sorting mutation.
+But actually, the set() collection isn't sorted...
+I mean, why would it be, but yeah hindsight is 20/20.
+
+Wed Jul 18 22:33:45 DST 2018
+So around 1:30, Suzuki said message me tonight 22:00.
+Around 21:00, I was busy making animated password prompt
+for my dark library system. Then around 21:30 I 
+realized the one hour difference, Suzuki boss
+replied back around 10:10 asking did I open visual studio.
+
+...
+
+The more I have written exchanges with these japanese folks,
+the more I notice their inept english proficiency.
+I really should avoid big or medium words and use
+direct, simple english words. Suzuki-san also reponds
+back excruciatingly slow, but I guess it doesn't matter.
+The jobs they might give me probably is hard for them 
+and easy for me, which means I get paid nicely.
+
+
+Wed Jul 18 22:46:56 DST 2018
+Man, suzuki keeps asking the same questions.
+Is he even awake? Maybe drunk? I wish he would
+get to the point already. If this takes much
+effort to ask what should I do for my programming
+assignment, then I can imagine the horror for
+more complex tasks. And Naomi-chan didn't reply
+to my last message...
+
+
+
+
+Wed Jul 18 22:56:58 DST 2018
+I knew it:
+try to make dynamic program that show text with link when open the page
+
+I really can't see this working out. I wonder if he can find someone
+who can speak better ingrish.
+
+
+Thu Jul 19 20:51:17 DST 2018
+Message suzuki at 2:00 PM (dunno which timezone)

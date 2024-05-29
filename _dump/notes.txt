@@ -1,0 +1,12 @@
+
+
+
+http://localhost:8080/logs.html
+http://localhost:8080/logs[page=2,x=3].html
+
+if COMMAND_ARG == "build" then
+    OnPostRender(function(node)
+        local links = getLocalLinks(node)
+        QueueBuildFiles(links)
+    end)
+end
