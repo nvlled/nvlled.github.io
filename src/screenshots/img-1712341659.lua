@@ -1,0 +1,5 @@
+
+return {
+    tags = {"majo", "anime"};
+}
+	

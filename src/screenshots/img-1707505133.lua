@@ -1,0 +1,5 @@
+
+return {
+    tags = {"web", "math"};
+}
+	

@@ -1,0 +1,6 @@
+**/*.swp
+**/*~
+output/*
+_dump/*
+_dump2/*
+docs/*

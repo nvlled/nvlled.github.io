@@ -1,0 +1,5 @@
+
+return {
+    tags = {"tear", "games"};
+}
+	

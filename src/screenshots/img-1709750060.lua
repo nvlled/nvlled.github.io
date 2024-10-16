@@ -1,0 +1,5 @@
+
+return {
+    tags = {"cheat", "anime"};
+}
+	
